@@ -10,41 +10,29 @@ import UIKit
 import MapKit
 
 class FirstViewController: UIViewController, CLLocationManagerDelegate {
+    
+    @IBOutlet weak var SegController: UISegmentedControl!
+    @IBOutlet weak var mapView: MKMapView!
+    let dataManager = DataManager()
+    let manager = CLLocationManager()
+    let waypoints = Waypoints()
+    
+    // Segment controller for changing annotations
     @IBAction func ShowHideAnnotations(_ sender: Any) {
         
         if SegController.selectedSegmentIndex == 0 {
             
             // Remove Annotations
-            self.Map.removeAnnotations(self.Map.annotations)
+            self.mapView.removeAnnotations(self.mapView.annotations)
             
-            for entries in busStopsToCity {
-                let annotation = BusAnnotation()
-                annotation.pinTintColor = UIColor.purple
-                annotation.coordinate = CLLocationCoordinate2DMake(entries[0], entries[1])
-
-                self.Map.addAnnotation(annotation)
-            }
+            addBusStopsToCity()
         }
         if SegController.selectedSegmentIndex == 1 {
             
-            self.Map.removeAnnotations(self.Map.annotations)
-            
-            for entries in busStopsToSwords {
-                
-                let annotation = BusAnnotation()
-                annotation.pinTintColor = UIColor.purple
-                annotation.coordinate = CLLocationCoordinate2DMake(entries[0], entries[1])
-
-                self.Map.addAnnotation(annotation)
-            }
+            self.mapView.removeAnnotations(self.mapView.annotations)
             
         }
     }
-    
-    @IBOutlet weak var SegController: UISegmentedControl!
-    @IBOutlet weak var Map: MKMapView!
-    let dataManager = DataManager()
-    let manager = CLLocationManager()
     
     let busStopsToCity =
         [
@@ -109,10 +97,41 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
             [53.339029, -6.249886, 581, 55]
     ]
     
-    class BusAnnotation : MKPointAnnotation {
-        var pinTintColor: UIColor?
+    func addPolyline() {
+        
+        
+        let waypoint = waypoints.waypoints500fromSwords.map { CLLocationCoordinate2DMake($0[0], $0[1]) }
+        let polyline = MKPolyline(coordinates: waypoint, count: waypoint.count)
+        mapView?.add(polyline)
+        
+
     }
     
+    func addBusStopsToCity() {
+        
+        for entries in busStopsToSwords {
+            
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = CLLocationCoordinate2DMake(entries[0], entries[1])
+            //let location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(entries[0], entries[1])
+            //annotation.coordinate = location
+            self.mapView.addAnnotation(annotation)
+        }
+    }
+    
+    func addBusStopsToSwords() {
+        for entries in busStopsToSwords {
+            
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = CLLocationCoordinate2DMake(entries[0], entries[1])
+            
+            self.mapView.addAnnotation(annotation)
+        }
+    }
+    
+    class BusAnnotation : MKPointAnnotation {
+        //var pinTintColor: UIColor?
+    }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
     {
@@ -121,26 +140,18 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
         let span:MKCoordinateSpan = MKCoordinateSpanMake(0.1, 0.1)
         let myLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
         let region:MKCoordinateRegion = MKCoordinateRegionMake(myLocation, span)
-        Map.setRegion(region, animated: true)
+        //Map.setRegion(region, animated: true)
         
+        self.mapView.showsUserLocation = true
         
-        self.Map.showsUserLocation = true
     }
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        addBusStopsToCity()
         
-        //        for entries in busStopsToCity {
-        //            let annotation = BusAnnotation()
-        //            annotation.pinTintColor = UIColor.purple
-        //            annotation.coordinate = CLLocationCoordinate2DMake(entries[0], entries[1])
-        //            //let location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(entries[0], entries[1])
-        //            //annotation.coordinate = location
-        //            self.Map.addAnnotation(annotation)
-        //        }
+
         
         dataManager.getLocations(completionHandler: { (BusObj) in
             
@@ -148,51 +159,88 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
                 let buses = (self.dataManager.BusObj)
                 
                 for entries in buses {
-                    let annotation = MKPointAnnotation()
+                    let annotation = BusAnnotation()
                     let location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(entries.Longitude, entries.Latitude)
                     annotation.coordinate = location
                     annotation.title = entries.Registration
                     
                     annotation.subtitle = entries.Speed
-                    self.Map.addAnnotation(annotation)
+                    self.mapView.addAnnotation(annotation)
                 }
             }
             
         })
-        
-        
-        
+        addPolyline()
         
         // User Location
-        
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
-        manager.requestWhenInUseAuthorization()
-        //manager.startUpdatingLocation()
-        manager.startMonitoringSignificantLocationChanges()
-    }
-    
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "myAnnotation") as? MKPinAnnotationView
+        manager.startUpdatingLocation()
         
-        if annotationView == nil {
-            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "myAnnotation")
-        } else {
-            annotationView?.annotation = annotation
-        }
+        UIView.animate(withDuration: 1.5, animations: { () -> Void in
+            let span = MKCoordinateSpanMake(0.1, 0.1)
+            let region1 = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 53.4557, longitude: -6.2197), span: span)
+            self.mapView.setRegion(region1, animated: true)
+        })
         
-        if let annotation = annotation as? BusAnnotation {
-            annotationView?.pinTintColor = annotation.pinTintColor
-        }
         
-        return annotationView
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+}
+
+extension FirstViewController: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is MKUserLocation {
+            return nil
+        }
+            
+        else if annotation is BusAnnotation {
+            let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "annotationView") ?? MKAnnotationView()
+            annotationView.image = UIImage(named: "bus-button")
+            annotationView.tintColor = UIColor.green
+            annotationView.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+            annotationView.canShowCallout = true
+            return annotationView
+        }
+        return nil
+    }
     
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        if overlay is MKCircle {
+            let renderer = MKCircleRenderer(overlay: overlay)
+            renderer.fillColor = UIColor.black.withAlphaComponent(0.5)
+            renderer.strokeColor = UIColor.blue
+            renderer.lineWidth = 2
+            return renderer
+            
+        } else if overlay is MKPolyline {
+            let renderer = MKPolylineRenderer(overlay: overlay)
+            renderer.strokeColor = UIColor.purple
+            renderer.lineWidth = 3
+            return renderer
+            
+        } else if overlay is MKPolygon {
+            let renderer = MKPolygonRenderer(polygon: overlay as! MKPolygon)
+            renderer.fillColor = UIColor.black.withAlphaComponent(0.5)
+            renderer.strokeColor = UIColor.orange
+            renderer.lineWidth = 2
+            return renderer
+        }
+        
+        return MKOverlayRenderer()
+    }
     
+    //    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+    //        guard let annotation = view.annotation as? Place, let title = annotation.title else { return }
+    //
+    //        let alertController = UIAlertController(title: "Welcome to \(title)", message: "You've selected \(title)", preferredStyle: .alert)
+    //        let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+    //        alertController.addAction(cancelAction)
+    //        present(alertController, animated: true, completion: nil)
+    //    }
 }
 

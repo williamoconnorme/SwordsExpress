@@ -41,7 +41,6 @@ class DataManager {
                     
                     let bus = Bus(Registration: reg, Longitude: long, Latitude: lat, Time: time, Number: number, Speed: speed, Direction: direction)
                     self.BusObj.append(bus)
-                    dump(self.BusObj)
                     completionHandler(self.BusObj as AnyObject)
                 }
             } // Loop ends
