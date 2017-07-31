@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		179212BF7FF9C654410A0C3A /* Pods_SwordsExpress.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 770DE79BB32BD9A46A00C342 /* Pods_SwordsExpress.framework */; };
 		3D0A170F1F2E4D100051E4F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0A170E1F2E4D100051E4F3 /* AppDelegate.swift */; };
 		3D0A17111F2E4D100051E4F3 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0A17101F2E4D100051E4F3 /* FirstViewController.swift */; };
 		3D0A17131F2E4D100051E4F3 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0A17121F2E4D100051E4F3 /* SecondViewController.swift */; };
@@ -15,6 +16,9 @@
 		3D0A171B1F2E4D100051E4F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D0A17191F2E4D100051E4F3 /* LaunchScreen.storyboard */; };
 		3D0A17261F2E4D100051E4F3 /* SwordsExpressTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0A17251F2E4D100051E4F3 /* SwordsExpressTests.swift */; };
 		3D0A17311F2E4D100051E4F3 /* SwordsExpressUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0A17301F2E4D100051E4F3 /* SwordsExpressUITests.swift */; };
+		3D0A173F1F2E4D730051E4F3 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0A173E1F2E4D730051E4F3 /* DataManager.swift */; };
+		3D0A17441F2E609E0051E4F3 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0A17431F2E609E0051E4F3 /* SwiftyJSON.framework */; };
+		3D0A17461F2E61260051E4F3 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0A17451F2E61260051E4F3 /* Models.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3C4158E7D3F95D817CE08944 /* Pods-SwordsExpress.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwordsExpress.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwordsExpress/Pods-SwordsExpress.debug.xcconfig"; sourceTree = "<group>"; };
 		3D0A170B1F2E4D100051E4F3 /* SwordsExpress.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwordsExpress.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D0A170E1F2E4D100051E4F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3D0A17101F2E4D100051E4F3 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +54,11 @@
 		3D0A172C1F2E4D100051E4F3 /* SwordsExpressUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwordsExpressUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D0A17301F2E4D100051E4F3 /* SwordsExpressUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwordsExpressUITests.swift; sourceTree = "<group>"; };
 		3D0A17321F2E4D100051E4F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3D0A173E1F2E4D730051E4F3 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		3D0A17431F2E609E0051E4F3 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "Pods/../build/Debug-iphoneos/SwiftyJSON/SwiftyJSON.framework"; sourceTree = "<group>"; };
+		3D0A17451F2E61260051E4F3 /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		770DE79BB32BD9A46A00C342 /* Pods_SwordsExpress.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwordsExpress.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C8513BDFD412C748A863D3A /* Pods-SwordsExpress.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwordsExpress.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwordsExpress/Pods-SwordsExpress.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +66,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D0A17441F2E609E0051E4F3 /* SwiftyJSON.framework in Frameworks */,
+				179212BF7FF9C654410A0C3A /* Pods_SwordsExpress.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +88,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2266F9F5FD33F7867E8E62E8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3C4158E7D3F95D817CE08944 /* Pods-SwordsExpress.debug.xcconfig */,
+				9C8513BDFD412C748A863D3A /* Pods-SwordsExpress.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		3D0A17021F2E4D100051E4F3 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +104,8 @@
 				3D0A17241F2E4D100051E4F3 /* SwordsExpressTests */,
 				3D0A172F1F2E4D100051E4F3 /* SwordsExpressUITests */,
 				3D0A170C1F2E4D100051E4F3 /* Products */,
+				2266F9F5FD33F7867E8E62E8 /* Pods */,
+				B634BD955C0CE53A2DBB47A1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,6 +124,8 @@
 			children = (
 				3D0A170E1F2E4D100051E4F3 /* AppDelegate.swift */,
 				3D0A17101F2E4D100051E4F3 /* FirstViewController.swift */,
+				3D0A173E1F2E4D730051E4F3 /* DataManager.swift */,
+				3D0A17451F2E61260051E4F3 /* Models.swift */,
 				3D0A17121F2E4D100051E4F3 /* SecondViewController.swift */,
 				3D0A17141F2E4D100051E4F3 /* Main.storyboard */,
 				3D0A17171F2E4D100051E4F3 /* Assets.xcassets */,
@@ -128,6 +153,15 @@
 			path = SwordsExpressUITests;
 			sourceTree = "<group>";
 		};
+		B634BD955C0CE53A2DBB47A1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3D0A17431F2E609E0051E4F3 /* SwiftyJSON.framework */,
+				770DE79BB32BD9A46A00C342 /* Pods_SwordsExpress.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +169,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3D0A17351F2E4D100051E4F3 /* Build configuration list for PBXNativeTarget "SwordsExpress" */;
 			buildPhases = (
+				A945A34256EF4083A81DCDDB /* [CP] Check Pods Manifest.lock */,
 				3D0A17071F2E4D100051E4F3 /* Sources */,
 				3D0A17081F2E4D100051E4F3 /* Frameworks */,
 				3D0A17091F2E4D100051E4F3 /* Resources */,
+				A99C104BC3C85FF573E892B6 /* [CP] Embed Pods Frameworks */,
+				43380191156538047F2C9468 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -196,6 +233,7 @@
 				TargetAttributes = {
 					3D0A170A1F2E4D100051E4F3 = {
 						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 723568ER35;
 						ProvisioningStyle = Automatic;
 					};
 					3D0A17201F2E4D100051E4F3 = {
@@ -257,14 +295,64 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		43380191156538047F2C9468 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwordsExpress/Pods-SwordsExpress-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A945A34256EF4083A81DCDDB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A99C104BC3C85FF573E892B6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwordsExpress/Pods-SwordsExpress-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		3D0A17071F2E4D100051E4F3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				3D0A17131F2E4D100051E4F3 /* SecondViewController.swift in Sources */,
+				3D0A173F1F2E4D730051E4F3 /* DataManager.swift in Sources */,
 				3D0A170F1F2E4D100051E4F3 /* AppDelegate.swift in Sources */,
 				3D0A17111F2E4D100051E4F3 /* FirstViewController.swift in Sources */,
+				3D0A17461F2E61260051E4F3 /* Models.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,8 +504,14 @@
 		};
 		3D0A17361F2E4D100051E4F3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3C4158E7D3F95D817CE08944 /* Pods-SwordsExpress.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 723568ER35;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/SwiftyJSON",
+				);
 				INFOPLIST_FILE = SwordsExpress/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.williamoconnor.SwordsExpress;
@@ -428,8 +522,14 @@
 		};
 		3D0A17371F2E4D100051E4F3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9C8513BDFD412C748A863D3A /* Pods-SwordsExpress.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 723568ER35;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/SwiftyJSON",
+				);
 				INFOPLIST_FILE = SwordsExpress/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.williamoconnor.SwordsExpress;
@@ -511,6 +611,7 @@
 				3D0A17371F2E4D100051E4F3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3D0A17381F2E4D100051E4F3 /* Build configuration list for PBXNativeTarget "SwordsExpressTests" */ = {
 			isa = XCConfigurationList;
@@ -519,6 +620,7 @@
 				3D0A173A1F2E4D100051E4F3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3D0A173B1F2E4D100051E4F3 /* Build configuration list for PBXNativeTarget "SwordsExpressUITests" */ = {
 			isa = XCConfigurationList;
@@ -527,6 +629,7 @@
 				3D0A173D1F2E4D100051E4F3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
