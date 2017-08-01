@@ -30,6 +30,7 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
         if SegController.selectedSegmentIndex == 1 {
             
             self.mapView.removeAnnotations(self.mapView.annotations)
+            addBusStopsToSwords()
             
         }
     }
@@ -103,13 +104,12 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
         let waypoint = waypoints.waypoints500fromSwords.map { CLLocationCoordinate2DMake($0[0], $0[1]) }
         let polyline = MKPolyline(coordinates: waypoint, count: waypoint.count)
         mapView?.add(polyline)
-        
 
     }
     
     func addBusStopsToCity() {
         
-        for entries in busStopsToSwords {
+        for entries in busStopsToCity {
             
             let annotation = MKPointAnnotation()
             annotation.coordinate = CLLocationCoordinate2DMake(entries[0], entries[1])
@@ -143,6 +143,25 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
         //Map.setRegion(region, animated: true)
         
         self.mapView.showsUserLocation = true
+        
+        dataManager.getLocations(completionHandler: { (BusObj) in
+            
+            DispatchQueue.main.sync {
+                let buses = (self.dataManager.BusObj)
+                
+                for entries in buses {
+                    let annotation = BusAnnotation()
+                    let location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(entries.Longitude, entries.Latitude)
+                    annotation.coordinate = location
+                    annotation.title = entries.Registration
+                    
+                    annotation.subtitle = entries.Speed
+                    self.mapView.addAnnotation(annotation)
+                }
+            }
+            
+        })
+        
         
     }
     
@@ -219,7 +238,7 @@ extension FirstViewController: MKMapViewDelegate {
             
         } else if overlay is MKPolyline {
             let renderer = MKPolylineRenderer(overlay: overlay)
-            renderer.strokeColor = UIColor.purple
+            renderer.strokeColor = UIColor(red:0.00, green:0.66, blue:0.31, alpha:1.0)
             renderer.lineWidth = 3
             return renderer
             
@@ -234,13 +253,13 @@ extension FirstViewController: MKMapViewDelegate {
         return MKOverlayRenderer()
     }
     
-    //    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-    //        guard let annotation = view.annotation as? Place, let title = annotation.title else { return }
-    //
-    //        let alertController = UIAlertController(title: "Welcome to \(title)", message: "You've selected \(title)", preferredStyle: .alert)
-    //        let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-    //        alertController.addAction(cancelAction)
-    //        present(alertController, animated: true, completion: nil)
-    //    }
+//        func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+//            guard let annotation = view.annotation as? , let title = annotation.title else { return }
+//    
+//            let alertController = UIAlertController(title: "Welcome to \(title)", message: "You've selected \(title)", preferredStyle: .alert)
+//            let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+//            alertController.addAction(cancelAction)
+//            present(alertController, animated: true, completion: nil)
+//        }
 }
 

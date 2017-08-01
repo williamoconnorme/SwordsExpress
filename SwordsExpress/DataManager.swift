@@ -13,6 +13,12 @@ class DataManager {
     
     let domain: String = "http://www.swordsexpress.com/"
     var BusObj = [Bus]()
+    let interval: Int = 5 // 5 seconds
+    //var timer = Timer.scheduledTimerWithTimeInterval(0.4, target: self,selector: "getLocations", userInfo: nil, repeats: true)
+
+    
+    
+
     
     func getLocations(completionHandler:@escaping (_ busObject:AnyObject)->Void) {
         let endpoint: String = "/latlong.php"
@@ -44,9 +50,6 @@ class DataManager {
                     completionHandler(self.BusObj as AnyObject)
                 }
             } // Loop ends
-            
-            
-            
         }
         session.resume()
     }
