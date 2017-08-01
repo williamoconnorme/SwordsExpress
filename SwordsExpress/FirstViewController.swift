@@ -12,28 +12,68 @@ import MapKit
 class FirstViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet weak var SegController: UISegmentedControl!
+    @IBOutlet weak var RouteSegControl: UISegmentedControl!
     @IBOutlet weak var mapView: MKMapView!
     let dataManager = DataManager()
     let manager = CLLocationManager()
+    var polyline = MKPolyline()
+    
     let waypoints = Waypoints()
     
     // Segment controller for changing annotations
     @IBAction func ShowHideAnnotations(_ sender: Any) {
         
-        if SegController.selectedSegmentIndex == 0 {
-            
+        switch SegController.selectedSegmentIndex {
+        case 0:
             // Remove Annotations
             self.mapView.removeAnnotations(self.mapView.annotations)
-            
+            self.RouteSegControl.selectedSegmentIndex = -1
+            self.mapView.remove(polyline)
             addBusStopsToCity()
-        }
-        if SegController.selectedSegmentIndex == 1 {
-            
+        case 1:
+            // Remove Annotations
             self.mapView.removeAnnotations(self.mapView.annotations)
+            self.RouteSegControl.selectedSegmentIndex = -1
+            self.mapView.remove(polyline)
             addBusStopsToSwords()
-            
+        default:
+            // Remove Annotations
+            self.mapView.removeAnnotations(self.mapView.annotations)
         }
     }
+    
+    @IBAction func ShowHidePolyline(_ sender: Any) {
+        switch RouteSegControl.selectedSegmentIndex {
+        case 0:
+            self.mapView.remove(polyline)
+            addPolyline(wayPointArr: waypoints.waypoints500fromSwords)
+        case 1:
+            self.mapView.remove(polyline)
+            addPolyline(wayPointArr: waypoints.waypoints501fromSwords)
+        case 2:
+            self.mapView.remove(polyline)
+            addPolyline(wayPointArr: waypoints.waypoints502fromSwords)
+        case 3:
+            self.mapView.remove(polyline)
+            addPolyline(wayPointArr: waypoints.waypoints502fromSwords) // Change THIS
+        case 4:
+            self.mapView.remove(polyline)
+            addPolyline(wayPointArr: waypoints.waypoints504fromSwords)
+        case 5:
+            self.mapView.remove(polyline)
+            addPolyline(wayPointArr: waypoints.waypoints505fromSwords)
+        case 6:
+            self.mapView.remove(polyline)
+            addPolyline(wayPointArr: waypoints.waypoints505fromSwords) // Change THIS
+        case 7:
+            self.mapView.remove(polyline)
+            addPolyline(wayPointArr: waypoints.waypoints507fromSwords)
+        default:
+            self.mapView.remove(polyline)
+        }
+    }
+    
+    
     
     let busStopsToCity =
         [
@@ -98,13 +138,13 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
             [53.339029, -6.249886, 581, 55]
     ]
     
-    func addPolyline() {
+    func addPolyline(wayPointArr: [Array<Double>]) {
         
         
-        let waypoint = waypoints.waypoints500fromSwords.map { CLLocationCoordinate2DMake($0[0], $0[1]) }
-        let polyline = MKPolyline(coordinates: waypoint, count: waypoint.count)
+        let waypoint = wayPointArr.map { CLLocationCoordinate2DMake($0[0], $0[1]) }
+        polyline = MKPolyline(coordinates: waypoint, count: waypoint.count)
         mapView?.add(polyline)
-
+        
     }
     
     func addBusStopsToCity() {
@@ -137,9 +177,9 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
     {
         let location = locations[0]
         
-        let span:MKCoordinateSpan = MKCoordinateSpanMake(0.1, 0.1)
-        let myLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
-        let region:MKCoordinateRegion = MKCoordinateRegionMake(myLocation, span)
+        //        let span:MKCoordinateSpan = MKCoordinateSpanMake(0.1, 0.1)
+        //        let myLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
+        //        let region:MKCoordinateRegion = MKCoordinateRegionMake(myLocation, span)
         //Map.setRegion(region, animated: true)
         
         self.mapView.showsUserLocation = true
@@ -170,7 +210,7 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
         
         addBusStopsToCity()
         
-
+        
         
         dataManager.getLocations(completionHandler: { (BusObj) in
             
@@ -189,7 +229,6 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
             }
             
         })
-        addPolyline()
         
         // User Location
         manager.delegate = self
@@ -253,13 +292,13 @@ extension FirstViewController: MKMapViewDelegate {
         return MKOverlayRenderer()
     }
     
-//        func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-//            guard let annotation = view.annotation as? , let title = annotation.title else { return }
-//    
-//            let alertController = UIAlertController(title: "Welcome to \(title)", message: "You've selected \(title)", preferredStyle: .alert)
-//            let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-//            alertController.addAction(cancelAction)
-//            present(alertController, animated: true, completion: nil)
-//        }
+    //        func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+    //            guard let annotation = view.annotation as? , let title = annotation.title else { return }
+    //
+    //            let alertController = UIAlertController(title: "Welcome to \(title)", message: "You've selected \(title)", preferredStyle: .alert)
+    //            let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+    //            alertController.addAction(cancelAction)
+    //            present(alertController, animated: true, completion: nil)
+    //        }
 }
 
