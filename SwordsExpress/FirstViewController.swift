@@ -34,7 +34,6 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
             // Remove Annotations
             self.mapView.removeAnnotations(self.mapView.annotations)
             self.RouteSegControl.selectedSegmentIndex = -1
-            self.mapView.remove(polyline)
             
             
             
@@ -43,7 +42,6 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
             // Remove Annotations
             self.mapView.removeAnnotations(self.mapView.annotations)
             self.RouteSegControl.selectedSegmentIndex = -1
-            self.mapView.remove(polyline)
             addBusStopsToSwords()
         default:
             // Remove Annotations
@@ -54,33 +52,25 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
     @IBAction func ShowHidePolyline(_ sender: Any) {
         switch RouteSegControl.selectedSegmentIndex {
         case 0: //500
-            self.mapView.remove(polyline)
             addPolyline(wayPointArr: waypoints.waypoints500fromSwords)
             appendPolyLine(wayPointArr: waypoints.waypointsIfscToEdenQ)
         case 1: //501
-            self.mapView.remove(polyline)
             addPolyline(wayPointArr: waypoints.waypoints501fromSwords)
             appendPolyLine(wayPointArr: waypoints.waypointsIfscToEdenQ)
         case 2: //502
-            self.mapView.remove(polyline)
             addPolyline(wayPointArr: waypoints.waypoints502fromSwords)
             appendPolyLine(wayPointArr: waypoints.waypointsIfscToEdenQ)
         case 3: //503
-            self.mapView.remove(polyline)
             addPolyline(wayPointArr: waypoints.waypoints502fromSwords) // Change THIS
             appendPolyLine(wayPointArr: waypoints.waypointsPearseGardaToMerrionSq)
         case 4: //504
-            self.mapView.remove(polyline)
             addPolyline(wayPointArr: waypoints.waypoints504fromSwords)
         case 5: //505
-            self.mapView.remove(polyline)
             addPolyline(wayPointArr: waypoints.waypoints505fromSwords)
             appendPolyLine(wayPointArr: waypoints.waypointsIfscToEdenQ)
         case 6: //506
-            self.mapView.remove(polyline)
             addPolyline(wayPointArr: waypoints.waypoints505fromSwords) // Change THIS
         case 7: //507
-            self.mapView.remove(polyline)
             addPolyline(wayPointArr: waypoints.waypoints507fromSwords)
             appendPolyLine(wayPointArr: waypoints.waypointsIfscToEdenQ)
         default:
@@ -155,6 +145,8 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
     
     func addPolyline(wayPointArr: [Array<Double>]) {
         
+        let overlays = mapView.overlays
+        mapView.removeOverlays(overlays)
         let waypoint = wayPointArr.map { CLLocationCoordinate2DMake($0[0], $0[1]) }
         lastCoord = wayPointArr.last!
         polyline = MKPolyline(coordinates: waypoint, count: waypoint.count)
@@ -310,16 +302,8 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
     
 }
 
-func removeBuses() {
-    //    self?.mapView.selectAnnotation((self?.busAnnotations)!, animated: true)
-    //    self?.mapView.removeAnnotations((self?.mapView.selectedAnnotations)!)
-}
-
 extension FirstViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        
-        
-        
         if annotation is MKUserLocation {
             return nil
         }
