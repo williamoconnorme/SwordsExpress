@@ -46,8 +46,9 @@ class DataManager {
         session.resume()
     }
     
-    func updateLocations(completionHandler:@escaping (_ busObject:AnyObject)->Void) {
-        print ("Dumping buses here")
+    func updateLocations(buses: [Bus], completionHandler:@escaping (_ busObject:AnyObject)->Void) {
+        var fleet = buses
+        dump (fleet)
         
         let endpoint: String = "/latlong.php"
         let url: URL = URL(string: domain + endpoint)!
@@ -61,6 +62,8 @@ class DataManager {
             let json = JSON(data: data)
             let entries = json.array!
             
+            self.BusObj.removeAll(keepingCapacity: true)
+            
             for entries in entries {
                 if entries[1] != "hidden" {
                     let reg = entries[0].string!
@@ -73,6 +76,7 @@ class DataManager {
                     
                     let bus = Bus(Registration: reg, Longitude: long, Latitude: lat, Time: time, Number: number, Speed: speed, Direction: direction)
                     self.BusObj.append(bus)
+                    
                     completionHandler(self.BusObj as AnyObject)
                 }
             } // Loop ends

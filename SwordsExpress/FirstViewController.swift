@@ -20,6 +20,7 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
     let waypoints = Waypoints()
     var lastCoord = [Double]()
     
+    
     var busAnnotations = MKPointAnnotation()
     var stopAnnotations = MKPointAnnotation()
     
@@ -68,8 +69,6 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
         case 4: //504
             self.mapView.remove(polyline)
             addPolyline(wayPointArr: waypoints.waypoints504fromSwords)
-            
-            
         case 5: //505
             self.mapView.remove(polyline)
             addPolyline(wayPointArr: waypoints.waypoints505fromSwords)
@@ -172,26 +171,32 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
         
         for entries in busStopsToCity {
             
-            let annotation = MKPointAnnotation()
-            annotation.coordinate = CLLocationCoordinate2DMake(entries[0], entries[1])
+            self.stopAnnotations = StopAnnotations()
+            self.stopAnnotations.coordinate = CLLocationCoordinate2DMake(entries[0], entries[1])
             //let location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(entries[0], entries[1])
             //annotation.coordinate = location
-            self.mapView.addAnnotation(annotation)
+            self.mapView.addAnnotation(self.stopAnnotations)
         }
     }
     
     func addBusStopsToSwords() {
+        
         for entries in busStopsToSwords {
+            self.stopAnnotations = StopAnnotations()
+            self.stopAnnotations.coordinate = CLLocationCoordinate2DMake(entries[0], entries[1])
             
-            stopAnnotations = MKPointAnnotation()
-            stopAnnotations.coordinate = CLLocationCoordinate2DMake(entries[0], entries[1])
-            
-            self.mapView.addAnnotation(stopAnnotations)
+            self.mapView.addAnnotation(self.stopAnnotations)
         }
     }
     
     class BusAnnotation : MKPointAnnotation {
         var pinTintColor: UIColor?
+    }
+    
+    class StopAnnotations : MKPointAnnotation {
+        
+        var pinTintColor: UIColor?
+        
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
@@ -210,29 +215,28 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
         
         // Plot bus stops to city by default
         addBusStopsToCity()
-
+        
         // Plot buses for first time
         dataManager.getLocations(completionHandler: { (BusObj) in
             
+            let buses = (self.dataManager.BusObj)
             DispatchQueue.main.sync {
-                let buses = (self.dataManager.BusObj)
                 
                 for entries in buses {
+                    
                     self.busAnnotations = BusAnnotation()
                     let location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(entries.Longitude, entries.Latitude)
                     self.busAnnotations.coordinate = location
                     self.busAnnotations.title = entries.Registration
-                    
                     self.busAnnotations.subtitle = entries.Speed
                     self.mapView.addAnnotation(self.busAnnotations)
                 }
             }
-            
         })
         
         //Update bus locations test
         startUpdatingPositions()
-        
+        //mapView.removeAnnotations(Bus)
         // User Location
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
@@ -256,8 +260,11 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
     weak var timer: Timer?
     
     func startUpdatingPositions() {
+        
+        
+        
         timer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { [weak self] _ in
-            self?.dataManager.updateLocations(completionHandler: { (BusObj) in
+            self?.dataManager.updateLocations(buses: (self?.dataManager.BusObj)!, completionHandler: { (BusObj) in
                 //self?.mapView.removeAnnotations(busAnnotation)
                 DispatchQueue.main.sync {
                     
@@ -271,6 +278,7 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
                         
                         annotation.subtitle = entries.Speed
                         self?.mapView.addAnnotation(annotation)
+                        
                     }
                 }
             })
@@ -295,11 +303,19 @@ extension FirstViewController: MKMapViewDelegate {
             
         else if annotation is BusAnnotation {
             let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "annotationView") ?? MKAnnotationView()
-            annotationView.image = UIImage(named: "bus-button")
+            annotationView.image = UIImage(named: "bus-icon")
             annotationView.tintColor = UIColor(red:0.00, green:0.66, blue:0.31, alpha:1.0)
             annotationView.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
             annotationView.canShowCallout = true
             return annotationView
+        }
+        
+        if annotation is StopAnnotations {
+            let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "annotationView") ?? MKAnnotationView()
+            annotationView.image = UIImage(named: "stop-icon")
+            annotationView.tintColor = UIColor.blue
+            return annotationView
+            
         }
         return nil
     }
