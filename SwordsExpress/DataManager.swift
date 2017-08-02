@@ -48,7 +48,7 @@ class DataManager {
     
     func updateLocations(buses: [Bus], completionHandler:@escaping (_ busObject:AnyObject)->Void) {
         var fleet = buses
-        dump (fleet)
+
         
         let endpoint: String = "/latlong.php"
         let url: URL = URL(string: domain + endpoint)!

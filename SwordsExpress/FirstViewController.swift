@@ -35,6 +35,9 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
             self.mapView.removeAnnotations(self.mapView.annotations)
             self.RouteSegControl.selectedSegmentIndex = -1
             self.mapView.remove(polyline)
+            
+            
+            
             addBusStopsToCity()
         case 1:
             // Remove Annotations
@@ -261,14 +264,23 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
     
     func startUpdatingPositions() {
         
-        
-        
         timer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { [weak self] _ in
             self?.dataManager.updateLocations(buses: (self?.dataManager.BusObj)!, completionHandler: { (BusObj) in
                 //self?.mapView.removeAnnotations(busAnnotation)
                 DispatchQueue.main.sync {
                     
                     let buses = (self?.dataManager.BusObj)
+                    
+                    // Remove buses
+                    for bus in (self?.mapView.annotations)! {
+                        
+                        if bus is BusAnnotation {
+                            self?.mapView.selectAnnotation((bus), animated: false)
+                            self?.mapView.removeAnnotations((self?.mapView.selectedAnnotations)!)
+                        }
+
+                    }
+                    
                     
                     for entries in buses! {
                         let annotation = BusAnnotation()
@@ -277,6 +289,9 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
                         annotation.title = entries.Registration
                         
                         annotation.subtitle = entries.Speed
+                        
+                        
+                        
                         self?.mapView.addAnnotation(annotation)
                         
                     }
@@ -295,14 +310,25 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
     
 }
 
+func removeBuses() {
+    //    self?.mapView.selectAnnotation((self?.busAnnotations)!, animated: true)
+    //    self?.mapView.removeAnnotations((self?.mapView.selectedAnnotations)!)
+}
+
 extension FirstViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        
+        
         if annotation is MKUserLocation {
             return nil
         }
             
         else if annotation is BusAnnotation {
+            
             let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "annotationView") ?? MKAnnotationView()
+            
+            
             annotationView.image = UIImage(named: "bus-icon")
             annotationView.tintColor = UIColor(red:0.00, green:0.66, blue:0.31, alpha:1.0)
             annotationView.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
@@ -354,4 +380,3 @@ extension FirstViewController: MKMapViewDelegate {
     //            present(alertController, animated: true, completion: nil)
     //        }
 }
-
