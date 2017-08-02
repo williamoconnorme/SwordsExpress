@@ -13,13 +13,7 @@ class DataManager {
     
     let domain: String = "http://www.swordsexpress.com/"
     var BusObj = [Bus]()
-    let interval: Int = 5 // 5 seconds
-    //var timer = Timer.scheduledTimerWithTimeInterval(0.4, target: self,selector: "getLocations", userInfo: nil, repeats: true)
 
-    
-    
-
-    
     func getLocations(completionHandler:@escaping (_ busObject:AnyObject)->Void) {
         let endpoint: String = "/latlong.php"
         let url: URL = URL(string: domain + endpoint)!
@@ -32,8 +26,6 @@ class DataManager {
             
             let json = JSON(data: data)
             let entries = json.array!
-            
-            //print (entries)
             
             for entries in entries {
                 if entries[1] != "hidden" {
@@ -52,5 +44,41 @@ class DataManager {
             } // Loop ends
         }
         session.resume()
+    }
+    
+    func updateLocations(completionHandler:@escaping (_ busObject:AnyObject)->Void) {
+        print ("Dumping buses here")
+        
+        let endpoint: String = "/latlong.php"
+        let url: URL = URL(string: domain + endpoint)!
+        
+        let session = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            guard let data = data else {
+                print ("Data returned nil. Check getLocations func")
+                return
+            }
+            
+            let json = JSON(data: data)
+            let entries = json.array!
+            
+            for entries in entries {
+                if entries[1] != "hidden" {
+                    let reg = entries[0].string!
+                    let long = Double(entries[1].string!)!
+                    let lat = Double(entries[2].string!)!
+                    let time = entries[3].string!
+                    let number = entries[4].string!
+                    let speed = entries[5].string!
+                    let direction = entries[6].string!
+                    
+                    let bus = Bus(Registration: reg, Longitude: long, Latitude: lat, Time: time, Number: number, Speed: speed, Direction: direction)
+                    self.BusObj.append(bus)
+                    completionHandler(self.BusObj as AnyObject)
+                }
+            } // Loop ends
+        }
+        session.resume()
+
+        
     }
 }

@@ -17,8 +17,13 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
     let dataManager = DataManager()
     let manager = CLLocationManager()
     var polyline = MKPolyline()
-    
     let waypoints = Waypoints()
+    var lastCoord = [Double]()
+    
+    var busAnnotations = MKPointAnnotation()
+    var stopAnnotations = MKPointAnnotation()
+    
+    
     
     // Segment controller for changing annotations
     @IBAction func ShowHideAnnotations(_ sender: Any) {
@@ -44,30 +49,38 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBAction func ShowHidePolyline(_ sender: Any) {
         switch RouteSegControl.selectedSegmentIndex {
-        case 0:
+        case 0: //500
             self.mapView.remove(polyline)
             addPolyline(wayPointArr: waypoints.waypoints500fromSwords)
-        case 1:
+            appendPolyLine(wayPointArr: waypoints.waypointsIfscToEdenQ)
+        case 1: //501
             self.mapView.remove(polyline)
             addPolyline(wayPointArr: waypoints.waypoints501fromSwords)
-        case 2:
+            appendPolyLine(wayPointArr: waypoints.waypointsIfscToEdenQ)
+        case 2: //502
             self.mapView.remove(polyline)
             addPolyline(wayPointArr: waypoints.waypoints502fromSwords)
-        case 3:
+            appendPolyLine(wayPointArr: waypoints.waypointsIfscToEdenQ)
+        case 3: //503
             self.mapView.remove(polyline)
             addPolyline(wayPointArr: waypoints.waypoints502fromSwords) // Change THIS
-        case 4:
+            appendPolyLine(wayPointArr: waypoints.waypointsPearseGardaToMerrionSq)
+        case 4: //504
             self.mapView.remove(polyline)
             addPolyline(wayPointArr: waypoints.waypoints504fromSwords)
-        case 5:
+            
+            
+        case 5: //505
             self.mapView.remove(polyline)
             addPolyline(wayPointArr: waypoints.waypoints505fromSwords)
-        case 6:
+            appendPolyLine(wayPointArr: waypoints.waypointsIfscToEdenQ)
+        case 6: //506
             self.mapView.remove(polyline)
             addPolyline(wayPointArr: waypoints.waypoints505fromSwords) // Change THIS
-        case 7:
+        case 7: //507
             self.mapView.remove(polyline)
             addPolyline(wayPointArr: waypoints.waypoints507fromSwords)
+            appendPolyLine(wayPointArr: waypoints.waypointsIfscToEdenQ)
         default:
             self.mapView.remove(polyline)
         }
@@ -140,11 +153,19 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
     
     func addPolyline(wayPointArr: [Array<Double>]) {
         
-        
         let waypoint = wayPointArr.map { CLLocationCoordinate2DMake($0[0], $0[1]) }
+        lastCoord = wayPointArr.last!
         polyline = MKPolyline(coordinates: waypoint, count: waypoint.count)
         mapView?.add(polyline)
         
+    }
+    
+    func appendPolyLine(wayPointArr: [Array<Double>]) {
+        var connectedWaypoint = wayPointArr
+        connectedWaypoint.insert(lastCoord, at: 0)
+        let waypoint = connectedWaypoint.map { CLLocationCoordinate2DMake($0[0], $0[1]) }
+        polyline = MKPolyline(coordinates: waypoint, count: waypoint.count)
+        mapView?.add(polyline)
     }
     
     func addBusStopsToCity() {
@@ -162,15 +183,15 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
     func addBusStopsToSwords() {
         for entries in busStopsToSwords {
             
-            let annotation = MKPointAnnotation()
-            annotation.coordinate = CLLocationCoordinate2DMake(entries[0], entries[1])
+            stopAnnotations = MKPointAnnotation()
+            stopAnnotations.coordinate = CLLocationCoordinate2DMake(entries[0], entries[1])
             
-            self.mapView.addAnnotation(annotation)
+            self.mapView.addAnnotation(stopAnnotations)
         }
     }
     
     class BusAnnotation : MKPointAnnotation {
-        //var pinTintColor: UIColor?
+        var pinTintColor: UIColor?
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
@@ -181,60 +202,43 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
         //        let myLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
         //        let region:MKCoordinateRegion = MKCoordinateRegionMake(myLocation, span)
         //Map.setRegion(region, animated: true)
-        
         self.mapView.showsUserLocation = true
-        
-        dataManager.getLocations(completionHandler: { (BusObj) in
-            
-            DispatchQueue.main.sync {
-                let buses = (self.dataManager.BusObj)
-                
-                for entries in buses {
-                    let annotation = BusAnnotation()
-                    let location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(entries.Longitude, entries.Latitude)
-                    annotation.coordinate = location
-                    annotation.title = entries.Registration
-                    
-                    annotation.subtitle = entries.Speed
-                    self.mapView.addAnnotation(annotation)
-                }
-            }
-            
-        })
-        
-        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Plot bus stops to city by default
         addBusStopsToCity()
-        
-        
-        
+
+        // Plot buses for first time
         dataManager.getLocations(completionHandler: { (BusObj) in
             
             DispatchQueue.main.sync {
                 let buses = (self.dataManager.BusObj)
                 
                 for entries in buses {
-                    let annotation = BusAnnotation()
+                    self.busAnnotations = BusAnnotation()
                     let location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(entries.Longitude, entries.Latitude)
-                    annotation.coordinate = location
-                    annotation.title = entries.Registration
+                    self.busAnnotations.coordinate = location
+                    self.busAnnotations.title = entries.Registration
                     
-                    annotation.subtitle = entries.Speed
-                    self.mapView.addAnnotation(annotation)
+                    self.busAnnotations.subtitle = entries.Speed
+                    self.mapView.addAnnotation(self.busAnnotations)
                 }
             }
             
         })
+        
+        //Update bus locations test
+        startUpdatingPositions()
         
         // User Location
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.startUpdatingLocation()
         
+        // Zoom in on Swords
         UIView.animate(withDuration: 1.5, animations: { () -> Void in
             let span = MKCoordinateSpanMake(0.1, 0.1)
             let region1 = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 53.4557, longitude: -6.2197), span: span)
@@ -248,6 +252,39 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    weak var timer: Timer?
+    
+    func startUpdatingPositions() {
+        timer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { [weak self] _ in
+            self?.dataManager.updateLocations(completionHandler: { (BusObj) in
+                //self?.mapView.removeAnnotations(busAnnotation)
+                DispatchQueue.main.sync {
+                    
+                    let buses = (self?.dataManager.BusObj)
+                    
+                    for entries in buses! {
+                        let annotation = BusAnnotation()
+                        let location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(entries.Longitude, entries.Latitude)
+                        annotation.coordinate = location
+                        annotation.title = entries.Registration
+                        
+                        annotation.subtitle = entries.Speed
+                        self?.mapView.addAnnotation(annotation)
+                    }
+                }
+            })
+        }
+    }
+    
+    func stopUpdatingPositions() {
+        timer?.invalidate()
+    }
+    
+    deinit {
+        stopUpdatingPositions()
+    }
+    
 }
 
 extension FirstViewController: MKMapViewDelegate {
@@ -259,7 +296,7 @@ extension FirstViewController: MKMapViewDelegate {
         else if annotation is BusAnnotation {
             let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "annotationView") ?? MKAnnotationView()
             annotationView.image = UIImage(named: "bus-button")
-            annotationView.tintColor = UIColor.green
+            annotationView.tintColor = UIColor(red:0.00, green:0.66, blue:0.31, alpha:1.0)
             annotationView.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
             annotationView.canShowCallout = true
             return annotationView

@@ -19,6 +19,7 @@
 		3D0A173F1F2E4D730051E4F3 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0A173E1F2E4D730051E4F3 /* DataManager.swift */; };
 		3D0A17441F2E609E0051E4F3 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0A17431F2E609E0051E4F3 /* SwiftyJSON.framework */; };
 		3D0A17461F2E61260051E4F3 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0A17451F2E61260051E4F3 /* Models.swift */; };
+		3D242B2D1F3142EC0040908C /* Fares.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D242B2C1F3142EC0040908C /* Fares.swift */; };
 		3D61AB1A1F2FBA8E008827F9 /* Waypoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D61AB191F2FBA8E008827F9 /* Waypoints.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +59,7 @@
 		3D0A173E1F2E4D730051E4F3 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		3D0A17431F2E609E0051E4F3 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "Pods/../build/Debug-iphoneos/SwiftyJSON/SwiftyJSON.framework"; sourceTree = "<group>"; };
 		3D0A17451F2E61260051E4F3 /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		3D242B2C1F3142EC0040908C /* Fares.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fares.swift; sourceTree = "<group>"; };
 		3D61AB191F2FBA8E008827F9 /* Waypoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Waypoints.swift; sourceTree = "<group>"; };
 		770DE79BB32BD9A46A00C342 /* Pods_SwordsExpress.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwordsExpress.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C8513BDFD412C748A863D3A /* Pods-SwordsExpress.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwordsExpress.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwordsExpress/Pods-SwordsExpress.release.xcconfig"; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 				3D0A170E1F2E4D100051E4F3 /* AppDelegate.swift */,
 				3D0A17101F2E4D100051E4F3 /* FirstViewController.swift */,
 				3D0A17121F2E4D100051E4F3 /* SecondViewController.swift */,
+				3D242B2C1F3142EC0040908C /* Fares.swift */,
 				3D0A173E1F2E4D730051E4F3 /* DataManager.swift */,
 				3D0A17451F2E61260051E4F3 /* Models.swift */,
 				3D61AB191F2FBA8E008827F9 /* Waypoints.swift */,
@@ -351,6 +354,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D242B2D1F3142EC0040908C /* Fares.swift in Sources */,
 				3D61AB1A1F2FBA8E008827F9 /* Waypoints.swift in Sources */,
 				3D0A17131F2E4D100051E4F3 /* SecondViewController.swift in Sources */,
 				3D0A173F1F2E4D730051E4F3 /* DataManager.swift in Sources */,
