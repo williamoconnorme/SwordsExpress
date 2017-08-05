@@ -19,9 +19,11 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>2</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NFCReaderUsageDescription</key>
+	<string>Swords Express app can read in your Leap card balance through NFC</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>

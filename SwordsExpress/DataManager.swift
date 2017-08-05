@@ -82,7 +82,5 @@ class DataManager {
             } // Loop ends
         }
         session.resume()
-
-        
     }
 }
