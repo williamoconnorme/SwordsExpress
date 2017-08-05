@@ -22,6 +22,7 @@
 		3D242B2D1F3142EC0040908C /* Fares.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D242B2C1F3142EC0040908C /* Fares.swift */; };
 		3D61AB1A1F2FBA8E008827F9 /* Waypoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D61AB191F2FBA8E008827F9 /* Waypoints.swift */; };
 		3DB18FC21F323CFB004EEE25 /* Timetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB18FC11F323CFB004EEE25 /* Timetable.swift */; };
+		3DC832961F35543300475116 /* TimetableJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = 3DC832951F35543300475116 /* TimetableJSON.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		3D242B2C1F3142EC0040908C /* Fares.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fares.swift; sourceTree = "<group>"; };
 		3D61AB191F2FBA8E008827F9 /* Waypoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Waypoints.swift; sourceTree = "<group>"; };
 		3DB18FC11F323CFB004EEE25 /* Timetable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timetable.swift; sourceTree = "<group>"; };
+		3DC832951F35543300475116 /* TimetableJSON.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TimetableJSON.json; sourceTree = "<group>"; };
 		770DE79BB32BD9A46A00C342 /* Pods_SwordsExpress.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwordsExpress.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C8513BDFD412C748A863D3A /* Pods-SwordsExpress.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwordsExpress.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwordsExpress/Pods-SwordsExpress.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -137,6 +139,7 @@
 				3D61AB191F2FBA8E008827F9 /* Waypoints.swift */,
 				3D0A17141F2E4D100051E4F3 /* Main.storyboard */,
 				3DB18FC11F323CFB004EEE25 /* Timetable.swift */,
+				3DC832951F35543300475116 /* TimetableJSON.json */,
 				3D0A17171F2E4D100051E4F3 /* Assets.xcassets */,
 				3D0A17191F2E4D100051E4F3 /* LaunchScreen.storyboard */,
 				3D0A171C1F2E4D100051E4F3 /* Info.plist */,
@@ -285,6 +288,7 @@
 				3D0A171B1F2E4D100051E4F3 /* LaunchScreen.storyboard in Resources */,
 				3D0A17181F2E4D100051E4F3 /* Assets.xcassets in Resources */,
 				3D0A17161F2E4D100051E4F3 /* Main.storyboard in Resources */,
+				3DC832961F35543300475116 /* TimetableJSON.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

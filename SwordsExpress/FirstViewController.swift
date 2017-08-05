@@ -88,7 +88,7 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
             [53.4625433, -6.2398851, 338, 4, "THE GALLOPS"],
             [53.463878, -6.239549, 337, 5, "LIOS CIAN"],
             [53.4657815, -6.2397887, 336, 6, "CIANLEA"],
-            [53.468251, -6.2367971, 339, 7, "LAURELTON"],
+            [53.468251, -6.2367971, 1234, 7, "LAURELTON"],
             [53.4694079, -6.2308137, 340, 8, "APPLEWOOD ESTATE"],
             [53.4686893, -6.2279908, 341, 9, "JUGBACK LANE"],
             [53.4682362, -6.2209795, 342, 10, "SAINT COLMCILLE'S GFC, SWORDS"],
@@ -260,6 +260,8 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
             let region1 = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 53.4557, longitude: -6.2197), span: span)
             self.mapView.setRegion(region1, animated: true)
         })
+        
+        dataManager.timetableParser(stopNumber: "1234")
         
     }
     

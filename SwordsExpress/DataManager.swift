@@ -13,7 +13,7 @@ class DataManager {
     
     let domain: String = "http://www.swordsexpress.com/"
     var BusObj = [Bus]()
-
+    
     func getLocations(completionHandler:@escaping (_ busObject:AnyObject)->Void) {
         let endpoint: String = "/latlong.php"
         let url: URL = URL(string: domain + endpoint)!
@@ -48,7 +48,7 @@ class DataManager {
     
     func updateLocations(buses: [Bus], completionHandler:@escaping (_ busObject:AnyObject)->Void) {
         var fleet = buses
-
+        
         
         let endpoint: String = "/latlong.php"
         let url: URL = URL(string: domain + endpoint)!
@@ -83,4 +83,23 @@ class DataManager {
         }
         session.resume()
     }
+    
+    func timetableParser(stopNumber: String) {
+        do {
+            if let file = Bundle.main.url(forResource: "TimetableJSON", withExtension: "json") {
+                let data = try Data(contentsOf: file)
+                let json = JSON(data: data)
+                
+                print(json[stopNumber])
+                
+            } else {
+                print("No file found in project")
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    
 }
+
