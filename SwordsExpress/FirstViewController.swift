@@ -19,12 +19,9 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
     var polyline = MKPolyline()
     let waypoints = Waypoints()
     var lastCoord = [Double]()
-    let timetable = Timetable()
     
     var busAnnotations = MKPointAnnotation()
     var stopAnnotations = MKPointAnnotation()
-    
-    
     
     // Segment controller for changing annotations
     @IBAction func ShowHideAnnotations(_ sender: Any) {
@@ -172,8 +169,25 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
             //annotation.coordinate = location
             
             //let nextBus = Timetable.
-            stopAnnotations.title = entries[4] as! String
-            stopAnnotations.subtitle = "Next bus: "
+            let stop = String(describing: entries[2])
+            let timetableArr = dataManager.timetableParser(stopNumber: stop)
+            //dump (timetableArr?[0])
+            var bus = ""
+            var nextArrival = ""
+            for (arrivalTime, route) in timetableArr! {
+                if arrivalTime > dataManager.getTime24Hour() {
+
+                        
+                    
+                    bus.append("Next bus arrives at \(arrivalTime) for route \(route)\n")
+                    }
+                
+            }
+            //print (bus)
+            
+            stopAnnotations.title = entries[4] as? String
+            stopAnnotations.subtitle = bus
+            print ("Stop \(entries[4]) Times = \(bus)")
             
             self.mapView.addAnnotation(self.stopAnnotations)
         }
@@ -225,6 +239,8 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        dataManager.timetableParser(stopNumber: "1234")
+        
         // Plot bus stops to city by default
         addBusStopsToCity()
         
@@ -240,7 +256,7 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
                     let location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(entries.Longitude, entries.Latitude)
                     self.busAnnotations.coordinate = location
                     self.busAnnotations.title = entries.Registration
-                    self.busAnnotations.subtitle = entries.Speed
+                    self.busAnnotations.subtitle = ("Travelling \(entries.Speed), heading \(entries.Direction)")
                     self.mapView.addAnnotation(self.busAnnotations)
                 }
             }
@@ -261,8 +277,6 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
             self.mapView.setRegion(region1, animated: true)
         })
         
-        dataManager.timetableParser(stopNumber: "1234")
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -274,31 +288,40 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
     
     func startUpdatingPositions() {
         
-        timer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { [weak self] _ in
+        timer = Timer.scheduledTimer(withTimeInterval: 10.0, repeats: true) { [weak self] _ in
             self?.dataManager.updateLocations(buses: (self?.dataManager.BusObj)!, completionHandler: { (BusObj) in
                 //self?.mapView.removeAnnotations(busAnnotation)
                 DispatchQueue.main.sync {
                     
                     let buses = (self?.dataManager.BusObj)
                     
-                    // Remove buses
+                    
+                    // Keep track of selected annotations
+                    var selectedAnnotation = [MKAnnotation]()
+                    if self?.mapView.selectedAnnotations != nil {
+                        selectedAnnotation = (self?.mapView.selectedAnnotations)!
+                    }
+                    // Remove buses / Unfortunately this also removes selected annotations
                     for bus in (self?.mapView.annotations)! {
                         
                         if bus is BusAnnotation {
                             self?.mapView.selectAnnotation((bus), animated: false)
                             self?.mapView.removeAnnotations((self?.mapView.selectedAnnotations)!)
                         }
-                        
+                    }
+                    // Reselect previous selected annotation that were removed
+                    if selectedAnnotation.count > 0 {
+                        self?.mapView.selectAnnotation((selectedAnnotation[0]), animated: false)
                     }
                     
-                    
+                    // Place buses back on map with updated information
                     for entries in buses! {
                         let annotation = BusAnnotation()
                         let location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(entries.Longitude, entries.Latitude)
                         annotation.coordinate = location
                         annotation.title = entries.Registration
                         
-                        annotation.subtitle = entries.Speed
+                        annotation.subtitle = ("Travelling \(entries.Speed), heading \(entries.Direction)")
                         
                         
                         
@@ -348,6 +371,7 @@ extension FirstViewController: MKMapViewDelegate {
         }
         return nil
     }
+    
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         if overlay is MKCircle {
