@@ -19,11 +19,14 @@
 		3D0A173F1F2E4D730051E4F3 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0A173E1F2E4D730051E4F3 /* DataManager.swift */; };
 		3D0A17441F2E609E0051E4F3 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0A17431F2E609E0051E4F3 /* SwiftyJSON.framework */; };
 		3D0A17461F2E61260051E4F3 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0A17451F2E61260051E4F3 /* Models.swift */; };
-		3D19395C1F365351002911A1 /* TimetableJSONv2.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D19395B1F365351002911A1 /* TimetableJSONv2.json */; };
+		3D0BC0D01F40CAD200996DCF /* SwordsCityMonFri.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D0BC0CD1F40CAD200996DCF /* SwordsCityMonFri.json */; };
+		3D0BC0D11F40CAD200996DCF /* SwordsCitySat.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D0BC0CE1F40CAD200996DCF /* SwordsCitySat.json */; };
+		3D0BC0D21F40CAD200996DCF /* SwordsCitySun.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D0BC0CF1F40CAD200996DCF /* SwordsCitySun.json */; };
 		3D242B2D1F3142EC0040908C /* Fares.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D242B2C1F3142EC0040908C /* Fares.swift */; };
 		3D61AB1A1F2FBA8E008827F9 /* Waypoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D61AB191F2FBA8E008827F9 /* Waypoints.swift */; };
-		3DB18FC21F323CFB004EEE25 /* Timetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB18FC11F323CFB004EEE25 /* Timetable.swift */; };
-		3DC832961F35543300475116 /* TimetableJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = 3DC832951F35543300475116 /* TimetableJSON.json */; };
+		3D67C0EC1F4226D300D5DD9C /* CitySwordsSun.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D67C0EA1F4226D300D5DD9C /* CitySwordsSun.json */; };
+		3D67C0ED1F4226D300D5DD9C /* CitySwordsSat.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D67C0EB1F4226D300D5DD9C /* CitySwordsSat.json */; };
+		3D67C0EF1F4228F400D5DD9C /* CitySwordsMonFri.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D67C0EE1F4228F400D5DD9C /* CitySwordsMonFri.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,11 +65,14 @@
 		3D0A173E1F2E4D730051E4F3 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		3D0A17431F2E609E0051E4F3 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "Pods/../build/Debug-iphoneos/SwiftyJSON/SwiftyJSON.framework"; sourceTree = "<group>"; };
 		3D0A17451F2E61260051E4F3 /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
-		3D19395B1F365351002911A1 /* TimetableJSONv2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TimetableJSONv2.json; sourceTree = "<group>"; };
+		3D0BC0CD1F40CAD200996DCF /* SwordsCityMonFri.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SwordsCityMonFri.json; sourceTree = "<group>"; };
+		3D0BC0CE1F40CAD200996DCF /* SwordsCitySat.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SwordsCitySat.json; sourceTree = "<group>"; };
+		3D0BC0CF1F40CAD200996DCF /* SwordsCitySun.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SwordsCitySun.json; sourceTree = "<group>"; };
 		3D242B2C1F3142EC0040908C /* Fares.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fares.swift; sourceTree = "<group>"; };
 		3D61AB191F2FBA8E008827F9 /* Waypoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Waypoints.swift; sourceTree = "<group>"; };
-		3DB18FC11F323CFB004EEE25 /* Timetable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timetable.swift; sourceTree = "<group>"; };
-		3DC832951F35543300475116 /* TimetableJSON.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TimetableJSON.json; sourceTree = "<group>"; };
+		3D67C0EA1F4226D300D5DD9C /* CitySwordsSun.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CitySwordsSun.json; sourceTree = "<group>"; };
+		3D67C0EB1F4226D300D5DD9C /* CitySwordsSat.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CitySwordsSat.json; sourceTree = "<group>"; };
+		3D67C0EE1F4228F400D5DD9C /* CitySwordsMonFri.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CitySwordsMonFri.json; sourceTree = "<group>"; };
 		770DE79BB32BD9A46A00C342 /* Pods_SwordsExpress.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwordsExpress.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C8513BDFD412C748A863D3A /* Pods-SwordsExpress.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwordsExpress.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwordsExpress/Pods-SwordsExpress.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -140,9 +146,7 @@
 				3D0A17451F2E61260051E4F3 /* Models.swift */,
 				3D61AB191F2FBA8E008827F9 /* Waypoints.swift */,
 				3D0A17141F2E4D100051E4F3 /* Main.storyboard */,
-				3DB18FC11F323CFB004EEE25 /* Timetable.swift */,
-				3DC832951F35543300475116 /* TimetableJSON.json */,
-				3D19395B1F365351002911A1 /* TimetableJSONv2.json */,
+				3D0BC0CC1F40CA3300996DCF /* Timetables */,
 				3D0A17171F2E4D100051E4F3 /* Assets.xcassets */,
 				3D0A17191F2E4D100051E4F3 /* LaunchScreen.storyboard */,
 				3D0A171C1F2E4D100051E4F3 /* Info.plist */,
@@ -166,6 +170,20 @@
 				3D0A17321F2E4D100051E4F3 /* Info.plist */,
 			);
 			path = SwordsExpressUITests;
+			sourceTree = "<group>";
+		};
+		3D0BC0CC1F40CA3300996DCF /* Timetables */ = {
+			isa = PBXGroup;
+			children = (
+				3D0BC0CD1F40CAD200996DCF /* SwordsCityMonFri.json */,
+				3D0BC0CE1F40CAD200996DCF /* SwordsCitySat.json */,
+				3D0BC0CF1F40CAD200996DCF /* SwordsCitySun.json */,
+				3D67C0EE1F4228F400D5DD9C /* CitySwordsMonFri.json */,
+				3D67C0EB1F4226D300D5DD9C /* CitySwordsSat.json */,
+				3D67C0EA1F4226D300D5DD9C /* CitySwordsSun.json */,
+			);
+			name = Timetables;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		B634BD955C0CE53A2DBB47A1 /* Frameworks */ = {
@@ -289,10 +307,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D0A171B1F2E4D100051E4F3 /* LaunchScreen.storyboard in Resources */,
-				3D19395C1F365351002911A1 /* TimetableJSONv2.json in Resources */,
 				3D0A17181F2E4D100051E4F3 /* Assets.xcassets in Resources */,
+				3D0BC0D01F40CAD200996DCF /* SwordsCityMonFri.json in Resources */,
+				3D0BC0D21F40CAD200996DCF /* SwordsCitySun.json in Resources */,
 				3D0A17161F2E4D100051E4F3 /* Main.storyboard in Resources */,
-				3DC832961F35543300475116 /* TimetableJSON.json in Resources */,
+				3D67C0ED1F4226D300D5DD9C /* CitySwordsSat.json in Resources */,
+				3D67C0EC1F4226D300D5DD9C /* CitySwordsSun.json in Resources */,
+				3D67C0EF1F4228F400D5DD9C /* CitySwordsMonFri.json in Resources */,
+				3D0BC0D11F40CAD200996DCF /* SwordsCitySat.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,7 +388,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D242B2D1F3142EC0040908C /* Fares.swift in Sources */,
-				3DB18FC21F323CFB004EEE25 /* Timetable.swift in Sources */,
 				3D61AB1A1F2FBA8E008827F9 /* Waypoints.swift in Sources */,
 				3D0A17131F2E4D100051E4F3 /* SecondViewController.swift in Sources */,
 				3D0A173F1F2E4D730051E4F3 /* DataManager.swift in Sources */,

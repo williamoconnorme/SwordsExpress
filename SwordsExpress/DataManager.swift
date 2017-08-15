@@ -128,26 +128,48 @@ class DataManager {
         session.resume()
     }
     
-    func timetableParser(stopNumber: String) -> JSON? {
+    func timetableParser(stopNumber: String, direction: String) -> JSON? {
         do {
-            if let file = Bundle.main.url(forResource: "TimetableJSON", withExtension: "json") {
+            
+            let day = getDay()
+            var timetable = "TimetableJSON" // Changes in if statement
+            let busDirection = direction
+            
+            if day == "Monday" || day == "Tuesday" || day ==  "Wednesday" || day == "Thursday" || day == "Friday" {
+                if busDirection == "city" {
+                    timetable = "SwordsCityMonFri"
+                } else {
+                    print ("GETTING CITY STOPS")
+                    timetable = "CitySwordsMonFri"
+                }
+            }
+            else if day == "Saturday" {
+                if busDirection == "city" {
+                    timetable = "SwordsCitySat"
+                } else {
+                    timetable = "CitySwordsSat"
+                }
+            } else if day == "Sunday" {
+                if busDirection == "city" {
+                    timetable = "SwordsCitySun"
+                } else {
+                    timetable = "CitySwordsSun"
+                }
+            } else {
+                print("Unable to determine what day is is.")
+                return nil
+            }
+            
+            
+            if let file = Bundle.main.url(forResource: timetable, withExtension: "json") {
                 let data = try Data(contentsOf: file)
                 let json = JSON(data: data)
-                let day = getDay()
                 
-                if day == "Monday" || day == "Tuesday" || day ==  "Wednesday" || day == "Thursday" || day == "Friday" {
-                    return json[stopNumber][0]
-                }
-                else if day == "Saturday" {
-                    return json[stopNumber][1]
-                } else if day == "Sunday" {
-                    return json[stopNumber][2]
-                } else {
-                    print("Unable to determine what day is is.")
-                }
+                
+                return json[stopNumber]
                 
             } else {
-                print("No file found in project")
+                print("Unable to find \(timetable) in project")
             }
         } catch {
             print(error.localizedDescription)
@@ -172,13 +194,6 @@ class DataManager {
         dateFormatter.dateFormat = "HH:mm"
         let currentTimeString: String = dateFormatter.string(from: date)
         return currentTimeString
-    }
-    
-    func getNextBus(stopNumber: String) {
-        var timetable = timetableParser(stopNumber: stopNumber)
-        //        timetable?.sorted(by: {$0["500"]})
-        //        dump (timetable)
-        
     }
     
 }
