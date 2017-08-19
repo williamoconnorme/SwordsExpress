@@ -13,6 +13,7 @@ class DataManager {
     
     let domain: String = "http://www.swordsexpress.com/"
     var BusObj = [Bus]()
+    var ScheObj = [Schedule]()
     
     func getLocations(completionHandler:@escaping (_ busObject:AnyObject)->Void) {
         let endpoint: String = "/latlong.php"
@@ -139,7 +140,6 @@ class DataManager {
                 if busDirection == "city" {
                     timetable = "SwordsCityMonFri"
                 } else {
-                    print ("GETTING CITY STOPS")
                     timetable = "CitySwordsMonFri"
                 }
             }
@@ -176,6 +176,33 @@ class DataManager {
         }
         return nil
     }
+    
+    
+    func getUpcomingBuses(stopNumber: String, direction: String) -> [Schedule]? {
+        
+        let timetable = timetableParser(stopNumber: stopNumber, direction: direction)
+        var from = ""
+        var to = ""
+        let time = getTime24Hour()
+        
+        let dir = direction
+        for (route, arrivalTime) in timetable! {
+            if arrivalTime.string! > time {
+                if dir == "Swords" {
+                    from = "City Centre"
+                    to = "Swords"
+                } else {
+                    from = "Swords"
+                    to = "City Centre"
+                }
+                let sched = Schedule(from: from, to: to, route: route, time: arrivalTime.string!, stop: stopNumber)
+                self.ScheObj.append(sched)
+            }
+            return ScheObj
+        }
+        return nil
+    }
+    
     func getDay() -> String
     {
         // Set up date for retrieving bus times

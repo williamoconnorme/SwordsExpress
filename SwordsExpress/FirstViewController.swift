@@ -241,7 +241,7 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
     {
-        let location = locations[0]
+        //let location = locations[0]
         
         //        let span:MKCoordinateSpan = MKCoordinateSpanMake(0.1, 0.1)
         //        let myLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)

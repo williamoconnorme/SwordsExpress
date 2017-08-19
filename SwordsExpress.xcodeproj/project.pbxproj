@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		179212BF7FF9C654410A0C3A /* Pods_SwordsExpress.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 770DE79BB32BD9A46A00C342 /* Pods_SwordsExpress.framework */; };
+		3A7EAE237959BEF97510EAC1 /* Pods_Swords_Express_Watch_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC96C8CA4B624D80297DEB16 /* Pods_Swords_Express_Watch_Extension.framework */; };
 		3D0A170F1F2E4D100051E4F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0A170E1F2E4D100051E4F3 /* AppDelegate.swift */; };
 		3D0A17111F2E4D100051E4F3 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0A17101F2E4D100051E4F3 /* FirstViewController.swift */; };
 		3D0A17131F2E4D100051E4F3 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0A17121F2E4D100051E4F3 /* SecondViewController.swift */; };
@@ -28,6 +29,44 @@
 		3D67C0EC1F4226D300D5DD9C /* CitySwordsSun.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D67C0EA1F4226D300D5DD9C /* CitySwordsSun.json */; };
 		3D67C0ED1F4226D300D5DD9C /* CitySwordsSat.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D67C0EB1F4226D300D5DD9C /* CitySwordsSat.json */; };
 		3D67C0EF1F4228F400D5DD9C /* CitySwordsMonFri.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D67C0EE1F4228F400D5DD9C /* CitySwordsMonFri.json */; };
+		3D9D7E671F4714230066238F /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D9D7E661F4714230066238F /* NotificationCenter.framework */; };
+		3D9D7E6A1F4714230066238F /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9D7E691F4714230066238F /* TodayViewController.swift */; };
+		3D9D7E6D1F4714230066238F /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D9D7E6B1F4714230066238F /* MainInterface.storyboard */; };
+		3D9D7E711F4714230066238F /* SE Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3D9D7E651F4714230066238F /* SE Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3D9D7E761F4718A30066238F /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0A173E1F2E4D730051E4F3 /* DataManager.swift */; };
+		3D9D7E781F47220A0066238F /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D9D7E771F47220A0066238F /* SwiftyJSON.framework */; };
+		3D9D7E791F47234F0066238F /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0A17451F2E61260051E4F3 /* Models.swift */; };
+		3D9D7E7B1F4725BA0066238F /* SwordsCityMonFri.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D0BC0CD1F40CAD200996DCF /* SwordsCityMonFri.json */; };
+		3D9D7E7C1F4725BA0066238F /* SwordsCitySat.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D0BC0CE1F40CAD200996DCF /* SwordsCitySat.json */; };
+		3D9D7E7D1F4725BA0066238F /* SwordsCitySun.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D0BC0CF1F40CAD200996DCF /* SwordsCitySun.json */; };
+		3D9D7E7E1F4725BA0066238F /* CitySwordsMonFri.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D67C0EE1F4228F400D5DD9C /* CitySwordsMonFri.json */; };
+		3D9D7E7F1F4725BA0066238F /* CitySwordsSat.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D67C0EB1F4226D300D5DD9C /* CitySwordsSat.json */; };
+		3D9D7E801F4725BA0066238F /* CitySwordsSun.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D67C0EA1F4226D300D5DD9C /* CitySwordsSun.json */; };
+		3D9D7E871F472B1A0066238F /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D9D7E851F472B1A0066238F /* Interface.storyboard */; };
+		3D9D7E891F472B1A0066238F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D9D7E881F472B1A0066238F /* Assets.xcassets */; };
+		3D9D7E901F472B1A0066238F /* Swords Express Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3D9D7E8F1F472B1A0066238F /* Swords Express Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3D9D7E951F472B1A0066238F /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9D7E941F472B1A0066238F /* InterfaceController.swift */; };
+		3D9D7E971F472B1A0066238F /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9D7E961F472B1A0066238F /* ExtensionDelegate.swift */; };
+		3D9D7E991F472B1A0066238F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D9D7E981F472B1A0066238F /* Assets.xcassets */; };
+		3D9D7E9D1F472B1A0066238F /* Swords Express Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 3D9D7E831F472B1A0066238F /* Swords Express Watch.app */; };
+		3D9D7EA61F472B420066238F /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0A173E1F2E4D730051E4F3 /* DataManager.swift */; };
+		3D9D7EA71F472B4A0066238F /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0A17451F2E61260051E4F3 /* Models.swift */; };
+		3D9D7EA81F472B500066238F /* SwordsCityMonFri.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D0BC0CD1F40CAD200996DCF /* SwordsCityMonFri.json */; };
+		3D9D7EA91F472B500066238F /* SwordsCitySat.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D0BC0CE1F40CAD200996DCF /* SwordsCitySat.json */; };
+		3D9D7EAA1F472B500066238F /* SwordsCitySun.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D0BC0CF1F40CAD200996DCF /* SwordsCitySun.json */; };
+		3D9D7EAB1F472B500066238F /* CitySwordsMonFri.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D67C0EE1F4228F400D5DD9C /* CitySwordsMonFri.json */; };
+		3D9D7EAC1F472B500066238F /* CitySwordsSat.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D67C0EB1F4226D300D5DD9C /* CitySwordsSat.json */; };
+		3D9D7EAD1F472B500066238F /* CitySwordsSun.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D67C0EA1F4226D300D5DD9C /* CitySwordsSun.json */; };
+		3D9D7EAE1F472B510066238F /* SwordsCityMonFri.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D0BC0CD1F40CAD200996DCF /* SwordsCityMonFri.json */; };
+		3D9D7EAF1F472B510066238F /* SwordsCitySat.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D0BC0CE1F40CAD200996DCF /* SwordsCitySat.json */; };
+		3D9D7EB01F472B510066238F /* SwordsCitySun.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D0BC0CF1F40CAD200996DCF /* SwordsCitySun.json */; };
+		3D9D7EB11F472B510066238F /* CitySwordsMonFri.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D67C0EE1F4228F400D5DD9C /* CitySwordsMonFri.json */; };
+		3D9D7EB21F472B510066238F /* CitySwordsSat.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D67C0EB1F4226D300D5DD9C /* CitySwordsSat.json */; };
+		3D9D7EB31F472B510066238F /* CitySwordsSun.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D67C0EA1F4226D300D5DD9C /* CitySwordsSun.json */; };
+		3D9D7EB41F472CB20066238F /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D9D7E771F47220A0066238F /* SwiftyJSON.framework */; };
+		3D9D7EBA1F47599E0066238F /* ScheduleInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9D7EB81F4746D30066238F /* ScheduleInterfaceController.swift */; };
+		3D9D7EBC1F4762370066238F /* StopRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9D7EBB1F4762370066238F /* StopRowController.swift */; };
+		7ED777F66706401EE9F4493A /* Pods_SE_Widget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 810BDACA2CA4B96F718A4AB5 /* Pods_SE_Widget.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,9 +84,67 @@
 			remoteGlobalIDString = 3D0A170A1F2E4D100051E4F3;
 			remoteInfo = SwordsExpress;
 		};
+		3D9D7E6F1F4714230066238F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3D0A17031F2E4D100051E4F3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3D9D7E641F4714230066238F;
+			remoteInfo = "SE Widget";
+		};
+		3D9D7E911F472B1A0066238F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3D0A17031F2E4D100051E4F3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3D9D7E8E1F472B1A0066238F;
+			remoteInfo = "Swords Express Watch Extension";
+		};
+		3D9D7E9B1F472B1A0066238F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3D0A17031F2E4D100051E4F3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3D9D7E821F472B1A0066238F;
+			remoteInfo = "Swords Express Watch";
+		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		3D9D7E751F4714230066238F /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				3D9D7E711F4714230066238F /* SE Widget.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3D9D7EA11F472B1A0066238F /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				3D9D7E901F472B1A0066238F /* Swords Express Watch Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3D9D7EA51F472B1A0066238F /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				3D9D7E9D1F472B1A0066238F /* Swords Express Watch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		298EE8CE573B596791667DCF /* Pods-Swords Express Watch Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swords Express Watch Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-Swords Express Watch Extension/Pods-Swords Express Watch Extension.release.xcconfig"; sourceTree = "<group>"; };
 		3C4158E7D3F95D817CE08944 /* Pods-SwordsExpress.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwordsExpress.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwordsExpress/Pods-SwordsExpress.debug.xcconfig"; sourceTree = "<group>"; };
 		3D0A170B1F2E4D100051E4F3 /* SwordsExpress.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwordsExpress.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D0A170E1F2E4D100051E4F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -75,8 +172,34 @@
 		3D67C0EA1F4226D300D5DD9C /* CitySwordsSun.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CitySwordsSun.json; sourceTree = "<group>"; };
 		3D67C0EB1F4226D300D5DD9C /* CitySwordsSat.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CitySwordsSat.json; sourceTree = "<group>"; };
 		3D67C0EE1F4228F400D5DD9C /* CitySwordsMonFri.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CitySwordsMonFri.json; sourceTree = "<group>"; };
+		3D9D7E651F4714230066238F /* SE Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "SE Widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D9D7E661F4714230066238F /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		3D9D7E691F4714230066238F /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		3D9D7E6C1F4714230066238F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		3D9D7E6E1F4714230066238F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3D9D7E771F47220A0066238F /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "../../Library/Developer/Xcode/DerivedData/SwordsExpress-dqfwztftmbwkcbcvabpultcdpein/Build/Products/Debug-iphonesimulator/SwiftyJSON/SwiftyJSON.framework"; sourceTree = "<group>"; };
+		3D9D7E7A1F47257F0066238F /* SE Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "SE Widget.entitlements"; sourceTree = "<group>"; };
+		3D9D7E831F472B1A0066238F /* Swords Express Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swords Express Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D9D7E861F472B1A0066238F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		3D9D7E881F472B1A0066238F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3D9D7E8A1F472B1A0066238F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3D9D7E8F1F472B1A0066238F /* Swords Express Watch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Swords Express Watch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D9D7E941F472B1A0066238F /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		3D9D7E961F472B1A0066238F /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		3D9D7E981F472B1A0066238F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3D9D7E9A1F472B1A0066238F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3D9D7EB61F472CEC0066238F /* Swords Express Watch Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Swords Express Watch Extension.entitlements"; sourceTree = "<group>"; };
+		3D9D7EB71F472CF60066238F /* Swords Express Watch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Swords Express Watch.entitlements"; sourceTree = "<group>"; };
+		3D9D7EB81F4746D30066238F /* ScheduleInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleInterfaceController.swift; sourceTree = "<group>"; };
+		3D9D7EBB1F4762370066238F /* StopRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopRowController.swift; sourceTree = "<group>"; };
+		61084D3F0195FB9AFA56C443 /* Pods-Swords Express Watch Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swords Express Watch Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Swords Express Watch Extension/Pods-Swords Express Watch Extension.debug.xcconfig"; sourceTree = "<group>"; };
 		770DE79BB32BD9A46A00C342 /* Pods_SwordsExpress.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwordsExpress.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		810BDACA2CA4B96F718A4AB5 /* Pods_SE_Widget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SE_Widget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		87F93132C3AE4BDA960DC223 /* Pods-SE Widget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SE Widget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SE Widget/Pods-SE Widget.debug.xcconfig"; sourceTree = "<group>"; };
 		9C8513BDFD412C748A863D3A /* Pods-SwordsExpress.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwordsExpress.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwordsExpress/Pods-SwordsExpress.release.xcconfig"; sourceTree = "<group>"; };
+		A433AED50B64F6FAA83FB81C /* Pods-SE Widget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SE Widget.release.xcconfig"; path = "Pods/Target Support Files/Pods-SE Widget/Pods-SE Widget.release.xcconfig"; sourceTree = "<group>"; };
+		DC96C8CA4B624D80297DEB16 /* Pods_Swords_Express_Watch_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Swords_Express_Watch_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF3886BA929DC81A811E5774 /* Pods_Swords_Express_Watch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Swords_Express_Watch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +226,32 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3D9D7E621F4714230066238F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D9D7E781F47220A0066238F /* SwiftyJSON.framework in Frameworks */,
+				3D9D7E671F4714230066238F /* NotificationCenter.framework in Frameworks */,
+				7ED777F66706401EE9F4493A /* Pods_SE_Widget.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3D9D7E8C1F472B1A0066238F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D9D7EB41F472CB20066238F /* SwiftyJSON.framework in Frameworks */,
+				3A7EAE237959BEF97510EAC1 /* Pods_Swords_Express_Watch_Extension.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		85B6A6A8E69DB978B2ACA571 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -111,6 +260,10 @@
 			children = (
 				3C4158E7D3F95D817CE08944 /* Pods-SwordsExpress.debug.xcconfig */,
 				9C8513BDFD412C748A863D3A /* Pods-SwordsExpress.release.xcconfig */,
+				87F93132C3AE4BDA960DC223 /* Pods-SE Widget.debug.xcconfig */,
+				A433AED50B64F6FAA83FB81C /* Pods-SE Widget.release.xcconfig */,
+				61084D3F0195FB9AFA56C443 /* Pods-Swords Express Watch Extension.debug.xcconfig */,
+				298EE8CE573B596791667DCF /* Pods-Swords Express Watch Extension.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -121,6 +274,9 @@
 				3D0A170D1F2E4D100051E4F3 /* SwordsExpress */,
 				3D0A17241F2E4D100051E4F3 /* SwordsExpressTests */,
 				3D0A172F1F2E4D100051E4F3 /* SwordsExpressUITests */,
+				3D9D7E681F4714230066238F /* SE Widget */,
+				3D9D7E841F472B1A0066238F /* Swords Express Watch */,
+				3D9D7E931F472B1A0066238F /* Swords Express Watch Extension */,
 				3D0A170C1F2E4D100051E4F3 /* Products */,
 				2266F9F5FD33F7867E8E62E8 /* Pods */,
 				B634BD955C0CE53A2DBB47A1 /* Frameworks */,
@@ -133,6 +289,9 @@
 				3D0A170B1F2E4D100051E4F3 /* SwordsExpress.app */,
 				3D0A17211F2E4D100051E4F3 /* SwordsExpressTests.xctest */,
 				3D0A172C1F2E4D100051E4F3 /* SwordsExpressUITests.xctest */,
+				3D9D7E651F4714230066238F /* SE Widget.appex */,
+				3D9D7E831F472B1A0066238F /* Swords Express Watch.app */,
+				3D9D7E8F1F472B1A0066238F /* Swords Express Watch Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -189,11 +348,52 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		3D9D7E681F4714230066238F /* SE Widget */ = {
+			isa = PBXGroup;
+			children = (
+				3D9D7E7A1F47257F0066238F /* SE Widget.entitlements */,
+				3D9D7E691F4714230066238F /* TodayViewController.swift */,
+				3D9D7E6B1F4714230066238F /* MainInterface.storyboard */,
+				3D9D7E6E1F4714230066238F /* Info.plist */,
+			);
+			path = "SE Widget";
+			sourceTree = "<group>";
+		};
+		3D9D7E841F472B1A0066238F /* Swords Express Watch */ = {
+			isa = PBXGroup;
+			children = (
+				3D9D7EB71F472CF60066238F /* Swords Express Watch.entitlements */,
+				3D9D7E851F472B1A0066238F /* Interface.storyboard */,
+				3D9D7EB81F4746D30066238F /* ScheduleInterfaceController.swift */,
+				3D9D7E881F472B1A0066238F /* Assets.xcassets */,
+				3D9D7E8A1F472B1A0066238F /* Info.plist */,
+			);
+			path = "Swords Express Watch";
+			sourceTree = "<group>";
+		};
+		3D9D7E931F472B1A0066238F /* Swords Express Watch Extension */ = {
+			isa = PBXGroup;
+			children = (
+				3D9D7EB61F472CEC0066238F /* Swords Express Watch Extension.entitlements */,
+				3D9D7E941F472B1A0066238F /* InterfaceController.swift */,
+				3D9D7EBB1F4762370066238F /* StopRowController.swift */,
+				3D9D7E961F472B1A0066238F /* ExtensionDelegate.swift */,
+				3D9D7E981F472B1A0066238F /* Assets.xcassets */,
+				3D9D7E9A1F472B1A0066238F /* Info.plist */,
+			);
+			path = "Swords Express Watch Extension";
+			sourceTree = "<group>";
+		};
 		B634BD955C0CE53A2DBB47A1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3D9D7E771F47220A0066238F /* SwiftyJSON.framework */,
 				3D0A17431F2E609E0051E4F3 /* SwiftyJSON.framework */,
 				770DE79BB32BD9A46A00C342 /* Pods_SwordsExpress.framework */,
+				3D9D7E661F4714230066238F /* NotificationCenter.framework */,
+				810BDACA2CA4B96F718A4AB5 /* Pods_SE_Widget.framework */,
+				DF3886BA929DC81A811E5774 /* Pods_Swords_Express_Watch.framework */,
+				DC96C8CA4B624D80297DEB16 /* Pods_Swords_Express_Watch_Extension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -211,10 +411,14 @@
 				3D0A17091F2E4D100051E4F3 /* Resources */,
 				A99C104BC3C85FF573E892B6 /* [CP] Embed Pods Frameworks */,
 				43380191156538047F2C9468 /* [CP] Copy Pods Resources */,
+				3D9D7E751F4714230066238F /* Embed App Extensions */,
+				3D9D7EA51F472B1A0066238F /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				3D9D7E701F4714230066238F /* PBXTargetDependency */,
+				3D9D7E9C1F472B1A0066238F /* PBXTargetDependency */,
 			);
 			name = SwordsExpress;
 			productName = SwordsExpress;
@@ -257,6 +461,63 @@
 			productReference = 3D0A172C1F2E4D100051E4F3 /* SwordsExpressUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		3D9D7E641F4714230066238F /* SE Widget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3D9D7E741F4714230066238F /* Build configuration list for PBXNativeTarget "SE Widget" */;
+			buildPhases = (
+				560AA829375AD3D82B699668 /* [CP] Check Pods Manifest.lock */,
+				3D9D7E611F4714230066238F /* Sources */,
+				3D9D7E621F4714230066238F /* Frameworks */,
+				3D9D7E631F4714230066238F /* Resources */,
+				DFC464CB03F2D848420E8F84 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "SE Widget";
+			productName = "SE Widget";
+			productReference = 3D9D7E651F4714230066238F /* SE Widget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		3D9D7E821F472B1A0066238F /* Swords Express Watch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3D9D7EA21F472B1A0066238F /* Build configuration list for PBXNativeTarget "Swords Express Watch" */;
+			buildPhases = (
+				3D9D7E811F472B1A0066238F /* Resources */,
+				3D9D7EA11F472B1A0066238F /* Embed App Extensions */,
+				85B6A6A8E69DB978B2ACA571 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3D9D7E921F472B1A0066238F /* PBXTargetDependency */,
+			);
+			name = "Swords Express Watch";
+			productName = "Swords Express Watch";
+			productReference = 3D9D7E831F472B1A0066238F /* Swords Express Watch.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		3D9D7E8E1F472B1A0066238F /* Swords Express Watch Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3D9D7E9E1F472B1A0066238F /* Build configuration list for PBXNativeTarget "Swords Express Watch Extension" */;
+			buildPhases = (
+				73FE4070AE7B0EB4D3F8925D /* [CP] Check Pods Manifest.lock */,
+				3D9D7E8B1F472B1A0066238F /* Sources */,
+				3D9D7E8C1F472B1A0066238F /* Frameworks */,
+				3D9D7E8D1F472B1A0066238F /* Resources */,
+				C175C6813CCA344C0FEAAEC7 /* [CP] Embed Pods Frameworks */,
+				D7F311F24584FBD4FCF9FDB2 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Swords Express Watch Extension";
+			productName = "Swords Express Watch Extension";
+			productReference = 3D9D7E8F1F472B1A0066238F /* Swords Express Watch Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -282,6 +543,36 @@
 						ProvisioningStyle = Automatic;
 						TestTargetID = 3D0A170A1F2E4D100051E4F3;
 					};
+					3D9D7E641F4714230066238F = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 723568ER35;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
+					3D9D7E821F472B1A0066238F = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 723568ER35;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
+					3D9D7E8E1F472B1A0066238F = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 723568ER35;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
 				};
 			};
 			buildConfigurationList = 3D0A17061F2E4D100051E4F3 /* Build configuration list for PBXProject "SwordsExpress" */;
@@ -300,6 +591,9 @@
 				3D0A170A1F2E4D100051E4F3 /* SwordsExpress */,
 				3D0A17201F2E4D100051E4F3 /* SwordsExpressTests */,
 				3D0A172B1F2E4D100051E4F3 /* SwordsExpressUITests */,
+				3D9D7E641F4714230066238F /* SE Widget */,
+				3D9D7E821F472B1A0066238F /* Swords Express Watch */,
+				3D9D7E8E1F472B1A0066238F /* Swords Express Watch Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -335,6 +629,49 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3D9D7E631F4714230066238F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D9D7E6D1F4714230066238F /* MainInterface.storyboard in Resources */,
+				3D9D7E7F1F4725BA0066238F /* CitySwordsSat.json in Resources */,
+				3D9D7E7B1F4725BA0066238F /* SwordsCityMonFri.json in Resources */,
+				3D9D7E7C1F4725BA0066238F /* SwordsCitySat.json in Resources */,
+				3D9D7E7D1F4725BA0066238F /* SwordsCitySun.json in Resources */,
+				3D9D7E801F4725BA0066238F /* CitySwordsSun.json in Resources */,
+				3D9D7E7E1F4725BA0066238F /* CitySwordsMonFri.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3D9D7E811F472B1A0066238F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D9D7EB01F472B510066238F /* SwordsCitySun.json in Resources */,
+				3D9D7EB11F472B510066238F /* CitySwordsMonFri.json in Resources */,
+				3D9D7EAE1F472B510066238F /* SwordsCityMonFri.json in Resources */,
+				3D9D7EB31F472B510066238F /* CitySwordsSun.json in Resources */,
+				3D9D7EAF1F472B510066238F /* SwordsCitySat.json in Resources */,
+				3D9D7E891F472B1A0066238F /* Assets.xcassets in Resources */,
+				3D9D7E871F472B1A0066238F /* Interface.storyboard in Resources */,
+				3D9D7EB21F472B510066238F /* CitySwordsSat.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3D9D7E8D1F472B1A0066238F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D9D7E991F472B1A0066238F /* Assets.xcassets in Resources */,
+				3D9D7EAC1F472B500066238F /* CitySwordsSat.json in Resources */,
+				3D9D7EA81F472B500066238F /* SwordsCityMonFri.json in Resources */,
+				3D9D7EA91F472B500066238F /* SwordsCitySat.json in Resources */,
+				3D9D7EAA1F472B500066238F /* SwordsCitySun.json in Resources */,
+				3D9D7EAD1F472B500066238F /* CitySwordsSun.json in Resources */,
+				3D9D7EAB1F472B500066238F /* CitySwordsMonFri.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -353,19 +690,58 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwordsExpress/Pods-SwordsExpress-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		560AA829375AD3D82B699668 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SE Widget-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		73FE4070AE7B0EB4D3F8925D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Swords Express Watch Extension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		A945A34256EF4083A81DCDDB /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SwordsExpress-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A99C104BC3C85FF573E892B6 /* [CP] Embed Pods Frameworks */ = {
@@ -374,13 +750,66 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SwordsExpress/Pods-SwordsExpress-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON-iOS10.0/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON-iOS10.3/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwordsExpress/Pods-SwordsExpress-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C175C6813CCA344C0FEAAEC7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Swords Express Watch Extension/Pods-Swords Express Watch Extension-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON-watchOS3.0/SwiftyJSON.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Swords Express Watch Extension/Pods-Swords Express Watch Extension-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D7F311F24584FBD4FCF9FDB2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Swords Express Watch Extension/Pods-Swords Express Watch Extension-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DFC464CB03F2D848420E8F84 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SE Widget/Pods-SE Widget-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -417,6 +846,29 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3D9D7E611F4714230066238F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D9D7E791F47234F0066238F /* Models.swift in Sources */,
+				3D9D7E6A1F4714230066238F /* TodayViewController.swift in Sources */,
+				3D9D7E761F4718A30066238F /* DataManager.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3D9D7E8B1F472B1A0066238F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D9D7E971F472B1A0066238F /* ExtensionDelegate.swift in Sources */,
+				3D9D7EA61F472B420066238F /* DataManager.swift in Sources */,
+				3D9D7EBA1F47599E0066238F /* ScheduleInterfaceController.swift in Sources */,
+				3D9D7E951F472B1A0066238F /* InterfaceController.swift in Sources */,
+				3D9D7EBC1F4762370066238F /* StopRowController.swift in Sources */,
+				3D9D7EA71F472B4A0066238F /* Models.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -429,6 +881,21 @@
 			isa = PBXTargetDependency;
 			target = 3D0A170A1F2E4D100051E4F3 /* SwordsExpress */;
 			targetProxy = 3D0A172D1F2E4D100051E4F3 /* PBXContainerItemProxy */;
+		};
+		3D9D7E701F4714230066238F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3D9D7E641F4714230066238F /* SE Widget */;
+			targetProxy = 3D9D7E6F1F4714230066238F /* PBXContainerItemProxy */;
+		};
+		3D9D7E921F472B1A0066238F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3D9D7E8E1F472B1A0066238F /* Swords Express Watch Extension */;
+			targetProxy = 3D9D7E911F472B1A0066238F /* PBXContainerItemProxy */;
+		};
+		3D9D7E9C1F472B1A0066238F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3D9D7E821F472B1A0066238F /* Swords Express Watch */;
+			targetProxy = 3D9D7E9B1F472B1A0066238F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -447,6 +914,22 @@
 				3D0A171A1F2E4D100051E4F3 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		3D9D7E6B1F4714230066238F /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3D9D7E6C1F4714230066238F /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
+		3D9D7E851F472B1A0066238F /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3D9D7E861F472B1A0066238F /* Base */,
+			);
+			name = Interface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -551,6 +1034,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3C4158E7D3F95D817CE08944 /* Pods-SwordsExpress.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 723568ER35;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -569,6 +1053,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9C8513BDFD412C748A863D3A /* Pods-SwordsExpress.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 723568ER35;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -637,6 +1122,112 @@
 			};
 			name = Release;
 		};
+		3D9D7E721F4714230066238F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 87F93132C3AE4BDA960DC223 /* Pods-SE Widget.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "SE Widget/SE Widget.entitlements";
+				DEVELOPMENT_TEAM = 723568ER35;
+				INFOPLIST_FILE = "SE Widget/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "me.williamoconnor.SwordsExpress.SE-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		3D9D7E731F4714230066238F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A433AED50B64F6FAA83FB81C /* Pods-SE Widget.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "SE Widget/SE Widget.entitlements";
+				DEVELOPMENT_TEAM = 723568ER35;
+				INFOPLIST_FILE = "SE Widget/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "me.williamoconnor.SwordsExpress.SE-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		3D9D7E9F1F472B1A0066238F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 61084D3F0195FB9AFA56C443 /* Pods-Swords Express Watch Extension.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "Swords Express Watch Extension/Swords Express Watch Extension.entitlements";
+				DEVELOPMENT_TEAM = 723568ER35;
+				INFOPLIST_FILE = "Swords Express Watch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = me.williamoconnor.SwordsExpress.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.2;
+			};
+			name = Debug;
+		};
+		3D9D7EA01F472B1A0066238F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 298EE8CE573B596791667DCF /* Pods-Swords Express Watch Extension.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "Swords Express Watch Extension/Swords Express Watch Extension.entitlements";
+				DEVELOPMENT_TEAM = 723568ER35;
+				INFOPLIST_FILE = "Swords Express Watch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = me.williamoconnor.SwordsExpress.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.2;
+			};
+			name = Release;
+		};
+		3D9D7EA31F472B1A0066238F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Swords Express Watch/Swords Express Watch.entitlements";
+				DEVELOPMENT_TEAM = 723568ER35;
+				IBSC_MODULE = Swords_Express_Watch_Extension;
+				INFOPLIST_FILE = "Swords Express Watch/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = me.williamoconnor.SwordsExpress.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.2;
+			};
+			name = Debug;
+		};
+		3D9D7EA41F472B1A0066238F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Swords Express Watch/Swords Express Watch.entitlements";
+				DEVELOPMENT_TEAM = 723568ER35;
+				IBSC_MODULE = Swords_Express_Watch_Extension;
+				INFOPLIST_FILE = "Swords Express Watch/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = me.williamoconnor.SwordsExpress.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.2;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -672,6 +1263,33 @@
 			buildConfigurations = (
 				3D0A173C1F2E4D100051E4F3 /* Debug */,
 				3D0A173D1F2E4D100051E4F3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3D9D7E741F4714230066238F /* Build configuration list for PBXNativeTarget "SE Widget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3D9D7E721F4714230066238F /* Debug */,
+				3D9D7E731F4714230066238F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3D9D7E9E1F472B1A0066238F /* Build configuration list for PBXNativeTarget "Swords Express Watch Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3D9D7E9F1F472B1A0066238F /* Debug */,
+				3D9D7EA01F472B1A0066238F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3D9D7EA21F472B1A0066238F /* Build configuration list for PBXNativeTarget "Swords Express Watch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3D9D7EA31F472B1A0066238F /* Debug */,
+				3D9D7EA41F472B1A0066238F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <device id="watch38" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="watchOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="12029"/>
+    </dependencies>
+    <scenes>
+        <!--Interface Controller-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="Swords_Express_Watch_Extension">
+                    <items>
+                        <group width="1" alignment="left" id="pXT-JU-iM8">
+                            <items>
+                                <imageView alignment="left" image="stop-icon" id="V1D-Q2-5n5"/>
+                                <label alignment="left" verticalAlignment="center" text="Favourites" id="zjW-0b-9j6"/>
+                            </items>
+                        </group>
+                        <table alignment="left" id="5uG-fK-aD8">
+                            <items>
+                                <tableRow identifier="StopRow" id="7RD-po-E6U" customClass="StopRowController" customModule="Swords_Express_Watch_Extension">
+                                    <group key="rootItem" width="1" height="42" alignment="left" layout="vertical" spacing="5" id="Gk1-gB-359">
+                                        <items>
+                                            <group width="1" alignment="left" spacing="0.0" id="gbB-5W-mn2">
+                                                <items>
+                                                    <label alignment="left" verticalAlignment="center" text="FROM" id="eoQ-jB-yct">
+                                                        <accessibilityTraits key="accessibilityTraits" staticText="YES" notEnabled="YES"/>
+                                                        <fontDescription key="font" style="UICTFontTextStyleSubhead"/>
+                                                    </label>
+                                                    <imageView width="23" height="15" alignment="center" verticalAlignment="center" image="arrow-right" contentMode="scaleAspectFill" id="dHB-IS-XNg">
+                                                        <color key="tintColor" red="0.0" green="0.66666666669999997" blue="0.31372549020000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    </imageView>
+                                                    <label alignment="right" verticalAlignment="center" text="TO" minimumScaleFactor="0.90000000000000002" id="AAh-sH-MMU">
+                                                        <fontDescription key="font" style="UICTFontTextStyleSubhead"/>
+                                                    </label>
+                                                </items>
+                                            </group>
+                                            <group width="1" alignment="left" id="xId-vj-voH">
+                                                <items>
+                                                    <label width="87" alignment="left" text="Route" id="Hak-NP-MFU">
+                                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
+                                                    </label>
+                                                    <label alignment="right" verticalAlignment="bottom" text="Time" id="LvF-NN-wE6">
+                                                        <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
+                                                    </label>
+                                                </items>
+                                            </group>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="fromLabel" destination="eoQ-jB-yct" id="NGo-UT-O6R"/>
+                                        <outlet property="routeLabel" destination="Hak-NP-MFU" id="Smj-rZ-WR7"/>
+                                        <outlet property="timeLabel" destination="LvF-NN-wE6" id="Cyh-XY-KbG"/>
+                                        <outlet property="toLabel" destination="AAh-sH-MMU" id="xcP-GV-T29"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="scheduleTable" destination="5uG-fK-aD8" id="l2X-P6-C6b"/>
+                    </connections>
+                </controller>
+            </objects>
+        </scene>
+    </scenes>
+</document>

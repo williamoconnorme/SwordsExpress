@@ -34,3 +34,25 @@ class Bus {
         self.Direction = Direction
     }
 }
+
+class Schedule {
+    
+    let from: String
+    let to: String
+    let route: String
+    let time: String
+    let stop: String
+
+    init (from: String,
+          to: String,
+          route: String,
+          time: String,
+          stop: String) {
+        
+        self.from = from
+        self.to = to
+        self.route = route
+        self.time = time
+        self.stop = stop
+    }
+}

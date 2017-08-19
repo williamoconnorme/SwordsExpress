@@ -4,6 +4,16 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>SE Widget.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>Swords Express Watch.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
 		<key>SwordsExpress.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -23,6 +33,16 @@
 			<true/>
 		</dict>
 		<key>3D0A172B1F2E4D100051E4F3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3D9D7E641F4714230066238F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3D9D7E821F472B1A0066238F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
