@@ -66,6 +66,8 @@
 		3D9D7EB41F472CB20066238F /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D9D7E771F47220A0066238F /* SwiftyJSON.framework */; };
 		3D9D7EBA1F47599E0066238F /* ScheduleInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9D7EB81F4746D30066238F /* ScheduleInterfaceController.swift */; };
 		3D9D7EBC1F4762370066238F /* StopRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9D7EBB1F4762370066238F /* StopRowController.swift */; };
+		3D9D7EBE1F47C5C80066238F /* StopListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9D7EBD1F47C5C80066238F /* StopListViewController.swift */; };
+		3D9D7EC01F47C8A90066238F /* StopListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9D7EBF1F47C8A90066238F /* StopListTableViewCell.swift */; };
 		7ED777F66706401EE9F4493A /* Pods_SE_Widget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 810BDACA2CA4B96F718A4AB5 /* Pods_SE_Widget.framework */; };
 /* End PBXBuildFile section */
 
@@ -192,6 +194,8 @@
 		3D9D7EB71F472CF60066238F /* Swords Express Watch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Swords Express Watch.entitlements"; sourceTree = "<group>"; };
 		3D9D7EB81F4746D30066238F /* ScheduleInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleInterfaceController.swift; sourceTree = "<group>"; };
 		3D9D7EBB1F4762370066238F /* StopRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopRowController.swift; sourceTree = "<group>"; };
+		3D9D7EBD1F47C5C80066238F /* StopListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopListViewController.swift; sourceTree = "<group>"; };
+		3D9D7EBF1F47C8A90066238F /* StopListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopListTableViewCell.swift; sourceTree = "<group>"; };
 		61084D3F0195FB9AFA56C443 /* Pods-Swords Express Watch Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swords Express Watch Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Swords Express Watch Extension/Pods-Swords Express Watch Extension.debug.xcconfig"; sourceTree = "<group>"; };
 		770DE79BB32BD9A46A00C342 /* Pods_SwordsExpress.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwordsExpress.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		810BDACA2CA4B96F718A4AB5 /* Pods_SE_Widget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SE_Widget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -303,6 +307,8 @@
 				3D0A17101F2E4D100051E4F3 /* FirstViewController.swift */,
 				3D0A17121F2E4D100051E4F3 /* SecondViewController.swift */,
 				3D40167E1F44B8FB00F5DA93 /* InformationTableViewController.swift */,
+				3D9D7EBD1F47C5C80066238F /* StopListViewController.swift */,
+				3D9D7EBF1F47C8A90066238F /* StopListTableViewCell.swift */,
 				3D242B2C1F3142EC0040908C /* Fares.swift */,
 				3D0A173E1F2E4D730051E4F3 /* DataManager.swift */,
 				3D0A17451F2E61260051E4F3 /* Models.swift */,
@@ -826,7 +832,9 @@
 				3D40167F1F44B8FB00F5DA93 /* InformationTableViewController.swift in Sources */,
 				3D0A170F1F2E4D100051E4F3 /* AppDelegate.swift in Sources */,
 				3D0A17111F2E4D100051E4F3 /* FirstViewController.swift in Sources */,
+				3D9D7EBE1F47C5C80066238F /* StopListViewController.swift in Sources */,
 				3D0A17461F2E61260051E4F3 /* Models.swift in Sources */,
+				3D9D7EC01F47C8A90066238F /* StopListTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

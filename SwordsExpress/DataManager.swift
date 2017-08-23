@@ -62,6 +62,8 @@ class DataManager {
                     
                     
                     let bus = Bus(Registration: reg, Longitude: long, Latitude: lat, Time: time, Number: number, Speed: speed, Direction: direction)
+                    
+                    
                     self.BusObj.append(bus)
                     completionHandler(self.BusObj as AnyObject)
                 }
@@ -163,8 +165,7 @@ class DataManager {
             
             if let file = Bundle.main.url(forResource: timetable, withExtension: "json") {
                 let data = try Data(contentsOf: file)
-                let json = JSON(data: data)
-                
+                var json = JSON(data: data)
                 
                 return json[stopNumber]
                 
@@ -180,7 +181,7 @@ class DataManager {
     
     func getUpcomingBuses(stopNumber: String, direction: String) -> [Schedule]? {
         
-        let timetable = timetableParser(stopNumber: stopNumber, direction: direction)
+        var timetable = timetableParser(stopNumber: stopNumber, direction: direction)
         var from = ""
         var to = ""
         let time = getTime24Hour()
@@ -197,15 +198,41 @@ class DataManager {
                 }
                 let sched = Schedule(from: from, to: to, route: route, time: arrivalTime.string!, stop: stopNumber)
                 self.ScheObj.append(sched)
+                
             }
+            // Sort by time
+            ScheObj.sort(by: { $0.0.time < $0.1.time })
             return ScheObj
         }
+        print ("func getupcomingbuses Returned nil")
         return nil
+    }
+    
+    func getFullTimetable(stopNumber: String, direction: String) -> [Schedule]? {
+        
+        let timetable = timetableParser(stopNumber: stopNumber, direction: direction)
+        let destination: String
+        
+        if direction == "city" {
+            destination = "City Centre"
+        } else {
+            destination = "Swords"
+        }
+        var schedule = Schedule(from: stopNumber, to: destination, route: stopNumber, time: "12:34", stop: stopNumber)
+
+        for (route, arrivalTime) in timetable! {
+            schedule = Schedule(from: direction.capitalized, to: destination, route: route, time: arrivalTime.string!, stop: stopNumber)
+            self.ScheObj.append(schedule)
+
+        }
+        // Sort by time
+        ScheObj.sort(by: { $0.0.time < $0.1.time })
+        return ScheObj
     }
     
     func getDay() -> String
     {
-        // Set up date for retrieving bus times
+        // Gets current day as string
         let date = Date()
         let dateFormatter = DateFormatter()
         

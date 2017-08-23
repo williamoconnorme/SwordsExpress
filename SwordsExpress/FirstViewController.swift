@@ -14,6 +14,7 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var SegController: UISegmentedControl!
     @IBOutlet weak var RouteSegControl: UISegmentedControl!
     @IBOutlet weak var mapView: MKMapView!
+    
     let dataManager = DataManager()
     let manager = CLLocationManager()
     var polyline = MKPolyline()
@@ -365,7 +366,7 @@ extension FirstViewController: MKMapViewDelegate {
             
         else if annotation is BusAnnotation {
             
-            let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "annotationView") ?? MKAnnotationView()
+            let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "busAnnotationView") ?? MKAnnotationView()
             
             
             annotationView.image = UIImage(named: "bus-icon")
@@ -375,7 +376,7 @@ extension FirstViewController: MKMapViewDelegate {
         }
         
         if annotation is StopAnnotations {
-            let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "annotationView") ?? MKAnnotationView()
+            let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "stopAnnotationView") ?? MKAnnotationView()
             annotationView.image = UIImage(named: "stop-icon")
             annotationView.canShowCallout = true
             annotationView.tintColor = UIColor(red:0.00, green:0.66, blue:0.31, alpha:1.0)
@@ -412,12 +413,23 @@ extension FirstViewController: MKMapViewDelegate {
         return MKOverlayRenderer()
     }
     
-    //        func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-    //            guard let annotation = view.annotation as? , let title = annotation.title else { return }
-    //
-    //            let alertController = UIAlertController(title: "Welcome to \(title)", message: "You've selected \(title)", preferredStyle: .alert)
-    //            let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-    //            alertController.addAction(cancelAction)
-    //            present(alertController, animated: true, completion: nil)
-    //        }
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        
+        //        if (view == mapView.dequeueReusableAnnotationView(withIdentifier: "stopAnnotationView")) {
+        //            print ("Testing workins")
+        //        } else {
+        //            print ("Check did not work")
+        //        }
+        
+        performSegue(withIdentifier: "mapToStopTable", sender: AnyObject.self)
+        
+    }
+        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            if segue.identifier == "mapToStopTable" {
+                var vc = segue.destination as! StopListViewController
+                
+                //let test = sender[self.stopAnnotations.coordinate.latitude]
+                vc.PassedStopData = ["Swords Manor", "city"]
+            }
+        }
 }
