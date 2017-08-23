@@ -40,7 +40,7 @@
                                     <action selector="ShowHideAnnotations:" destination="9pv-A4-QxB" eventType="valueChanged" id="3FE-VF-3IM"/>
                                 </connections>
                             </segmentedControl>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="JlN-HW-y2b">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="JlN-HW-y2b">
                                 <rect key="frame" x="20" y="56" width="374" height="29"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <segments>
@@ -50,8 +50,9 @@
                                     <segment title="503"/>
                                     <segment title="504"/>
                                     <segment title="505"/>
-                                    <segment title="506"/>
                                     <segment title="507"/>
+                                    <segment title="500X"/>
+                                    <segment title="501X"/>
                                 </segments>
                                 <color key="tintColor" red="0.08235294118" green="0.63137254899999995" blue="0.20392156859999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
@@ -203,7 +204,11 @@
                                                 <action selector="dissmissButton:" destination="i3o-CK-gEC" id="yxe-mu-pnR"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" image="plus-sign-circle" style="plain" id="s1X-ea-xjh"/>
+                                        <barButtonItem key="rightBarButtonItem" image="plus-sign-circle" style="done" id="s1X-ea-xjh">
+                                            <connections>
+                                                <action selector="addRemoveFavourite:" destination="i3o-CK-gEC" id="9lp-7R-Djx"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -298,7 +303,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1679" y="375"/>
+            <point key="canvasLocation" x="1676" y="552"/>
         </scene>
         <!--Information-->
         <scene sceneID="6fo-pN-Z0p">
@@ -483,7 +488,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aVc-ou-LPv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="750" y="375"/>
+            <point key="canvasLocation" x="749" y="498"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">

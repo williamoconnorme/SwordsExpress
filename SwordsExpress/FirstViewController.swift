@@ -32,9 +32,6 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
             // Remove Annotations
             self.mapView.removeAnnotations(self.mapView.annotations)
             self.RouteSegControl.selectedSegmentIndex = -1
-            
-            
-            
             addBusStopsToCity()
         case 1:
             // Remove Annotations
@@ -50,27 +47,33 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
     @IBAction func ShowHidePolyline(_ sender: Any) {
         switch RouteSegControl.selectedSegmentIndex {
         case 0: //500
-            addPolyline(wayPointArr: waypoints.waypoints500fromSwords)
-            appendPolyLine(wayPointArr: waypoints.waypointsIfscToEdenQ)
+            snapToRoad(wayPointArr: waypoints.waypoints500fromSwords)
+            extendRoute(wayPointArr: waypoints.wayPointHelper)
+            extendRoute(wayPointArr: waypoints.waypointsIfscToEdenQ)
         case 1: //501
-            addPolyline(wayPointArr: waypoints.waypoints501fromSwords)
-            appendPolyLine(wayPointArr: waypoints.waypointsIfscToEdenQ)
+            snapToRoad(wayPointArr: waypoints.waypoints501fromSwords)
+            extendRoute(wayPointArr: waypoints.waypointsIfscToEdenQ)
         case 2: //502
-            addPolyline(wayPointArr: waypoints.waypoints502fromSwords)
-            appendPolyLine(wayPointArr: waypoints.waypointsIfscToEdenQ)
+            snapToRoad(wayPointArr: waypoints.waypoints502fromSwords)
+            extendRoute(wayPointArr: waypoints.waypointsIfscToEdenQ)
         case 3: //503
-            addPolyline(wayPointArr: waypoints.waypoints502fromSwords) // Change THIS
-            appendPolyLine(wayPointArr: waypoints.waypointsPearseGardaToMerrionSq)
+            snapToRoad(wayPointArr: waypoints.waypoints502fromSwords) // Change THIS
+            extendRoute(wayPointArr: waypoints.waypointsPearseGardaToMerrionSq)
         case 4: //504
-            addPolyline(wayPointArr: waypoints.waypoints504fromSwords)
+            snapToRoad(wayPointArr: waypoints.waypoints504fromSwords)
         case 5: //505
-            addPolyline(wayPointArr: waypoints.waypoints505fromSwords)
-            appendPolyLine(wayPointArr: waypoints.waypointsIfscToEdenQ)
-        case 6: //506
-            addPolyline(wayPointArr: waypoints.waypoints505fromSwords) // Change THIS
-        case 7: //507
-            addPolyline(wayPointArr: waypoints.waypoints507fromSwords)
-            appendPolyLine(wayPointArr: waypoints.waypointsIfscToEdenQ)
+            snapToRoad(wayPointArr: waypoints.waypoints505fromSwords)
+            extendRoute(wayPointArr: waypoints.waypointsIfscToEdenQ)
+        case 6: //507
+            snapToRoad(wayPointArr: waypoints.waypoints505fromSwords) // Change THIS
+        case 7: //500X
+            snapToRoad(wayPointArr: waypoints.waypoints507fromSwords)
+            extendRoute(wayPointArr: waypoints.wayPointHelper)
+            extendRoute(wayPointArr: waypoints.waypointsIfscToEdenQ)
+        case 8: //501X
+            snapToRoad(wayPointArr: waypoints.waypoints507fromSwords)
+            extendRoute(wayPointArr: waypoints.wayPointHelper)
+            extendRoute(wayPointArr: waypoints.waypointsIfscToEdenQ)
         default:
             self.mapView.remove(polyline)
         }
@@ -221,13 +224,107 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-    func snapToRoad() {
-        let directionRequest = MKDirectionsRequest()
+    func snapToRoad(wayPointArr: [Array<Double>]) {
         
-        for item in waypoints.waypoints500fromCity {
-            //   directionRequest.source = MKMapItem(placemark: MKPlacemark(coordinate: item[0], item[0])
+        // Remove overlays
+        mapView.removeOverlays(mapView.overlays)
+        
+        for (index, coordinate) in wayPointArr.enumerated() {
             
+            if (index + 1 < wayPointArr.count) {
+                
+                let nextElement = wayPointArr[index + 1]
+                
+                // Start calculating directions
+                let sourceCoordinates = CLLocationCoordinate2DMake(coordinate[0], coordinate[1])
+                let destCoordinates = CLLocationCoordinate2DMake(nextElement[0], nextElement[1])
+                
+                let sourcePlacemark = MKPlacemark(coordinate: sourceCoordinates)
+                let destPlacemark = MKPlacemark(coordinate: destCoordinates)
+                
+                let sourceItem = MKMapItem(placemark: sourcePlacemark)
+                let destItem = MKMapItem(placemark: destPlacemark)
+                
+                let directionRequest = MKDirectionsRequest()
+                directionRequest.source = sourceItem
+                directionRequest.destination = destItem
+                
+                directionRequest.transportType = .automobile
+                
+                let directions = MKDirections(request: directionRequest)
+                directions.calculate(completionHandler: {
+                    response, error in
+                    
+                    guard let response = response else {
+                        if error != nil {
+                            print("Something went wrong")
+                            let alert = UIAlertController(title: "Uh oh!", message: "We could not make a suitable route to that location, using this mode of transport", preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+                            self.present(alert, animated: true, completion: nil)
+                        }
+                        return
+                    }
+                    
+                    let route = response.routes[0]
+                    self.mapView.add(route.polyline, level: .aboveRoads)
+                    
+                })
+                lastCoord = wayPointArr.last!
+            }
         }
+        
+    }
+    
+    func extendRoute(wayPointArr: [Array<Double>]) {
+        
+        print ("Starting extension..")
+        
+        for (index, coordinate) in wayPointArr.enumerated() {
+            if (index + 1 <= wayPointArr.count) {
+                
+                
+                print ("Extending route...")
+                
+                //let nextElement = wayPointArr[index + 1]
+                
+                // Start calculating directions
+                let sourceCoordinates = CLLocationCoordinate2DMake(lastCoord[0], lastCoord[1])
+                let destCoordinates = CLLocationCoordinate2DMake(coordinate[0], coordinate[1])
+                
+                let sourcePlacemark = MKPlacemark(coordinate: sourceCoordinates)
+                let destPlacemark = MKPlacemark(coordinate: destCoordinates)
+                
+                let sourceItem = MKMapItem(placemark: sourcePlacemark)
+                let destItem = MKMapItem(placemark: destPlacemark)
+                
+                let directionRequest = MKDirectionsRequest()
+                directionRequest.source = sourceItem
+                directionRequest.destination = destItem
+                
+                directionRequest.transportType = .automobile
+                
+                let directions = MKDirections(request: directionRequest)
+                directions.calculate(completionHandler: {
+                    response, error in
+                    
+                    guard let response = response else {
+                        if error != nil {
+                            print("Something went wrong")
+                            let alert = UIAlertController(title: "Uh oh!", message: "We could not make a suitable route to that location, using this mode of transport", preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+                            self.present(alert, animated: true, completion: nil)
+                        }
+                        return
+                    }
+                    
+                    let route = response.routes[0]
+                    self.mapView.add(route.polyline, level: .aboveRoads)
+                    
+                })
+                lastCoord = wayPointArr.last!
+            }
+        }
+        
     }
     
     class BusAnnotation : MKPointAnnotation {
@@ -424,12 +521,12 @@ extension FirstViewController: MKMapViewDelegate {
         performSegue(withIdentifier: "mapToStopTable", sender: AnyObject.self)
         
     }
-        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            if segue.identifier == "mapToStopTable" {
-                var vc = segue.destination as! StopListViewController
-                
-                //let test = sender[self.stopAnnotations.coordinate.latitude]
-                vc.PassedStopData = ["Swords Manor", "city"]
-            }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "mapToStopTable" {
+            let vc = segue.destination as! StopListViewController
+            
+            //let test = sender[self.stopAnnotations.coordinate.latitude]
+            vc.PassedStopData = ["Swords Manor", "city"]
         }
+    }
 }

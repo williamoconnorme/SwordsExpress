@@ -15,6 +15,20 @@ class StopListViewController: UIViewController, UITableViewDelegate, UITableView
     var data = [Schedule]()
     var PassedStopData: Array = [String]()
     
+    @IBAction func addRemoveFavourite(_ sender: Any) {
+        
+        if let added = UserDefaults.standard.object(forKey: "favourite") as? Array<String>
+        {
+            
+            print ("removed favourite")
+            //UserDefaults.standard.remove("Swords Manor", forKey: "favourite")
+        } else {
+            print ("added favourite")
+            UserDefaults.standard.set("Swords Manor", forKey: "favourite")
+        }
+        
+        
+    }
     @IBAction func dissmissButton(_ sender: Any) {
         navigationController?.popViewController(animated: true)
         dismiss(animated: true, completion: nil)

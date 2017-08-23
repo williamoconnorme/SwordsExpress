@@ -145,8 +145,14 @@ class Waypoints {
             [53.452350,-6.244440]
     ]
     
+    let wayPointHelper =
+        [
+            [53.346737, -6.227765]
+    ]
+    
     let waypointsIfscToEdenQ =
         [
+            
             [53.348223,-6.253453]
     ]
     

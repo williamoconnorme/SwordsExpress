@@ -181,7 +181,7 @@ class DataManager {
     
     func getUpcomingBuses(stopNumber: String, direction: String) -> [Schedule]? {
         
-        var timetable = timetableParser(stopNumber: stopNumber, direction: direction)
+        let timetable = timetableParser(stopNumber: stopNumber, direction: direction)
         var from = ""
         var to = ""
         let time = getTime24Hour()
