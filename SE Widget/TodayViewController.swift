@@ -10,7 +10,7 @@ import UIKit
 import NotificationCenter
 
 class TodayViewController: UIViewController, NCWidgetProviding {
-        
+    
     @IBOutlet weak var textLabel: UILabel!
     
     let dataManager = DataManager()
@@ -20,24 +20,32 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         // Do any additional setup after loading the view from its nib.
         
         
-        let stop: String = "Eden Quay"
-        let direction: String = "City"
-        
-        let timetable = dataManager.timetableParser(stopNumber: stop, direction: direction)
-        var bus = ""
-        var holdTime = "24:00"
-        for (route, arrivalTime) in timetable! {
-            if arrivalTime.string! > dataManager.getTime24Hour() && arrivalTime.string! < holdTime {
-                
-                print (arrivalTime)
-                bus = "Next bus arrives at \(arrivalTime) from \(stop) to \(direction) "
-                holdTime = arrivalTime.string!
+        if UserDefaults.standard.object(forKey: "favourites") != nil {
+            
+            let stop: String = UserDefaults.standard.object(forKey: "favourites") as! String
+            let direction: String = "City"
+            
+            let timetable = dataManager.timetableParser(stopNumber: stop, direction: direction)
+            var bus = ""
+            var holdTime = "24:00"
+            for (route, arrivalTime) in timetable! {
+                if arrivalTime.string! > dataManager.getTime24Hour() && arrivalTime.string! < holdTime {
+                    
+                    print (arrivalTime)
+                    bus = "Next bus arrives at \(arrivalTime) from \(stop) to \(direction) "
+                    holdTime = arrivalTime.string!
+                    
+                }
+                textLabel.text = bus
                 
             }
-            textLabel.text = bus
-            
+        } else {
+            textLabel.text = "You have not favourited any stops yet"
         }
-
+        
+        
+        
+        
     }
     
     override func didReceiveMemoryWarning() {

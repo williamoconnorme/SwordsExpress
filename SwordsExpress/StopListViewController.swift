@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Whisper
 
 class StopListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
@@ -15,16 +16,29 @@ class StopListViewController: UIViewController, UITableViewDelegate, UITableView
     var data = [Schedule]()
     var PassedStopData: Array = [String]()
     
+    @IBOutlet weak var favouriteIcon: UIBarButtonItem!
     @IBAction func addRemoveFavourite(_ sender: Any) {
         
-        if let added = UserDefaults.standard.object(forKey: "favourite") as? Array<String>
+        Whisper.ColorList.Whistle.background = UIColor(red:0.00, green:0.67, blue:0.31, alpha:1.0)
+        Whisper.ColorList.Whistle.title = UIColor(red:1.00, green:1.00, blue:1.00, alpha:1.0)
+        
+        if UserDefaults.standard.object(forKey: PassedStopData[1]) != nil
         {
+            favouriteIcon.image = #imageLiteral(resourceName: "plus-sign-circle")
+            print ("Removed \(PassedStopData[0]) - \(PassedStopData[1]) from favourites")
+            UserDefaults.standard.removeObject(forKey: PassedStopData[1])
+            let murmur = Murmur(title: "Removed \(PassedStopData[0]) from your favourites")
+            Whisper.show(whistle: murmur, action: .show(3))
             
-            print ("removed favourite")
-            //UserDefaults.standard.remove("Swords Manor", forKey: "favourite")
         } else {
-            print ("added favourite")
-            UserDefaults.standard.set("Swords Manor", forKey: "favourite")
+            favouriteIcon.image = #imageLiteral(resourceName: "minus-sign-circle")
+            print ("Added \(PassedStopData[0]) - \(PassedStopData[1]) to favourites")
+            
+            //let message = Message(title: "Added \(PassedStopData[0]) to your favourites")
+            let murmur = Murmur(title: "Added \(PassedStopData[0]) to your favourites")
+            Whisper.show(whistle: murmur, action: .show(3))
+            UserDefaults.standard.set(PassedStopData, forKey: PassedStopData[1])
+            //UserDefaults.standard.set
         }
         
         
@@ -35,6 +49,13 @@ class StopListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
+        if (UserDefaults.standard.object(forKey: PassedStopData[1]) != nil) {
+            favouriteIcon.image = #imageLiteral(resourceName: "minus-sign-circle")
+        }
+        
         self.navigationController?.navigationBar.isTranslucent = false
         UIApplication.shared.statusBarStyle = .lightContent
         initializeTableData()
@@ -42,6 +63,7 @@ class StopListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func initializeTableData() {
+        dump (PassedStopData)
         data = dataManager.getFullTimetable(stopNumber: PassedStopData[0], direction: PassedStopData[1])!
         //data = data.
         self.tableView.reloadData()

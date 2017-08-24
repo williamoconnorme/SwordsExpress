@@ -21,7 +21,6 @@ class StopListTableViewCell: UITableViewCell {
         
         timeLabel.text = "Time Label"
         
-        
         stopLabel.text = "Stop Label"
         
         routeLabel.text = "Route Label"

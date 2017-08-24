@@ -257,8 +257,7 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
                     
                     guard let response = response else {
                         if error != nil {
-                            print("Something went wrong")
-                            let alert = UIAlertController(title: "Uh oh!", message: "We could not make a suitable route to that location, using this mode of transport", preferredStyle: .alert)
+                            let alert = UIAlertController(title: "Uh oh!", message: "The route cannot be shown at this time. Please try again later.", preferredStyle: .alert)
                             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
                             self.present(alert, animated: true, completion: nil)
                         }
@@ -277,16 +276,10 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
     
     func extendRoute(wayPointArr: [Array<Double>]) {
         
-        print ("Starting extension..")
         
         for (index, coordinate) in wayPointArr.enumerated() {
             if (index + 1 <= wayPointArr.count) {
-                
-                
-                print ("Extending route...")
-                
-                //let nextElement = wayPointArr[index + 1]
-                
+
                 // Start calculating directions
                 let sourceCoordinates = CLLocationCoordinate2DMake(lastCoord[0], lastCoord[1])
                 let destCoordinates = CLLocationCoordinate2DMake(coordinate[0], coordinate[1])
@@ -310,7 +303,7 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
                     guard let response = response else {
                         if error != nil {
                             print("Something went wrong")
-                            let alert = UIAlertController(title: "Uh oh!", message: "We could not make a suitable route to that location, using this mode of transport", preferredStyle: .alert)
+                            let alert = UIAlertController(title: "Uh oh!", message: "The route cannot be shown at this time. Please try again later.", preferredStyle: .alert)
                             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
                             self.present(alert, animated: true, completion: nil)
                         }
@@ -351,8 +344,6 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //dataManager.timetableParser(stopNumber: "1234", direction: <#String#>)
-        
         // Plot bus stops to city by default
         addBusStopsToCity()
         
@@ -385,8 +376,8 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
         // Zoom in on Swords
         UIView.animate(withDuration: 1.5, animations: { () -> Void in
             let span = MKCoordinateSpanMake(0.1, 0.1)
-            let region1 = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 53.4557, longitude: -6.2197), span: span)
-            self.mapView.setRegion(region1, animated: true)
+            let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 53.4557, longitude: -6.2197), span: span)
+            self.mapView.setRegion(region, animated: true)
         })
         
     }
@@ -467,7 +458,7 @@ extension FirstViewController: MKMapViewDelegate {
             
             
             annotationView.image = UIImage(named: "bus-icon")
-            annotationView.tintColor = UIColor(red:0.00, green:0.66, blue:0.31, alpha:1.0)
+            annotationView.tintColor = UIColor(red:0.00, green:0.67, blue:0.31, alpha:1.0)
             annotationView.canShowCallout = true
             return annotationView
         }
@@ -476,7 +467,7 @@ extension FirstViewController: MKMapViewDelegate {
             let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "stopAnnotationView") ?? MKAnnotationView()
             annotationView.image = UIImage(named: "stop-icon")
             annotationView.canShowCallout = true
-            annotationView.tintColor = UIColor(red:0.00, green:0.66, blue:0.31, alpha:1.0)
+            annotationView.tintColor = UIColor(red:0.00, green:0.67, blue:0.31, alpha:1.0)
             annotationView.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
             return annotationView
             
@@ -495,8 +486,8 @@ extension FirstViewController: MKMapViewDelegate {
             
         } else if overlay is MKPolyline {
             let renderer = MKPolylineRenderer(overlay: overlay)
-            renderer.strokeColor = UIColor(red:0.00, green:0.66, blue:0.31, alpha:1.0)
-            renderer.lineWidth = 3
+            renderer.strokeColor = UIColor(red:0.00, green:0.67, blue:0.31, alpha:1.0)
+            renderer.lineWidth = 2
             return renderer
             
         } else if overlay is MKPolygon {
@@ -517,16 +508,23 @@ extension FirstViewController: MKMapViewDelegate {
         //        } else {
         //            print ("Check did not work")
         //        }
-        
-        performSegue(withIdentifier: "mapToStopTable", sender: AnyObject.self)
+        performSegue(withIdentifier: "mapToStopTable", sender: view)
         
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "mapToStopTable" {
             let vc = segue.destination as! StopListViewController
+            let stop = self.mapView.selectedAnnotations[0].title
+            let direc = self.SegController.selectedSegmentIndex
+            var direction: String
             
-            //let test = sender[self.stopAnnotations.coordinate.latitude]
-            vc.PassedStopData = ["Swords Manor", "city"]
+            if direc == 0 {
+                direction = "swords"
+            } else {
+                direction = "city"
+            }
+            
+            vc.PassedStopData = [stop as! String, direction]
         }
     }
 }
