@@ -1170,6 +1170,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 61084D3F0195FB9AFA56C443 /* Pods-Swords Express Watch Extension.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_ENTITLEMENTS = "Swords Express Watch Extension/Swords Express Watch Extension.entitlements";
 				DEVELOPMENT_TEAM = 723568ER35;
@@ -1189,6 +1190,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 298EE8CE573B596791667DCF /* Pods-Swords Express Watch Extension.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_ENTITLEMENTS = "Swords Express Watch Extension/Swords Express Watch Extension.entitlements";
 				DEVELOPMENT_TEAM = 723568ER35;

@@ -8,6 +8,7 @@
 
 import WatchKit
 import Foundation
+import WatchConnectivity
 
 
 class InterfaceController: WKInterfaceController {
@@ -15,13 +16,14 @@ class InterfaceController: WKInterfaceController {
     @IBOutlet var scheduleTable: WKInterfaceTable!
     let dataManager = DataManager()
     
+    var wcSession: WCSession!
+    
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         
         // Configure interface objects here.
         let tempFavsCity = ["Swords Manor", "Eden Quay", "Boroimhe Maples"]
-        let tempFavsSwords = ["Swords Manor", "Airside Road"]
         
         for stop in tempFavsCity {
             
@@ -40,6 +42,13 @@ class InterfaceController: WKInterfaceController {
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
+        
+        // watchOS connection
+        wcSession = WCSession.default()
+        wcSession.delegate = self as? WCSessionDelegate
+        wcSession.activate()
+        
+        
     }
     
     override func didDeactivate() {

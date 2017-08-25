@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import WatchConnectivity
 import Whisper
 
 class StopListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -15,6 +16,8 @@ class StopListViewController: UIViewController, UITableViewDelegate, UITableView
     let dataManager = DataManager()
     var data = [Schedule]()
     var PassedStopData: Array = [String]()
+    var wcSession: WCSession!
+    var favouritesArr: Array = [String]()
     
     @IBOutlet weak var favouriteIcon: UIBarButtonItem!
     @IBAction func addRemoveFavourite(_ sender: Any) {
@@ -22,26 +25,29 @@ class StopListViewController: UIViewController, UITableViewDelegate, UITableView
         Whisper.ColorList.Whistle.background = UIColor(red:0.00, green:0.67, blue:0.31, alpha:1.0)
         Whisper.ColorList.Whistle.title = UIColor(red:1.00, green:1.00, blue:1.00, alpha:1.0)
         
-        if UserDefaults.standard.object(forKey: PassedStopData[1]) != nil
+        if (UserDefaults.standard.object(forKey: "fav") != nil) && (favouritesArr.contains(PassedStopData[0]))
         {
             favouriteIcon.image = #imageLiteral(resourceName: "plus-sign-circle")
-            print ("Removed \(PassedStopData[0]) - \(PassedStopData[1]) from favourites")
-            UserDefaults.standard.removeObject(forKey: PassedStopData[1])
+            
+            // Remove from string from array
+            favouritesArr = UserDefaults.standard.array(forKey: "fav")! as! [String]
+            if let index = favouritesArr.index(of: PassedStopData[0]) {
+                favouritesArr.remove(at: index)
+            }
+
             let murmur = Murmur(title: "Removed \(PassedStopData[0]) from your favourites")
             Whisper.show(whistle: murmur, action: .show(3))
             
         } else {
             favouriteIcon.image = #imageLiteral(resourceName: "minus-sign-circle")
-            print ("Added \(PassedStopData[0]) - \(PassedStopData[1]) to favourites")
             
-            //let message = Message(title: "Added \(PassedStopData[0]) to your favourites")
+            favouritesArr.append(PassedStopData[0])
+            UserDefaults.standard.set(favouritesArr, forKey: "fav")
+            
             let murmur = Murmur(title: "Added \(PassedStopData[0]) to your favourites")
             Whisper.show(whistle: murmur, action: .show(3))
-            UserDefaults.standard.set(PassedStopData, forKey: PassedStopData[1])
-            //UserDefaults.standard.set
+            
         }
-        
-        
     }
     @IBAction func dissmissButton(_ sender: Any) {
         navigationController?.popViewController(animated: true)
@@ -50,15 +56,24 @@ class StopListViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
-        if (UserDefaults.standard.object(forKey: PassedStopData[1]) != nil) {
-            favouriteIcon.image = #imageLiteral(resourceName: "minus-sign-circle")
+        if UserDefaults.standard.array(forKey: "fav") != nil {
+            
+            favouritesArr = UserDefaults.standard.array(forKey: "fav") as! [String]
+            
+            if (favouritesArr.contains(PassedStopData[0])) {
+                favouriteIcon.image = #imageLiteral(resourceName: "minus-sign-circle")
+            }
         }
-        
         self.navigationController?.navigationBar.isTranslucent = false
         UIApplication.shared.statusBarStyle = .lightContent
         initializeTableData()
+        
+        
+        // watchOS connection
+        wcSession = WCSession.default()
+        wcSession.delegate = self as? WCSessionDelegate
+        wcSession.activate()
+        
         
     }
     
