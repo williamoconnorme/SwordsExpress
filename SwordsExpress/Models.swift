@@ -42,7 +42,7 @@ class Schedule {
     let route: String
     let time: String
     let stop: String
-
+    
     init (from: String,
           to: String,
           route: String,
@@ -55,4 +55,40 @@ class Schedule {
         self.time = time
         self.stop = stop
     }
+}
+
+class Stop: NSObject, NSCoding {
+    
+    let name: String
+    let direction: String
+    
+    init (name: String,
+          direction: String) {
+        
+        self.name = name
+        self.direction = direction
+    }
+    
+    required convenience init?(coder decoder: NSCoder) {
+        
+        guard let name = decoder.decodeObject(forKey: "name") as? String,
+            let direction = decoder.decodeObject(forKey: "direction") as? String
+            else { return nil }
+        
+        self.init(
+            name: name,
+            direction: direction
+        )
+        
+    }
+    
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.name, forKey: "name")
+        aCoder.encode(self.direction, forKey: "direction")
+    }
+    
+}
+// Override equatable so we can compare objects
+func ==(lhs: Stop, rhs: Stop) -> Bool {
+    return (lhs.name == rhs.name) && (lhs.direction == rhs.direction)
 }

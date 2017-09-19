@@ -10,29 +10,6 @@ import Foundation
 
 class Fares {
     
-    let leapFareAdult =
-        ["Single Peak - €4.20",
-         "Single Off-Peak - €3.20",
-         "Ten Journey - €37",
-         "Within Swords - €1.40",
-         "Night Link - €6.00",
-         "Weekend - €3.50"]
-    
-    let leapStudentFare =
-        ["Single Peak - €3.20",
-         "Single Off-Peak - €2.20",
-         "Ten Journey - €27",
-         "Within Swords - €1.40",
-         "Night Link - €6.00",
-         "Weekend - €2.50"]
-    
-    let leapChildFare =
-        ["Single Peak - €2.20",
-         "Single Off-Peak - €2.20",
-         "Within Swords - €1.40",
-         "Night Link - €6.00",
-         "Weekend - €2.50"]
-    
     let cashAdult =
         ["€4.50",
          "€3.50",
@@ -41,12 +18,11 @@ class Fares {
          "€3.80"]
     
     let cashStudent =
-        
         ["€3.50",
          "€2.50",
          "€1.50",
          "€6.50",
-         "€3.80"]
+         "€2.80"]
     
     let cashChild =
         ["€2.50",
@@ -54,4 +30,57 @@ class Fares {
          "€1.50",
          "€6.50",
          "€2.80"]
+    
+    let cashType =
+        ["Single Peak",
+         "Single Off-Peak",
+         "Within Swords",
+         "Night Link",
+         "Weekend"]
+    
+    let leapAdult =
+        ["€4.20",
+         "€3.20",
+         "€37.00",
+         "€1.40",
+         "€6.00",
+         "€3.50"]
+    
+    let leapStudent =
+        ["€3.20",
+         "€2.20",
+         "€27",
+         "€1.40",
+         "€6.00",
+         "€2.50"]
+    
+    let leapChild =
+        ["€2.20",
+         "€2.20",
+         "N/A",
+         "€1.40",
+         "€6.00",
+         "€2.50"]
+    
+    let leapType =
+        ["Single Peak",
+         "Single Off-Peak",
+         "Ten Journey",
+         "Within Swords",
+         "Night Link",
+         "Weekend"]
+    
+    let taxsaverType =
+    [
+        "Monthly",
+        "Three month",
+        "Annual"
+    ]
+    
+    let taxsaver =
+    [
+        "€132",
+        "€387",
+        "€1,399"
+    ]
 }

@@ -10,8 +10,8 @@
 		179212BF7FF9C654410A0C3A /* Pods_SwordsExpress.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 770DE79BB32BD9A46A00C342 /* Pods_SwordsExpress.framework */; };
 		3A7EAE237959BEF97510EAC1 /* Pods_Swords_Express_Watch_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC96C8CA4B624D80297DEB16 /* Pods_Swords_Express_Watch_Extension.framework */; };
 		3D0A170F1F2E4D100051E4F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0A170E1F2E4D100051E4F3 /* AppDelegate.swift */; };
-		3D0A17111F2E4D100051E4F3 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0A17101F2E4D100051E4F3 /* FirstViewController.swift */; };
-		3D0A17131F2E4D100051E4F3 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0A17121F2E4D100051E4F3 /* SecondViewController.swift */; };
+		3D0A17111F2E4D100051E4F3 /* LiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0A17101F2E4D100051E4F3 /* LiveViewController.swift */; };
+		3D0A17131F2E4D100051E4F3 /* FareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0A17121F2E4D100051E4F3 /* FareViewController.swift */; };
 		3D0A17161F2E4D100051E4F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D0A17141F2E4D100051E4F3 /* Main.storyboard */; };
 		3D0A17181F2E4D100051E4F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D0A17171F2E4D100051E4F3 /* Assets.xcassets */; };
 		3D0A171B1F2E4D100051E4F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D0A17191F2E4D100051E4F3 /* LaunchScreen.storyboard */; };
@@ -69,6 +69,9 @@
 		3D9D7EBE1F47C5C80066238F /* StopListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9D7EBD1F47C5C80066238F /* StopListViewController.swift */; };
 		3D9D7EC01F47C8A90066238F /* StopListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9D7EBF1F47C8A90066238F /* StopListTableViewCell.swift */; };
 		3DB37DAF1F4F08200041F9AB /* Whisper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DB37DAE1F4F08200041F9AB /* Whisper.framework */; };
+		3DBAAF3A1F702EEA008C8C0B /* FareTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBAAF391F702EEA008C8C0B /* FareTableViewCell.swift */; };
+		3DF976AB1F71500900B75CF9 /* TimetableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF976AA1F71500900B75CF9 /* TimetableViewController.swift */; };
+		3DF976AD1F71555A00B75CF9 /* TimetableStopsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF976AC1F71555A00B75CF9 /* TimetableStopsViewController.swift */; };
 		7ED777F66706401EE9F4493A /* Pods_SE_Widget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 810BDACA2CA4B96F718A4AB5 /* Pods_SE_Widget.framework */; };
 /* End PBXBuildFile section */
 
@@ -151,8 +154,8 @@
 		3C4158E7D3F95D817CE08944 /* Pods-SwordsExpress.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwordsExpress.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwordsExpress/Pods-SwordsExpress.debug.xcconfig"; sourceTree = "<group>"; };
 		3D0A170B1F2E4D100051E4F3 /* SwordsExpress.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwordsExpress.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D0A170E1F2E4D100051E4F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3D0A17101F2E4D100051E4F3 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		3D0A17121F2E4D100051E4F3 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		3D0A17101F2E4D100051E4F3 /* LiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveViewController.swift; sourceTree = "<group>"; };
+		3D0A17121F2E4D100051E4F3 /* FareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FareViewController.swift; sourceTree = "<group>"; };
 		3D0A17151F2E4D100051E4F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3D0A17171F2E4D100051E4F3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3D0A171A1F2E4D100051E4F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -198,6 +201,10 @@
 		3D9D7EBD1F47C5C80066238F /* StopListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopListViewController.swift; sourceTree = "<group>"; };
 		3D9D7EBF1F47C8A90066238F /* StopListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopListTableViewCell.swift; sourceTree = "<group>"; };
 		3DB37DAE1F4F08200041F9AB /* Whisper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Whisper.framework; path = "../../Library/Developer/Xcode/DerivedData/SwordsExpress-dqfwztftmbwkcbcvabpultcdpein/Build/Products/Debug-iphonesimulator/Whisper/Whisper.framework"; sourceTree = "<group>"; };
+		3DB37DB01F4FAAE00041F9AB /* SwordsExpress.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SwordsExpress.entitlements; sourceTree = "<group>"; };
+		3DBAAF391F702EEA008C8C0B /* FareTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FareTableViewCell.swift; sourceTree = "<group>"; };
+		3DF976AA1F71500900B75CF9 /* TimetableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableViewController.swift; sourceTree = "<group>"; };
+		3DF976AC1F71555A00B75CF9 /* TimetableStopsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimetableStopsViewController.swift; sourceTree = "<group>"; };
 		61084D3F0195FB9AFA56C443 /* Pods-Swords Express Watch Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swords Express Watch Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Swords Express Watch Extension/Pods-Swords Express Watch Extension.debug.xcconfig"; sourceTree = "<group>"; };
 		770DE79BB32BD9A46A00C342 /* Pods_SwordsExpress.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwordsExpress.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		810BDACA2CA4B96F718A4AB5 /* Pods_SE_Widget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SE_Widget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -306,12 +313,16 @@
 		3D0A170D1F2E4D100051E4F3 /* SwordsExpress */ = {
 			isa = PBXGroup;
 			children = (
+				3DB37DB01F4FAAE00041F9AB /* SwordsExpress.entitlements */,
 				3D0A170E1F2E4D100051E4F3 /* AppDelegate.swift */,
-				3D0A17101F2E4D100051E4F3 /* FirstViewController.swift */,
-				3D0A17121F2E4D100051E4F3 /* SecondViewController.swift */,
+				3D0A17101F2E4D100051E4F3 /* LiveViewController.swift */,
 				3D40167E1F44B8FB00F5DA93 /* InformationTableViewController.swift */,
 				3D9D7EBD1F47C5C80066238F /* StopListViewController.swift */,
 				3D9D7EBF1F47C8A90066238F /* StopListTableViewCell.swift */,
+				3DF976AA1F71500900B75CF9 /* TimetableViewController.swift */,
+				3DF976AC1F71555A00B75CF9 /* TimetableStopsViewController.swift */,
+				3D0A17121F2E4D100051E4F3 /* FareViewController.swift */,
+				3DBAAF391F702EEA008C8C0B /* FareTableViewCell.swift */,
 				3D242B2C1F3142EC0040908C /* Fares.swift */,
 				3D0A173E1F2E4D730051E4F3 /* DataManager.swift */,
 				3D0A17451F2E61260051E4F3 /* Models.swift */,
@@ -535,27 +546,36 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "William O'Connor";
 				TargetAttributes = {
 					3D0A170A1F2E4D100051E4F3 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 723568ER35;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					3D0A17201F2E4D100051E4F3 = {
 						CreatedOnToolsVersion = 8.3.3;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 3D0A170A1F2E4D100051E4F3;
 					};
 					3D0A172B1F2E4D100051E4F3 = {
 						CreatedOnToolsVersion = 8.3.3;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 3D0A170A1F2E4D100051E4F3;
 					};
 					3D9D7E641F4714230066238F = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 723568ER35;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -576,6 +596,7 @@
 					3D9D7E8E1F472B1A0066238F = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 723568ER35;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -761,15 +782,13 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-SwordsExpress/Pods-SwordsExpress-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/SwiftyJSON-iOS10.0/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON-iOS/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/Whisper/Whisper.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyJSON-iOS10.3/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Whisper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -783,7 +802,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Swords Express Watch Extension/Pods-Swords Express Watch Extension-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/SwiftyJSON-watchOS3.0/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON-watchOS/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -833,14 +852,17 @@
 			files = (
 				3D242B2D1F3142EC0040908C /* Fares.swift in Sources */,
 				3D61AB1A1F2FBA8E008827F9 /* Waypoints.swift in Sources */,
-				3D0A17131F2E4D100051E4F3 /* SecondViewController.swift in Sources */,
+				3D0A17131F2E4D100051E4F3 /* FareViewController.swift in Sources */,
 				3D0A173F1F2E4D730051E4F3 /* DataManager.swift in Sources */,
 				3D40167F1F44B8FB00F5DA93 /* InformationTableViewController.swift in Sources */,
 				3D0A170F1F2E4D100051E4F3 /* AppDelegate.swift in Sources */,
-				3D0A17111F2E4D100051E4F3 /* FirstViewController.swift in Sources */,
+				3DF976AD1F71555A00B75CF9 /* TimetableStopsViewController.swift in Sources */,
+				3D0A17111F2E4D100051E4F3 /* LiveViewController.swift in Sources */,
 				3D9D7EBE1F47C5C80066238F /* StopListViewController.swift in Sources */,
 				3D0A17461F2E61260051E4F3 /* Models.swift in Sources */,
 				3D9D7EC01F47C8A90066238F /* StopListTableViewCell.swift in Sources */,
+				3DF976AB1F71500900B75CF9 /* TimetableViewController.swift in Sources */,
+				3DBAAF3A1F702EEA008C8C0B /* FareTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -959,7 +981,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -967,7 +991,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -1010,7 +1038,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1018,7 +1048,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -1050,6 +1084,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SwordsExpress/SwordsExpress.entitlements;
 				DEVELOPMENT_TEAM = 723568ER35;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1059,7 +1094,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.williamoconnor.SwordsExpress;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -1069,6 +1105,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SwordsExpress/SwordsExpress.entitlements;
 				DEVELOPMENT_TEAM = 723568ER35;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1078,7 +1115,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.williamoconnor.SwordsExpress;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -1091,7 +1129,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.williamoconnor.SwordsExpressTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwordsExpress.app/SwordsExpress";
 			};
 			name = Debug;
@@ -1105,7 +1144,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.williamoconnor.SwordsExpressTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwordsExpress.app/SwordsExpress";
 			};
 			name = Release;
@@ -1118,7 +1158,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.williamoconnor.SwordsExpressUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = SwordsExpress;
 			};
 			name = Debug;
@@ -1131,7 +1172,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.williamoconnor.SwordsExpressUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = SwordsExpress;
 			};
 			name = Release;
@@ -1147,7 +1189,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "me.williamoconnor.SwordsExpress.SE-Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -1162,7 +1205,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "me.williamoconnor.SwordsExpress.SE-Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -1180,7 +1224,8 @@
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 3.2;
 			};
@@ -1200,7 +1245,8 @@
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 3.2;
 			};

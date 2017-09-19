@@ -10,17 +10,20 @@ import UIKit
 
 class InformationTableViewController: UITableViewController {
     
+    @IBOutlet weak var versionLabel: UILabel!
     var tableIndex = 0
     var tableSection = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+
         
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        
+        versionLabel.text = "Version: \(String(describing: Bundle.main.releaseVersionNumber)) (\(String(describing: Bundle.main.buildVersionNumber)))"
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -36,9 +39,9 @@ class InformationTableViewController: UITableViewController {
         let application = UIApplication.shared
         
         if application.canOpenURL(appURL) {
-            application.openURL(appURL)
+            application.open(webURL, options:  [:], completionHandler:  nil)
         } else {
-            application.openURL(webURL)
+            application.open(webURL, options:  [:], completionHandler:  nil)
         }
     }
     
@@ -69,10 +72,10 @@ class InformationTableViewController: UITableViewController {
                 openOnTwitter()
             case 2:
                 print ("Call US")
-                if let call = "+35315292277" as? String,
-                    let url = URL(string: "tel://\(call)"),
+                if let call: String = "+35315292277",
+                let url = URL(string: "tel://\(call)"),
                     UIApplication.shared.canOpenURL(url) {
-                    UIApplication.shared.open(url)
+                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
                 }
             default:
                 print ("Didnt work")
@@ -84,6 +87,8 @@ class InformationTableViewController: UITableViewController {
             print ("No index selected")
         }
     }
+    
+    
     
     
     // MARK: - Table view data source
@@ -153,4 +158,13 @@ class InformationTableViewController: UITableViewController {
      }
      */
     
+}
+
+extension Bundle {
+    var releaseVersionNumber: String? {
+        return infoDictionary?["CFBundleShortVersionString"] as? String
+    }
+    var buildVersionNumber: String? {
+        return infoDictionary?["CFBundleVersion"] as? String
+    }
 }

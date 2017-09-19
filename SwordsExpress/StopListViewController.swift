@@ -9,6 +9,7 @@
 import UIKit
 import WatchConnectivity
 import Whisper
+import Foundation
 
 class StopListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
@@ -16,33 +17,55 @@ class StopListViewController: UIViewController, UITableViewDelegate, UITableView
     let dataManager = DataManager()
     var data = [Schedule]()
     var PassedStopData: Array = [String]()
-    var wcSession: WCSession!
-    var favouritesArr: Array = [String]()
-    
+    var favourites = [Stop]()
+    var favouritesData = [Data]()
+
     @IBOutlet weak var favouriteIcon: UIBarButtonItem!
     @IBAction func addRemoveFavourite(_ sender: Any) {
         
-        Whisper.ColorList.Whistle.background = UIColor(red:0.00, green:0.67, blue:0.31, alpha:1.0)
-        Whisper.ColorList.Whistle.title = UIColor(red:1.00, green:1.00, blue:1.00, alpha:1.0)
+        let stop: Stop = Stop(name: PassedStopData[0], direction: PassedStopData[1])
+        let stopData = NSKeyedArchiver.archivedData(withRootObject: stop)
         
-        if (UserDefaults.standard.object(forKey: "fav") != nil) && (favouritesArr.contains(PassedStopData[0]))
+        
+        if (UserDefaults.standard.object(forKey: "fav") != nil) && (favouritesData.contains(stopData))
         {
             favouriteIcon.image = #imageLiteral(resourceName: "plus-sign-circle")
             
-            // Remove from string from array
-            favouritesArr = UserDefaults.standard.array(forKey: "fav")! as! [String]
-            if let index = favouritesArr.index(of: PassedStopData[0]) {
-                favouritesArr.remove(at: index)
+            dump (favouritesData)
+            
+            if let data = UserDefaults.standard.object(forKey: "fav") as? Data {
+                
+                
+                favouritesData = NSKeyedUnarchiver.unarchiveObject(with: data) as! [Data]
+                
+                print ("Removed:")
+                let test123 = favouritesData.remove(at: 0)
+                
+                favouritesData = [NSKeyedArchiver.archivedData(withRootObject: test123)]
+                
+                UserDefaults.standard.set(favouritesData, forKey: "fav")
+                
+                //favouritesData.filter { el in favouritesData == "test" }
+                
+                
             }
-
+            
+            
             let murmur = Murmur(title: "Removed \(PassedStopData[0]) from your favourites")
             Whisper.show(whistle: murmur, action: .show(3))
             
         } else {
             favouriteIcon.image = #imageLiteral(resourceName: "minus-sign-circle")
             
-            favouritesArr.append(PassedStopData[0])
-            UserDefaults.standard.set(favouritesArr, forKey: "fav")
+            
+            let data = NSKeyedArchiver.archivedData(withRootObject: stop)
+            
+            
+            favouritesData.append(data)
+            
+            UserDefaults.standard.set(favouritesData, forKey: "fav")
+            
+            //UserDefaults(suiteName: "group.swordsexpress.test")!.set(favourites, forKey: "fav")
             
             let murmur = Murmur(title: "Added \(PassedStopData[0]) to your favourites")
             Whisper.show(whistle: murmur, action: .show(3))
@@ -53,34 +76,35 @@ class StopListViewController: UIViewController, UITableViewDelegate, UITableView
         navigationController?.popViewController(animated: true)
         dismiss(animated: true, completion: nil)
     }
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if UserDefaults.standard.array(forKey: "fav") != nil {
-            
-            favouritesArr = UserDefaults.standard.array(forKey: "fav") as! [String]
-            
-            if (favouritesArr.contains(PassedStopData[0])) {
-                favouriteIcon.image = #imageLiteral(resourceName: "minus-sign-circle")
-            }
-        }
+        // temp delete user defaults on load
+        
+        
+        Whisper.ColorList.Whistle.background = UIColor(red:0.00, green:0.67, blue:0.31, alpha:1.0)
+        Whisper.ColorList.Whistle.title = UIColor(red:1.00, green:1.00, blue:1.00, alpha:1.0)
+        
+        //TEMP
+        UserDefaults.standard.removeObject(forKey: "fav")
+        
+        
         self.navigationController?.navigationBar.isTranslucent = false
         UIApplication.shared.statusBarStyle = .lightContent
         initializeTableData()
         
         
-        // watchOS connection
-        wcSession = WCSession.default()
-        wcSession.delegate = self as? WCSessionDelegate
-        wcSession.activate()
+        
         
         
     }
     
     func initializeTableData() {
-        dump (PassedStopData)
         data = dataManager.getFullTimetable(stopNumber: PassedStopData[0], direction: PassedStopData[1])!
-        //data = data.
         self.tableView.reloadData()
     }
     

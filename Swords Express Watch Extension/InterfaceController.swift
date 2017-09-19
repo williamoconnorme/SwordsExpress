@@ -44,7 +44,7 @@ class InterfaceController: WKInterfaceController {
         super.willActivate()
         
         // watchOS connection
-        wcSession = WCSession.default()
+        wcSession = WCSession.default
         wcSession.delegate = self as? WCSessionDelegate
         wcSession.activate()
         

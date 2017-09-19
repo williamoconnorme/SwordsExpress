@@ -4,7 +4,6 @@
 <dict>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.CY-0E8113EA-124F-11E7-B3F4-685B35D2A6E2.com.cydia.Extender</string>
 		<string>group.swordsexpress.test</string>
 	</array>
 </dict>

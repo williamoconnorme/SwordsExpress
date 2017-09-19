@@ -14,6 +14,7 @@ class DataManager {
     let domain: String = "http://www.swordsexpress.com/"
     var BusObj = [Bus]()
     var ScheObj = [Schedule]()
+    var stopObj = [Stop]()
     
     func getLocations(completionHandler:@escaping (_ busObject:AnyObject)->Void) {
         let endpoint: String = "/latlong.php"
@@ -25,7 +26,7 @@ class DataManager {
                 return
             }
             
-            let json = JSON(data: data)
+            let json = try! JSON(data: data)
             let entries = json.array!
             
             for entries in entries {
@@ -73,7 +74,7 @@ class DataManager {
     }
     
     func updateLocations(buses: [Bus], completionHandler:@escaping (_ busObject:AnyObject)->Void) {
-        var fleet = buses
+        _ = buses
         // ayyyy should probably find a better way to update these buses
         
         let endpoint: String = "/latlong.php"
@@ -85,7 +86,7 @@ class DataManager {
                 return
             }
             
-            let json = JSON(data: data)
+            let json = try! JSON(data: data)
             let entries = json.array!
             
             self.BusObj.removeAll(keepingCapacity: true)
@@ -165,7 +166,7 @@ class DataManager {
             
             if let file = Bundle.main.url(forResource: timetable, withExtension: "json") {
                 let data = try Data(contentsOf: file)
-                var json = JSON(data: data)
+                var json = try! JSON(data: data)
                 
                 return json[stopNumber]
                 
@@ -186,6 +187,7 @@ class DataManager {
         var to = ""
         let time = getTime24Hour()
         
+        
         let dir = direction
         for (route, arrivalTime) in timetable! {
             if arrivalTime.string! > time {
@@ -201,7 +203,7 @@ class DataManager {
                 
             }
             // Sort by time
-            ScheObj.sort(by: { $0.0.time < $0.1.time })
+            ScheObj.sort(by: { $0.time < $1.time })
             return ScheObj
         }
         print ("func getupcomingbuses Returned nil")
@@ -218,17 +220,36 @@ class DataManager {
         } else {
             destination = "Swords"
         }
-        var schedule = Schedule(from: stopNumber, to: destination, route: stopNumber, time: "12:34", stop: stopNumber)
 
         for (route, arrivalTime) in timetable! {
-            schedule = Schedule(from: direction.capitalized, to: destination, route: route, time: arrivalTime.string!, stop: stopNumber)
+            let schedule = Schedule(from: direction.capitalized, to: destination, route: route, time: arrivalTime.string!, stop: stopNumber)
             self.ScheObj.append(schedule)
 
         }
         // Sort by time
-        ScheObj.sort(by: { $0.0.time < $0.1.time })
+        ScheObj.sort(by: { $0.time < $1.time })
         return ScheObj
     }
+    
+    func extractNextArrivalTime(stopNumber: String, direction: String) -> [Schedule]? {
+        
+        let timetable = getFullTimetable(stopNumber: stopNumber, direction: direction)
+
+        let currentTime = getTime24Hour()
+        
+        for item in timetable! {
+            if currentTime > item.time {
+                let object = Schedule(from: item.from, to: item.to, route: item.route, time: item.time, stop: item.stop)
+                self.ScheObj = [object]
+                return ScheObj
+            }
+        }
+        print ("Returned nil when extracting next arrival time")
+        return nil
+    
+    
+    }
+    
     
     func getDay() -> String
     {

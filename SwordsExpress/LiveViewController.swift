@@ -1,5 +1,5 @@
 //
-//  FirstViewController.swift
+//  LiveViewController.swift
 //  SwordsExpress
 //
 //  Created by William O'Connor on 30/07/2017.
@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class FirstViewController: UIViewController, CLLocationManagerDelegate {
+class LiveViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet weak var SegController: UISegmentedControl!
     @IBOutlet weak var RouteSegControl: UISegmentedControl!
@@ -178,7 +178,7 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
             //dump (timetableArr?[0])
             var bus = ""
             var holdTime = "24:00"
-            for (route, arrivalTime) in timetableArr! {
+            for (_, arrivalTime) in timetableArr! {
                 if arrivalTime.string! > dataManager.getTime24Hour() && arrivalTime.string! < holdTime {
                     
                     bus = "Next bus arrives at \(arrivalTime)"
@@ -446,7 +446,7 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate {
     
 }
 
-extension FirstViewController: MKMapViewDelegate {
+extension LiveViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is MKUserLocation {
             return nil
@@ -513,7 +513,10 @@ extension FirstViewController: MKMapViewDelegate {
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "mapToStopTable" {
-            let vc = segue.destination as! StopListViewController
+            
+            let navController = segue.destination as! UINavigationController
+            //let vc = segue.destination as! StopListViewController
+            let vc = navController.topViewController as! StopListViewController
             let stop = self.mapView.selectedAnnotations[0].title
             let direc = self.SegController.selectedSegmentIndex
             var direction: String
@@ -524,7 +527,7 @@ extension FirstViewController: MKMapViewDelegate {
                 direction = "city"
             }
             
-            vc.PassedStopData = [stop as! String, direction]
+            vc.PassedStopData = [stop!!, direction]
         }
     }
 }
