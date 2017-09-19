@@ -16,13 +16,13 @@ class InformationTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
-
         
         
-        
-        versionLabel.text = "Version: \(String(describing: Bundle.main.releaseVersionNumber)) (\(String(describing: Bundle.main.buildVersionNumber)))"
+        // Get and display app version and build number
+        let appInfo = Bundle.main.infoDictionary! as Dictionary<String,AnyObject>
+        let shortVersionString = appInfo["CFBundleShortVersionString"] as! String
+        let bundleVersion      = appInfo["CFBundleVersion"] as! String
+        versionLabel.text = "Version: \(shortVersionString) (\(bundleVersion))"
         
     }
     
@@ -73,16 +73,16 @@ class InformationTableViewController: UITableViewController {
             case 2:
                 print ("Call US")
                 if let call: String = "+35315292277",
-                let url = URL(string: "tel://\(call)"),
+                    let url = URL(string: "tel://\(call)"),
                     UIApplication.shared.canOpenURL(url) {
-                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
                 }
             default:
                 print ("Didnt work")
             }
         case 2:
             print ("Section 2 selected")
-
+            
         default:
             print ("No index selected")
         }
@@ -158,13 +158,4 @@ class InformationTableViewController: UITableViewController {
      }
      */
     
-}
-
-extension Bundle {
-    var releaseVersionNumber: String? {
-        return infoDictionary?["CFBundleShortVersionString"] as? String
-    }
-    var buildVersionNumber: String? {
-        return infoDictionary?["CFBundleVersion"] as? String
-    }
 }
