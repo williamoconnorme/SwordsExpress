@@ -17,7 +17,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
     let dataManager = DataManager()
     var favData: Array = [String]()
     var favObj = [Schedule]()
-    let favArray: Array = UserDefaults(suiteName: "group.swordsexpress.test")!.array(forKey: "fav")!
+    //let favArray = (UserDefaults(suiteName: "group.swordsexpress.test")!.array(forKey: "fav"))!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,28 +30,23 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
             extensionContext?.widgetLargestAvailableDisplayMode = .expanded
         }
         self.preferredContentSize.height = 200
-        
-        
     }
     
     func initializeTableData() {
         
         if (UserDefaults(suiteName: "group.swordsexpress.test")!.array(forKey: "fav") != nil) {
-            
-            
-            for item in favArray {
-                
-                let stop: String = item as! String
-                let direction: String = "city"
-                
-                let data = dataManager.extractNextArrivalTime(stopNumber: stop , direction: direction)
-
-            }
+            dump (UserDefaults(suiteName: "group.swordsexpress.test")!.array(forKey: "fav"))
+//            for item in favArray {
+//                let stop: String = item as! String
+//                let direction: String = "city"
+//
+//                let data = dataManager.extractNextArrivalTime(stopNumber: stop , direction: direction)
+//            }
         } else {
-            //textLabel.text = "You have not favourited any stops yet"
+            print("You have not favourited any stops yet. Tableview Hidden")
+            self.tableView.isHidden = true
+            self.segControl.isHidden = true
         }
-        
-        
         
         self.tableView.reloadData()
     }
@@ -72,7 +67,8 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (favArray.count)
+        //return (favArray.count)
+        return 1
     }
     
     

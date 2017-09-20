@@ -86,7 +86,7 @@ class StopListViewController: UIViewController, UITableViewDelegate, UITableView
         // temp delete user defaults on load
         
         
-        Whisper.ColorList.Whistle.background = UIColor(red:0.00, green:0.67, blue:0.31, alpha:1.0)
+        Whisper.ColorList.Whistle.background = UIColor(displayP3Red:0.00, green:0.67, blue:0.31, alpha:1.0)
         Whisper.ColorList.Whistle.title = UIColor(red:1.00, green:1.00, blue:1.00, alpha:1.0)
         
         //TEMP

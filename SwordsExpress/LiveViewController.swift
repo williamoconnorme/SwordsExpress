@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import RevealingSplashView
 
 class LiveViewController: UIViewController, CLLocationManagerDelegate {
     
@@ -279,7 +280,7 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate {
         
         for (index, coordinate) in wayPointArr.enumerated() {
             if (index + 1 <= wayPointArr.count) {
-
+                
                 // Start calculating directions
                 let sourceCoordinates = CLLocationCoordinate2DMake(lastCoord[0], lastCoord[1])
                 let destCoordinates = CLLocationCoordinate2DMake(coordinate[0], coordinate[1])
@@ -343,6 +344,22 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Initialize a revealing Splash with with the iconImage, the initial size and the background color
+        let revealingSplashView = RevealingSplashView(iconImage: UIImage(named: "stop-sign-transparent")!,iconInitialSize: CGSize(width: 70, height: 70), backgroundColor: UIColor(red:0.11, green:0.56, blue:0.95, alpha:1.0))
+        revealingSplashView.backgroundColor = UIColor(displayP3Red:0.00, green:0.67, blue:0.31, alpha:1.0)
+        self.tabBarController?.tabBar.isHidden = true
+        
+        let window = UIApplication.shared.keyWindow
+        window?.addSubview(revealingSplashView)
+        
+        //Adds the revealing splash view as a sub view
+        self.view.addSubview(revealingSplashView)
+        
+        //Starts animation
+        revealingSplashView.startAnimation(){
+            self.tabBarController?.tabBar.isHidden = false
+        }
         
         // Plot bus stops to city by default
         addBusStopsToCity()
@@ -458,7 +475,7 @@ extension LiveViewController: MKMapViewDelegate {
             
             
             annotationView.image = UIImage(named: "bus-icon")
-            annotationView.tintColor = UIColor(red:0.00, green:0.67, blue:0.31, alpha:1.0)
+            annotationView.tintColor = UIColor(displayP3Red:0.00, green:0.67, blue:0.31, alpha:1.0)
             annotationView.canShowCallout = true
             return annotationView
         }
@@ -467,7 +484,7 @@ extension LiveViewController: MKMapViewDelegate {
             let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "stopAnnotationView") ?? MKAnnotationView()
             annotationView.image = UIImage(named: "stop-icon")
             annotationView.canShowCallout = true
-            annotationView.tintColor = UIColor(red:0.00, green:0.67, blue:0.31, alpha:1.0)
+            annotationView.tintColor = UIColor(displayP3Red:0.00, green:0.67, blue:0.31, alpha:1.0)
             annotationView.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
             return annotationView
             
@@ -486,8 +503,8 @@ extension LiveViewController: MKMapViewDelegate {
             
         } else if overlay is MKPolyline {
             let renderer = MKPolylineRenderer(overlay: overlay)
-            renderer.strokeColor = UIColor(red:0.00, green:0.67, blue:0.31, alpha:1.0)
-            renderer.lineWidth = 2
+            renderer.strokeColor = UIColor(displayP3Red:0.00, green:0.67, blue:0.31, alpha:1.0)
+            renderer.lineWidth = 3
             return renderer
             
         } else if overlay is MKPolygon {

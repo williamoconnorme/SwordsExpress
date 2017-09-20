@@ -25,6 +25,7 @@
 		3D0BC0D21F40CAD200996DCF /* SwordsCitySun.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D0BC0CF1F40CAD200996DCF /* SwordsCitySun.json */; };
 		3D242B2D1F3142EC0040908C /* Fares.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D242B2C1F3142EC0040908C /* Fares.swift */; };
 		3D40167F1F44B8FB00F5DA93 /* InformationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D40167E1F44B8FB00F5DA93 /* InformationTableViewController.swift */; };
+		3D5B42DB1F729FC50086F3ED /* RevealingSplashView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D5B42DC1F729FC50086F3ED /* RevealingSplashView.framework */; };
 		3D61AB1A1F2FBA8E008827F9 /* Waypoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D61AB191F2FBA8E008827F9 /* Waypoints.swift */; };
 		3D67C0EC1F4226D300D5DD9C /* CitySwordsSun.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D67C0EA1F4226D300D5DD9C /* CitySwordsSun.json */; };
 		3D67C0ED1F4226D300D5DD9C /* CitySwordsSat.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D67C0EB1F4226D300D5DD9C /* CitySwordsSat.json */; };
@@ -174,6 +175,8 @@
 		3D0BC0CF1F40CAD200996DCF /* SwordsCitySun.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SwordsCitySun.json; sourceTree = "<group>"; };
 		3D242B2C1F3142EC0040908C /* Fares.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fares.swift; sourceTree = "<group>"; };
 		3D40167E1F44B8FB00F5DA93 /* InformationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationTableViewController.swift; sourceTree = "<group>"; };
+		3D5B42DA1F729FB20086F3ED /* RevealingSplashView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RevealingSplashView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D5B42DC1F729FC50086F3ED /* RevealingSplashView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RevealingSplashView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D61AB191F2FBA8E008827F9 /* Waypoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Waypoints.swift; sourceTree = "<group>"; };
 		3D67C0EA1F4226D300D5DD9C /* CitySwordsSun.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CitySwordsSun.json; sourceTree = "<group>"; };
 		3D67C0EB1F4226D300D5DD9C /* CitySwordsSat.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CitySwordsSat.json; sourceTree = "<group>"; };
@@ -220,6 +223,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D5B42DB1F729FC50086F3ED /* RevealingSplashView.framework in Frameworks */,
 				3DB37DAF1F4F08200041F9AB /* Whisper.framework in Frameworks */,
 				3D0A17441F2E609E0051E4F3 /* SwiftyJSON.framework in Frameworks */,
 				179212BF7FF9C654410A0C3A /* Pods_SwordsExpress.framework in Frameworks */,
@@ -407,6 +411,8 @@
 		B634BD955C0CE53A2DBB47A1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3D5B42DC1F729FC50086F3ED /* RevealingSplashView.framework */,
+				3D5B42DA1F729FB20086F3ED /* RevealingSplashView.framework */,
 				3DB37DAE1F4F08200041F9AB /* Whisper.framework */,
 				3D9D7E771F47220A0066238F /* SwiftyJSON.framework */,
 				3D0A17431F2E609E0051E4F3 /* SwiftyJSON.framework */,
@@ -782,11 +788,13 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-SwordsExpress/Pods-SwordsExpress-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/RevealingSplashView/RevealingSplashView.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON-iOS/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/Whisper/Whisper.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RevealingSplashView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Whisper.framework",
 			);

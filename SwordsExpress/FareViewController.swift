@@ -87,7 +87,7 @@ class FareViewController: UIViewController, UITableViewDelegate, UITableViewData
             segControl.isEnabled = true
         case (0, 1):
             cell.typeLabel.text = getFares.cashType[indexPath.row]
-            cell.fareLabel.text = getFares.leapAdult[indexPath.row]
+            cell.fareLabel.text = getFares.cashStudent[indexPath.row]
             segControl.isEnabled = true
         case (0, 2):
             cell.typeLabel.text = getFares.cashType[indexPath.row]
