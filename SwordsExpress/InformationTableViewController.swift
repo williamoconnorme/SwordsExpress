@@ -88,6 +88,19 @@ class InformationTableViewController: UITableViewController {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "informationToLegal" {
+            
+            let navController = segue.destination as! UINavigationController
+            let vc = navController.topViewController as! LegalViewController
+            let indexPath = self.tableView.indexPathForSelectedRow
+            let selectedCell = indexPath?.row
+            
+            vc.page = selectedCell!
+        }
+    }
+    
+    
     
     
     

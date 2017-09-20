@@ -26,6 +26,7 @@
 		3D242B2D1F3142EC0040908C /* Fares.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D242B2C1F3142EC0040908C /* Fares.swift */; };
 		3D40167F1F44B8FB00F5DA93 /* InformationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D40167E1F44B8FB00F5DA93 /* InformationTableViewController.swift */; };
 		3D5B42DB1F729FC50086F3ED /* RevealingSplashView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D5B42DC1F729FC50086F3ED /* RevealingSplashView.framework */; };
+		3D5B42DE1F72D46A0086F3ED /* LegalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5B42DD1F72D46A0086F3ED /* LegalViewController.swift */; };
 		3D61AB1A1F2FBA8E008827F9 /* Waypoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D61AB191F2FBA8E008827F9 /* Waypoints.swift */; };
 		3D67C0EC1F4226D300D5DD9C /* CitySwordsSun.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D67C0EA1F4226D300D5DD9C /* CitySwordsSun.json */; };
 		3D67C0ED1F4226D300D5DD9C /* CitySwordsSat.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D67C0EB1F4226D300D5DD9C /* CitySwordsSat.json */; };
@@ -177,6 +178,7 @@
 		3D40167E1F44B8FB00F5DA93 /* InformationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationTableViewController.swift; sourceTree = "<group>"; };
 		3D5B42DA1F729FB20086F3ED /* RevealingSplashView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RevealingSplashView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D5B42DC1F729FC50086F3ED /* RevealingSplashView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RevealingSplashView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D5B42DD1F72D46A0086F3ED /* LegalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalViewController.swift; sourceTree = "<group>"; };
 		3D61AB191F2FBA8E008827F9 /* Waypoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Waypoints.swift; sourceTree = "<group>"; };
 		3D67C0EA1F4226D300D5DD9C /* CitySwordsSun.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CitySwordsSun.json; sourceTree = "<group>"; };
 		3D67C0EB1F4226D300D5DD9C /* CitySwordsSat.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CitySwordsSat.json; sourceTree = "<group>"; };
@@ -321,10 +323,11 @@
 				3D0A170E1F2E4D100051E4F3 /* AppDelegate.swift */,
 				3D0A17101F2E4D100051E4F3 /* LiveViewController.swift */,
 				3D40167E1F44B8FB00F5DA93 /* InformationTableViewController.swift */,
-				3D9D7EBD1F47C5C80066238F /* StopListViewController.swift */,
-				3D9D7EBF1F47C8A90066238F /* StopListTableViewCell.swift */,
 				3DF976AA1F71500900B75CF9 /* TimetableViewController.swift */,
 				3DF976AC1F71555A00B75CF9 /* TimetableStopsViewController.swift */,
+				3D9D7EBD1F47C5C80066238F /* StopListViewController.swift */,
+				3D9D7EBF1F47C8A90066238F /* StopListTableViewCell.swift */,
+				3D5B42DD1F72D46A0086F3ED /* LegalViewController.swift */,
 				3D0A17121F2E4D100051E4F3 /* FareViewController.swift */,
 				3DBAAF391F702EEA008C8C0B /* FareTableViewCell.swift */,
 				3D242B2C1F3142EC0040908C /* Fares.swift */,
@@ -860,6 +863,7 @@
 			files = (
 				3D242B2D1F3142EC0040908C /* Fares.swift in Sources */,
 				3D61AB1A1F2FBA8E008827F9 /* Waypoints.swift in Sources */,
+				3D5B42DE1F72D46A0086F3ED /* LegalViewController.swift in Sources */,
 				3D0A17131F2E4D100051E4F3 /* FareViewController.swift in Sources */,
 				3D0A173F1F2E4D730051E4F3 /* DataManager.swift in Sources */,
 				3D40167F1F44B8FB00F5DA93 /* InformationTableViewController.swift in Sources */,

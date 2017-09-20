@@ -14,7 +14,7 @@ class TimetableStopsViewController: UITableViewController {
     
     let toSwords = [
         "Eden Quay",
-        "Ifsc",
+        "IFSC",
         "Custom House Quay",
         "Custom House Quay",
         "North Wall Quay",
@@ -58,7 +58,7 @@ class TimetableStopsViewController: UITableViewController {
         "Swords Bypass",
         "Malahide Roundabout",
         "Pavilions Shopping Centre",
-        "Dublin Road (Penneys)",
+        "Dublin Road (opp Penneys)",
         "Highfields",
         "Ballintrane",
         "Boroimhe Laurels",

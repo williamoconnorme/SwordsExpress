@@ -348,6 +348,9 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate {
         //Initialize a revealing Splash with with the iconImage, the initial size and the background color
         let revealingSplashView = RevealingSplashView(iconImage: UIImage(named: "stop-sign-transparent")!,iconInitialSize: CGSize(width: 70, height: 70), backgroundColor: UIColor(red:0.11, green:0.56, blue:0.95, alpha:1.0))
         revealingSplashView.backgroundColor = UIColor(displayP3Red:0.00, green:0.67, blue:0.31, alpha:1.0)
+        revealingSplashView.delay = 1
+        revealingSplashView.duration = 2
+        //revealingSplashView.iconInitialSize = CGSize(width: 272, height: 272)
         self.tabBarController?.tabBar.isHidden = true
         
         let window = UIApplication.shared.keyWindow
