@@ -175,11 +175,11 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate {
             //dump (timetableArr?[0])
             var bus = ""
             var holdTime = "24:00"
-            for (route, arrivalTime) in timetableArr! {
-                if arrivalTime.string! > dataManager.getTime24Hour() && arrivalTime.string! < holdTime {
+            for (arrivalTime, route) in timetableArr! {
+                if arrivalTime > dataManager.getTime24Hour() && arrivalTime < holdTime {
                     
-                    bus = "Next bus arrives at \(arrivalTime)"
-                    holdTime = arrivalTime.string!
+                    bus = "Next bus arrives at \(arrivalTime) (\(route))"
+                    holdTime = arrivalTime
                     
                 }
                 

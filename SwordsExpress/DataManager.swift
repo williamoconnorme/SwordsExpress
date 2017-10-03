@@ -189,8 +189,8 @@ class DataManager {
         
         
         let dir = direction
-        for (route, arrivalTime) in timetable! {
-            if arrivalTime.string! > time {
+        for (arrivalTime, route) in timetable! {
+            if arrivalTime > time {
                 if dir == "Swords" {
                     from = "City Centre"
                     to = "Swords"
@@ -198,7 +198,7 @@ class DataManager {
                     from = "Swords"
                     to = "City Centre"
                 }
-                let sched = Schedule(from: from, to: to, route: route, time: arrivalTime.string!, stop: stopNumber)
+                let sched = Schedule(from: from, to: to, route: route.string!, time: arrivalTime, stop: stopNumber)
                 self.ScheObj.append(sched)
                 
             }
@@ -224,8 +224,8 @@ class DataManager {
             destination = "Swords"
         }
 
-        for (route, arrivalTime) in timetable! {
-            let schedule = Schedule(from: direction.capitalized, to: destination, route: route, time: arrivalTime.string!, stop: stopNumber)
+        for (arrivalTime, route) in timetable! {
+            let schedule = Schedule(from: direction.capitalized, to: destination, route: route.string!, time: arrivalTime, stop: stopNumber)
             self.ScheObj.append(schedule)
 
         }

@@ -21,17 +21,16 @@
 		3D0A17441F2E609E0051E4F3 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0A17431F2E609E0051E4F3 /* SwiftyJSON.framework */; };
 		3D0A17461F2E61260051E4F3 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0A17451F2E61260051E4F3 /* Models.swift */; };
 		3D0B30201F8321320047F658 /* SwordsCityMonFri.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D0B301F1F8321320047F658 /* SwordsCityMonFri.json */; };
-		3D0BC0D01F40CAD200996DCF /* SwordsCityMonFri.json.old in Resources */ = {isa = PBXBuildFile; fileRef = 3D0BC0CD1F40CAD200996DCF /* SwordsCityMonFri.json.old */; };
-		3D0BC0D11F40CAD200996DCF /* SwordsCitySat.json.old in Resources */ = {isa = PBXBuildFile; fileRef = 3D0BC0CE1F40CAD200996DCF /* SwordsCitySat.json.old */; };
-		3D0BC0D21F40CAD200996DCF /* SwordsCitySun.json.old in Resources */ = {isa = PBXBuildFile; fileRef = 3D0BC0CF1F40CAD200996DCF /* SwordsCitySun.json.old */; };
+		3D0BC0D11F40CAD200996DCF /* SwordsCitySat.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D0BC0CE1F40CAD200996DCF /* SwordsCitySat.json */; };
 		3D242B2D1F3142EC0040908C /* Fares.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D242B2C1F3142EC0040908C /* Fares.swift */; };
+		3D261BAC1F83C54C00CAFC5D /* SwordsCitySun.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D261BAB1F83C54C00CAFC5D /* SwordsCitySun.json */; };
+		3D261BAE1F83CBE300CAFC5D /* CitySwordsMonFri.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D261BAD1F83CBE300CAFC5D /* CitySwordsMonFri.json */; };
+		3D261BB01F83CEF900CAFC5D /* CitySwordsSat.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D261BAF1F83CEF900CAFC5D /* CitySwordsSat.json */; };
+		3D261BB21F83CF0600CAFC5D /* CitySwordsSun.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D261BB11F83CF0600CAFC5D /* CitySwordsSun.json */; };
 		3D40167F1F44B8FB00F5DA93 /* InformationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D40167E1F44B8FB00F5DA93 /* InformationTableViewController.swift */; };
 		3D5B42DB1F729FC50086F3ED /* RevealingSplashView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D5B42DC1F729FC50086F3ED /* RevealingSplashView.framework */; };
 		3D5B42DE1F72D46A0086F3ED /* LegalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5B42DD1F72D46A0086F3ED /* LegalViewController.swift */; };
 		3D61AB1A1F2FBA8E008827F9 /* Waypoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D61AB191F2FBA8E008827F9 /* Waypoints.swift */; };
-		3D67C0EC1F4226D300D5DD9C /* CitySwordsSun.json.old in Resources */ = {isa = PBXBuildFile; fileRef = 3D67C0EA1F4226D300D5DD9C /* CitySwordsSun.json.old */; };
-		3D67C0ED1F4226D300D5DD9C /* CitySwordsSat.json.old in Resources */ = {isa = PBXBuildFile; fileRef = 3D67C0EB1F4226D300D5DD9C /* CitySwordsSat.json.old */; };
-		3D67C0EF1F4228F400D5DD9C /* CitySwordsMonFri.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D67C0EE1F4228F400D5DD9C /* CitySwordsMonFri.json */; };
 		3D9D7E671F4714230066238F /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D9D7E661F4714230066238F /* NotificationCenter.framework */; };
 		3D9D7E6A1F4714230066238F /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9D7E691F4714230066238F /* TodayViewController.swift */; };
 		3D9D7E6D1F4714230066238F /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D9D7E6B1F4714230066238F /* MainInterface.storyboard */; };
@@ -39,12 +38,7 @@
 		3D9D7E761F4718A30066238F /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0A173E1F2E4D730051E4F3 /* DataManager.swift */; };
 		3D9D7E781F47220A0066238F /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D9D7E771F47220A0066238F /* SwiftyJSON.framework */; };
 		3D9D7E791F47234F0066238F /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0A17451F2E61260051E4F3 /* Models.swift */; };
-		3D9D7E7B1F4725BA0066238F /* SwordsCityMonFri.json.old in Resources */ = {isa = PBXBuildFile; fileRef = 3D0BC0CD1F40CAD200996DCF /* SwordsCityMonFri.json.old */; };
-		3D9D7E7C1F4725BA0066238F /* SwordsCitySat.json.old in Resources */ = {isa = PBXBuildFile; fileRef = 3D0BC0CE1F40CAD200996DCF /* SwordsCitySat.json.old */; };
-		3D9D7E7D1F4725BA0066238F /* SwordsCitySun.json.old in Resources */ = {isa = PBXBuildFile; fileRef = 3D0BC0CF1F40CAD200996DCF /* SwordsCitySun.json.old */; };
-		3D9D7E7E1F4725BA0066238F /* CitySwordsMonFri.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D67C0EE1F4228F400D5DD9C /* CitySwordsMonFri.json */; };
-		3D9D7E7F1F4725BA0066238F /* CitySwordsSat.json.old in Resources */ = {isa = PBXBuildFile; fileRef = 3D67C0EB1F4226D300D5DD9C /* CitySwordsSat.json.old */; };
-		3D9D7E801F4725BA0066238F /* CitySwordsSun.json.old in Resources */ = {isa = PBXBuildFile; fileRef = 3D67C0EA1F4226D300D5DD9C /* CitySwordsSun.json.old */; };
+		3D9D7E7C1F4725BA0066238F /* SwordsCitySat.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D0BC0CE1F40CAD200996DCF /* SwordsCitySat.json */; };
 		3D9D7E871F472B1A0066238F /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D9D7E851F472B1A0066238F /* Interface.storyboard */; };
 		3D9D7E891F472B1A0066238F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D9D7E881F472B1A0066238F /* Assets.xcassets */; };
 		3D9D7E901F472B1A0066238F /* Swords Express Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3D9D7E8F1F472B1A0066238F /* Swords Express Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -54,18 +48,8 @@
 		3D9D7E9D1F472B1A0066238F /* Swords Express Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 3D9D7E831F472B1A0066238F /* Swords Express Watch.app */; };
 		3D9D7EA61F472B420066238F /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0A173E1F2E4D730051E4F3 /* DataManager.swift */; };
 		3D9D7EA71F472B4A0066238F /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0A17451F2E61260051E4F3 /* Models.swift */; };
-		3D9D7EA81F472B500066238F /* SwordsCityMonFri.json.old in Resources */ = {isa = PBXBuildFile; fileRef = 3D0BC0CD1F40CAD200996DCF /* SwordsCityMonFri.json.old */; };
-		3D9D7EA91F472B500066238F /* SwordsCitySat.json.old in Resources */ = {isa = PBXBuildFile; fileRef = 3D0BC0CE1F40CAD200996DCF /* SwordsCitySat.json.old */; };
-		3D9D7EAA1F472B500066238F /* SwordsCitySun.json.old in Resources */ = {isa = PBXBuildFile; fileRef = 3D0BC0CF1F40CAD200996DCF /* SwordsCitySun.json.old */; };
-		3D9D7EAB1F472B500066238F /* CitySwordsMonFri.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D67C0EE1F4228F400D5DD9C /* CitySwordsMonFri.json */; };
-		3D9D7EAC1F472B500066238F /* CitySwordsSat.json.old in Resources */ = {isa = PBXBuildFile; fileRef = 3D67C0EB1F4226D300D5DD9C /* CitySwordsSat.json.old */; };
-		3D9D7EAD1F472B500066238F /* CitySwordsSun.json.old in Resources */ = {isa = PBXBuildFile; fileRef = 3D67C0EA1F4226D300D5DD9C /* CitySwordsSun.json.old */; };
-		3D9D7EAE1F472B510066238F /* SwordsCityMonFri.json.old in Resources */ = {isa = PBXBuildFile; fileRef = 3D0BC0CD1F40CAD200996DCF /* SwordsCityMonFri.json.old */; };
-		3D9D7EAF1F472B510066238F /* SwordsCitySat.json.old in Resources */ = {isa = PBXBuildFile; fileRef = 3D0BC0CE1F40CAD200996DCF /* SwordsCitySat.json.old */; };
-		3D9D7EB01F472B510066238F /* SwordsCitySun.json.old in Resources */ = {isa = PBXBuildFile; fileRef = 3D0BC0CF1F40CAD200996DCF /* SwordsCitySun.json.old */; };
-		3D9D7EB11F472B510066238F /* CitySwordsMonFri.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D67C0EE1F4228F400D5DD9C /* CitySwordsMonFri.json */; };
-		3D9D7EB21F472B510066238F /* CitySwordsSat.json.old in Resources */ = {isa = PBXBuildFile; fileRef = 3D67C0EB1F4226D300D5DD9C /* CitySwordsSat.json.old */; };
-		3D9D7EB31F472B510066238F /* CitySwordsSun.json.old in Resources */ = {isa = PBXBuildFile; fileRef = 3D67C0EA1F4226D300D5DD9C /* CitySwordsSun.json.old */; };
+		3D9D7EA91F472B500066238F /* SwordsCitySat.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D0BC0CE1F40CAD200996DCF /* SwordsCitySat.json */; };
+		3D9D7EAF1F472B510066238F /* SwordsCitySat.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D0BC0CE1F40CAD200996DCF /* SwordsCitySat.json */; };
 		3D9D7EB41F472CB20066238F /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D9D7E771F47220A0066238F /* SwiftyJSON.framework */; };
 		3D9D7EBA1F47599E0066238F /* ScheduleInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9D7EB81F4746D30066238F /* ScheduleInterfaceController.swift */; };
 		3D9D7EBC1F4762370066238F /* StopRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9D7EBB1F4762370066238F /* StopRowController.swift */; };
@@ -173,18 +157,17 @@
 		3D0A17431F2E609E0051E4F3 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "Pods/../build/Debug-iphoneos/SwiftyJSON/SwiftyJSON.framework"; sourceTree = "<group>"; };
 		3D0A17451F2E61260051E4F3 /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		3D0B301F1F8321320047F658 /* SwordsCityMonFri.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SwordsCityMonFri.json; sourceTree = "<group>"; };
-		3D0BC0CD1F40CAD200996DCF /* SwordsCityMonFri.json.old */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SwordsCityMonFri.json.old; sourceTree = "<group>"; };
-		3D0BC0CE1F40CAD200996DCF /* SwordsCitySat.json.old */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SwordsCitySat.json.old; sourceTree = "<group>"; };
-		3D0BC0CF1F40CAD200996DCF /* SwordsCitySun.json.old */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SwordsCitySun.json.old; sourceTree = "<group>"; };
+		3D0BC0CE1F40CAD200996DCF /* SwordsCitySat.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SwordsCitySat.json; sourceTree = "<group>"; };
 		3D242B2C1F3142EC0040908C /* Fares.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fares.swift; sourceTree = "<group>"; };
+		3D261BAB1F83C54C00CAFC5D /* SwordsCitySun.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SwordsCitySun.json; sourceTree = "<group>"; };
+		3D261BAD1F83CBE300CAFC5D /* CitySwordsMonFri.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CitySwordsMonFri.json; sourceTree = "<group>"; };
+		3D261BAF1F83CEF900CAFC5D /* CitySwordsSat.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CitySwordsSat.json; sourceTree = "<group>"; };
+		3D261BB11F83CF0600CAFC5D /* CitySwordsSun.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CitySwordsSun.json; sourceTree = "<group>"; };
 		3D40167E1F44B8FB00F5DA93 /* InformationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationTableViewController.swift; sourceTree = "<group>"; };
 		3D5B42DA1F729FB20086F3ED /* RevealingSplashView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RevealingSplashView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D5B42DC1F729FC50086F3ED /* RevealingSplashView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RevealingSplashView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D5B42DD1F72D46A0086F3ED /* LegalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalViewController.swift; sourceTree = "<group>"; };
 		3D61AB191F2FBA8E008827F9 /* Waypoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Waypoints.swift; sourceTree = "<group>"; };
-		3D67C0EA1F4226D300D5DD9C /* CitySwordsSun.json.old */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CitySwordsSun.json.old; sourceTree = "<group>"; };
-		3D67C0EB1F4226D300D5DD9C /* CitySwordsSat.json.old */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CitySwordsSat.json.old; sourceTree = "<group>"; };
-		3D67C0EE1F4228F400D5DD9C /* CitySwordsMonFri.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CitySwordsMonFri.json; sourceTree = "<group>"; };
 		3D9D7E651F4714230066238F /* SE Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "SE Widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D9D7E661F4714230066238F /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		3D9D7E691F4714230066238F /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
@@ -338,7 +321,6 @@
 				3D61AB191F2FBA8E008827F9 /* Waypoints.swift */,
 				3D0A17141F2E4D100051E4F3 /* Main.storyboard */,
 				3D0B301E1F8320DB0047F658 /* Timetables */,
-				3D0BC0CC1F40CA3300996DCF /* Timetables-old */,
 				3D0A17171F2E4D100051E4F3 /* Assets.xcassets */,
 				3D0A17191F2E4D100051E4F3 /* LaunchScreen.storyboard */,
 				3D0A171C1F2E4D100051E4F3 /* Info.plist */,
@@ -368,22 +350,13 @@
 			isa = PBXGroup;
 			children = (
 				3D0B301F1F8321320047F658 /* SwordsCityMonFri.json */,
-				3D0BC0CE1F40CAD200996DCF /* SwordsCitySat.json.old */,
-				3D0BC0CF1F40CAD200996DCF /* SwordsCitySun.json.old */,
-				3D67C0EE1F4228F400D5DD9C /* CitySwordsMonFri.json */,
-				3D67C0EB1F4226D300D5DD9C /* CitySwordsSat.json.old */,
-				3D67C0EA1F4226D300D5DD9C /* CitySwordsSun.json.old */,
+				3D0BC0CE1F40CAD200996DCF /* SwordsCitySat.json */,
+				3D261BAB1F83C54C00CAFC5D /* SwordsCitySun.json */,
+				3D261BAD1F83CBE300CAFC5D /* CitySwordsMonFri.json */,
+				3D261BAF1F83CEF900CAFC5D /* CitySwordsSat.json */,
+				3D261BB11F83CF0600CAFC5D /* CitySwordsSun.json */,
 			);
 			path = Timetables;
-			sourceTree = "<group>";
-		};
-		3D0BC0CC1F40CA3300996DCF /* Timetables-old */ = {
-			isa = PBXGroup;
-			children = (
-				3D0BC0CD1F40CAD200996DCF /* SwordsCityMonFri.json.old */,
-			);
-			name = "Timetables-old";
-			path = ..;
 			sourceTree = "<group>";
 		};
 		3D9D7E681F4714230066238F /* SE Widget */ = {
@@ -655,15 +628,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D0A171B1F2E4D100051E4F3 /* LaunchScreen.storyboard in Resources */,
+				3D261BAC1F83C54C00CAFC5D /* SwordsCitySun.json in Resources */,
 				3D0A17181F2E4D100051E4F3 /* Assets.xcassets in Resources */,
-				3D0BC0D01F40CAD200996DCF /* SwordsCityMonFri.json.old in Resources */,
 				3D0B30201F8321320047F658 /* SwordsCityMonFri.json in Resources */,
-				3D0BC0D21F40CAD200996DCF /* SwordsCitySun.json.old in Resources */,
 				3D0A17161F2E4D100051E4F3 /* Main.storyboard in Resources */,
-				3D67C0ED1F4226D300D5DD9C /* CitySwordsSat.json.old in Resources */,
-				3D67C0EC1F4226D300D5DD9C /* CitySwordsSun.json.old in Resources */,
-				3D67C0EF1F4228F400D5DD9C /* CitySwordsMonFri.json in Resources */,
-				3D0BC0D11F40CAD200996DCF /* SwordsCitySat.json.old in Resources */,
+				3D261BB01F83CEF900CAFC5D /* CitySwordsSat.json in Resources */,
+				3D261BB21F83CF0600CAFC5D /* CitySwordsSun.json in Resources */,
+				3D0BC0D11F40CAD200996DCF /* SwordsCitySat.json in Resources */,
+				3D261BAE1F83CBE300CAFC5D /* CitySwordsMonFri.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -686,12 +658,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D9D7E6D1F4714230066238F /* MainInterface.storyboard in Resources */,
-				3D9D7E7F1F4725BA0066238F /* CitySwordsSat.json.old in Resources */,
-				3D9D7E7B1F4725BA0066238F /* SwordsCityMonFri.json.old in Resources */,
-				3D9D7E7C1F4725BA0066238F /* SwordsCitySat.json.old in Resources */,
-				3D9D7E7D1F4725BA0066238F /* SwordsCitySun.json.old in Resources */,
-				3D9D7E801F4725BA0066238F /* CitySwordsSun.json.old in Resources */,
-				3D9D7E7E1F4725BA0066238F /* CitySwordsMonFri.json in Resources */,
+				3D9D7E7C1F4725BA0066238F /* SwordsCitySat.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -699,14 +666,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D9D7EB01F472B510066238F /* SwordsCitySun.json.old in Resources */,
-				3D9D7EB11F472B510066238F /* CitySwordsMonFri.json in Resources */,
-				3D9D7EAE1F472B510066238F /* SwordsCityMonFri.json.old in Resources */,
-				3D9D7EB31F472B510066238F /* CitySwordsSun.json.old in Resources */,
-				3D9D7EAF1F472B510066238F /* SwordsCitySat.json.old in Resources */,
+				3D9D7EAF1F472B510066238F /* SwordsCitySat.json in Resources */,
 				3D9D7E891F472B1A0066238F /* Assets.xcassets in Resources */,
 				3D9D7E871F472B1A0066238F /* Interface.storyboard in Resources */,
-				3D9D7EB21F472B510066238F /* CitySwordsSat.json.old in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -715,12 +677,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D9D7E991F472B1A0066238F /* Assets.xcassets in Resources */,
-				3D9D7EAC1F472B500066238F /* CitySwordsSat.json.old in Resources */,
-				3D9D7EA81F472B500066238F /* SwordsCityMonFri.json.old in Resources */,
-				3D9D7EA91F472B500066238F /* SwordsCitySat.json.old in Resources */,
-				3D9D7EAA1F472B500066238F /* SwordsCitySun.json.old in Resources */,
-				3D9D7EAD1F472B500066238F /* CitySwordsSun.json.old in Resources */,
-				3D9D7EAB1F472B500066238F /* CitySwordsMonFri.json in Resources */,
+				3D9D7EA91F472B500066238F /* SwordsCitySat.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
