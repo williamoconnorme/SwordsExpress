@@ -217,7 +217,10 @@ class DataManager {
         
         if direction == "city" {
             destination = "City Centre"
+        } else if direction == "swords" {
+            destination = "Swords"
         } else {
+            print ("direction NOT SET")
             destination = "Swords"
         }
 

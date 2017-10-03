@@ -19,7 +19,9 @@ class StopListViewController: UIViewController, UITableViewDelegate, UITableView
     var PassedStopData: Array = [String]()
     var favourites = [Stop]()
     var favouritesData = [Data]()
-
+    
+    var favouriteDict: [[String: Any]] = [] // array for testing dictionary
+    
     @IBOutlet weak var favouriteIcon: UIBarButtonItem!
     @IBAction func addRemoveFavourite(_ sender: Any) {
         
@@ -27,28 +29,10 @@ class StopListViewController: UIViewController, UITableViewDelegate, UITableView
         let stopData = NSKeyedArchiver.archivedData(withRootObject: stop)
         
         
-        if (UserDefaults.standard.object(forKey: "fav") != nil) && (favouritesData.contains(stopData))
+        if (UserDefaults.standard.array(forKey: "favourites") != nil)
         {
             favouriteIcon.image = #imageLiteral(resourceName: "plus-sign-circle")
             
-            dump (favouritesData)
-            
-            if let data = UserDefaults.standard.object(forKey: "fav") as? Data {
-                
-                
-                favouritesData = NSKeyedUnarchiver.unarchiveObject(with: data) as! [Data]
-                
-                print ("Removed:")
-                let test123 = favouritesData.remove(at: 0)
-                
-                favouritesData = [NSKeyedArchiver.archivedData(withRootObject: test123)]
-                
-                UserDefaults.standard.set(favouritesData, forKey: "fav")
-                
-                //favouritesData.filter { el in favouritesData == "test" }
-                
-                
-            }
             
             
             let murmur = Murmur(title: "Removed \(PassedStopData[0]) from your favourites")
@@ -58,14 +42,6 @@ class StopListViewController: UIViewController, UITableViewDelegate, UITableView
             favouriteIcon.image = #imageLiteral(resourceName: "minus-sign-circle")
             
             
-            let data = NSKeyedArchiver.archivedData(withRootObject: stop)
-            
-            
-            favouritesData.append(data)
-            
-            UserDefaults.standard.set(favouritesData, forKey: "fav")
-            
-            //UserDefaults(suiteName: "group.swordsexpress.test")!.set(favourites, forKey: "fav")
             
             let murmur = Murmur(title: "Added \(PassedStopData[0]) to your favourites")
             Whisper.show(whistle: murmur, action: .show(3))
@@ -83,22 +59,28 @@ class StopListViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // temp delete user defaults on load
+        favouriteDict.append(["name": PassedStopData[0], "direction": PassedStopData[1]])
+        print (favouriteDict)
+        if (UserDefaults.standard.array(forKey: "favourites") != nil) {
+            favouriteDict = UserDefaults.standard.array(forKey: "favourites") as! [[String : Any]]
+            dump (favouriteDict)
+            print ("Userdefaults array is NOT nil in viewdidload")
+        } else {
+            print ("Userdefaults array is nil in viewdidload")
+        }
+        
+        
+        
+        
         
         
         Whisper.ColorList.Whistle.background = UIColor(displayP3Red:0.00, green:0.67, blue:0.31, alpha:1.0)
         Whisper.ColorList.Whistle.title = UIColor(red:1.00, green:1.00, blue:1.00, alpha:1.0)
         
-        //TEMP
-        UserDefaults.standard.removeObject(forKey: "fav")
-        
         
         self.navigationController?.navigationBar.isTranslucent = false
         UIApplication.shared.statusBarStyle = .lightContent
         initializeTableData()
-        
-        
-        
         
         
     }

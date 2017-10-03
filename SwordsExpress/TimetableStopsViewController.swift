@@ -74,17 +74,21 @@ class TimetableStopsViewController: UITableViewController {
     ]
     
     var selection = [String]()
-    
+    var dir: String = String()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         switch direction {
         case 0:
             selection = toCity
+            dir = "city"
         case 1:
             selection = toSwords
+            dir = "swords"
         default:
             selection = toCity
+            dir = "city"
         }
     }
     
@@ -120,8 +124,7 @@ class TimetableStopsViewController: UITableViewController {
             let nextView = segue.destination as? StopListViewController ,
             let indexPath = self.tableView.indexPathForSelectedRow {
             let selectedCell = selection[indexPath.row]
-            print ("Selected cell id is \(selectedCell)")
-            let direction = "swords"
+            let direction = dir
             
             nextView.PassedStopData = [selectedCell, direction]
         }

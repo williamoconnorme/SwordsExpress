@@ -33,12 +33,12 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate {
             // Remove Annotations
             self.mapView.removeAnnotations(self.mapView.annotations)
             self.RouteSegControl.selectedSegmentIndex = -1
-            addBusStopsToCity()
+            addBusStops(direction: "city")
         case 1:
             // Remove Annotations
             self.mapView.removeAnnotations(self.mapView.annotations)
             self.RouteSegControl.selectedSegmentIndex = -1
-            addBusStopsToSwords()
+            addBusStops(direction: "swords")
         default:
             // Remove Annotations
             self.mapView.removeAnnotations(self.mapView.annotations)
@@ -164,48 +164,14 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate {
         mapView?.add(polyline)
     }
     
-    func addBusStopsToCity() {
-        
+    func addBusStops(direction: String) {
         for entries in busStopsToCity {
             
             self.stopAnnotations = StopAnnotations()
             self.stopAnnotations.coordinate = CLLocationCoordinate2DMake(entries[0] as! CLLocationDegrees, entries[1] as! CLLocationDegrees)
-            //let location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(entries[0], entries[1])
-            //annotation.coordinate = location
-            
-            //let nextBus = Timetable.
+
             let stop = String(describing: entries[4])
-            let timetableArr = dataManager.timetableParser(stopNumber: stop, direction: "city")
-            //dump (timetableArr?[0])
-            var bus = ""
-            var holdTime = "24:00"
-            for (_, arrivalTime) in timetableArr! {
-                if arrivalTime.string! > dataManager.getTime24Hour() && arrivalTime.string! < holdTime {
-                    
-                    bus = "Next bus arrives at \(arrivalTime)"
-                    holdTime = arrivalTime.string!
-                    
-                }
-                
-            }
-            stopAnnotations.title = entries[4] as? String
-            stopAnnotations.subtitle = bus
-            
-            self.mapView.addAnnotation(self.stopAnnotations)
-        }
-    }
-    
-    func addBusStopsToSwords() {
-        for entries in busStopsToCity {
-            
-            self.stopAnnotations = StopAnnotations()
-            self.stopAnnotations.coordinate = CLLocationCoordinate2DMake(entries[0] as! CLLocationDegrees, entries[1] as! CLLocationDegrees)
-            //let location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(entries[0], entries[1])
-            //annotation.coordinate = location
-            
-            //let nextBus = Timetable.
-            let stop = String(describing: entries[4])
-            let timetableArr = dataManager.timetableParser(stopNumber: stop, direction: "swords")
+            let timetableArr = dataManager.timetableParser(stopNumber: stop, direction: direction)
             //dump (timetableArr?[0])
             var bus = ""
             var holdTime = "24:00"
@@ -365,7 +331,7 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate {
         }
         
         // Plot bus stops to city by default
-        addBusStopsToCity()
+        addBusStops(direction: "city")
         
         // Plot buses for first time
         dataManager.getLocations(completionHandler: { (BusObj) in
@@ -542,9 +508,9 @@ extension LiveViewController: MKMapViewDelegate {
             var direction: String
             
             if direc == 0 {
-                direction = "swords"
-            } else {
                 direction = "city"
+            } else {
+                direction = "swords"
             }
             
             vc.PassedStopData = [stop!!, direction]
