@@ -39,7 +39,7 @@ class InformationTableViewController: UITableViewController {
         let application = UIApplication.shared
         
         if application.canOpenURL(appURL) {
-            application.open(webURL, options:  [:], completionHandler:  nil)
+            application.open(appURL, options:  [:], completionHandler:  nil)
         } else {
             application.open(webURL, options:  [:], completionHandler:  nil)
         }
