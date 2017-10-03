@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		179212BF7FF9C654410A0C3A /* Pods_SwordsExpress.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 770DE79BB32BD9A46A00C342 /* Pods_SwordsExpress.framework */; };
 		3A7EAE237959BEF97510EAC1 /* Pods_Swords_Express_Watch_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC96C8CA4B624D80297DEB16 /* Pods_Swords_Express_Watch_Extension.framework */; };
 		3D0A170F1F2E4D100051E4F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0A170E1F2E4D100051E4F3 /* AppDelegate.swift */; };
 		3D0A17111F2E4D100051E4F3 /* LiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0A17101F2E4D100051E4F3 /* LiveViewController.swift */; };
@@ -213,7 +212,6 @@
 				3D5B42DB1F729FC50086F3ED /* RevealingSplashView.framework in Frameworks */,
 				3DB37DAF1F4F08200041F9AB /* Whisper.framework in Frameworks */,
 				3D0A17441F2E609E0051E4F3 /* SwiftyJSON.framework in Frameworks */,
-				179212BF7FF9C654410A0C3A /* Pods_SwordsExpress.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1067,10 +1065,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SwordsExpress/SwordsExpress.entitlements;
 				DEVELOPMENT_TEAM = 723568ER35;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/build/Debug-iphoneos/SwiftyJSON",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = SwordsExpress/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.williamoconnor.SwordsExpress;
@@ -1088,10 +1083,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SwordsExpress/SwordsExpress.entitlements;
 				DEVELOPMENT_TEAM = 723568ER35;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/build/Debug-iphoneos/SwiftyJSON",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = SwordsExpress/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.williamoconnor.SwordsExpress;
