@@ -10,12 +10,12 @@ import Foundation
 
 class Bus {
     let Registration: String
-    let Longitude: Double
-    let Latitude: Double
-    let Time: String
+    @objc dynamic var Longitude: Double
+    @objc dynamic var Latitude: Double
+    @objc dynamic var Time: String
     let Number: String // Change this once I know what it is
-    let Speed: String
-    let Direction: String
+    @objc dynamic var Speed: String
+    @objc dynamic var Direction: String
     
     init (Registration: String,
           Longitude: Double,

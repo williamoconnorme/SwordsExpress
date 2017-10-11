@@ -165,7 +165,16 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func addBusStops(direction: String) {
-        for entries in busStopsToCity {
+        
+        var stopAnn = busStopsToSwords
+        
+        if direction == "swords" {
+            stopAnn = busStopsToCity
+        } else {
+            stopAnn = busStopsToSwords
+        }
+        
+        for entries in stopAnn {
             
             self.stopAnnotations = StopAnnotations()
             self.stopAnnotations.coordinate = CLLocationCoordinate2DMake(entries[0] as! CLLocationDegrees, entries[1] as! CLLocationDegrees)
@@ -288,7 +297,7 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     class BusAnnotation : MKPointAnnotation {
-        var pinTintColor: UIColor?
+        var tag: String?
     }
     
     class StopAnnotations : MKPointAnnotation {
@@ -377,7 +386,7 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate {
     
     func startUpdatingPositions() {
         
-        timer = Timer.scheduledTimer(withTimeInterval: 10.0, repeats: true) { [weak self] _ in
+        timer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { [weak self] _ in
             self?.dataManager.updateLocations(buses: (self?.dataManager.BusObj)!, completionHandler: { (BusObj) in
                 //self?.mapView.removeAnnotations(busAnnotation)
                 DispatchQueue.main.sync {
@@ -386,36 +395,38 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate {
                     
                     
                     // Keep track of selected annotations
-                    var selectedAnnotation = [MKAnnotation]()
-                    if self?.mapView.selectedAnnotations != nil {
-                        selectedAnnotation = (self?.mapView.selectedAnnotations)!
-                    }
-                    // Remove buses / Unfortunately this also removes selected annotations
-                    for bus in (self?.mapView.annotations)! {
-                        
-                        if bus is BusAnnotation {
-                            self?.mapView.selectAnnotation((bus), animated: false)
-                            self?.mapView.removeAnnotations((self?.mapView.selectedAnnotations)!)
-                        }
-                    }
+//                    var selectedAnnotation = [MKAnnotation]()
+//                    if self?.mapView.selectedAnnotations != nil {
+//                        selectedAnnotation = (self?.mapView.selectedAnnotations)!
+//                    }
+//                    // Remove buses / Unfortunately this also removes selected annotations
+//                    for bus in (self?.mapView.annotations)! {
+//
+//                        if bus is BusAnnotation {
+//                            self?.mapView.selectAnnotation((bus), animated: false)
+//                            self?.mapView.removeAnnotations((self?.mapView.selectedAnnotations)!)
+//                        }
+//                    }
                     // Reselect previous selected annotation that were removed
-                    if selectedAnnotation.count > 0 {
-                        self?.mapView.selectAnnotation((selectedAnnotation[0]), animated: false)
-                    }
+//                    if selectedAnnotation.count > 0 {
+//                        self?.mapView.selectAnnotation((selectedAnnotation[0]), animated: false)
+//                    }
                     
+
                     // Place buses back on map with updated information
                     for entries in buses! {
                         let annotation = BusAnnotation()
                         let location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(entries.Longitude, entries.Latitude)
                         annotation.coordinate = location
                         annotation.title = entries.Registration
-                        
+
                         annotation.subtitle = ("Travelling \(entries.Speed), heading \(entries.Direction)")
-                        
-                        
-                        
+
+
+                        print ("There are \(self?.mapView.annotations.count) annoations")
+                        dump(self?.mapView.annotations)
                         self?.mapView.addAnnotation(annotation)
-                        
+
                     }
                 }
             })

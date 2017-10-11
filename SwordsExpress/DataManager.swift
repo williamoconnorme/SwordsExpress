@@ -67,6 +67,22 @@ class DataManager {
                     
                     self.BusObj.append(bus)
                     completionHandler(self.BusObj as AnyObject)
+                } else {
+                    
+                    let reg = entries[0].string!
+                    let long = Double(0.0)
+                    let lat = Double(0.0)
+                    let time = "N/A"
+                    let number = "0"
+                    let speed = "0"
+                    let direction = "N/A"
+
+                    let bus = Bus(Registration: reg, Longitude: long, Latitude: lat, Time: time, Number: number, Speed: speed, Direction: direction)
+                    
+                    
+                    self.BusObj.append(bus)
+                    completionHandler(self.BusObj as AnyObject)
+                    
                 }
             } // Loop ends
         }
