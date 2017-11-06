@@ -61,7 +61,6 @@ class DataManager {
                         direction = direction.uppercased()
                     }
                     
-                    
                     let bus = Bus(Registration: reg, Longitude: long, Latitude: lat, Time: time, Number: number, Speed: speed, Direction: direction)
                     
                     
@@ -142,10 +141,191 @@ class DataManager {
                     self.BusObj.append(bus)
                     
                     completionHandler(self.BusObj as AnyObject)
+                } else {
+                    
+                    let reg = entries[0].string!
+                    let long = Double(0.0)
+                    let lat = Double(0.0)
+                    let time = "N/A"
+                    let number = "0"
+                    let speed = "0"
+                    let direction = "N/A"
+                    
+                    let bus = Bus(Registration: reg, Longitude: long, Latitude: lat, Time: time, Number: number, Speed: speed, Direction: direction)
+                    
+                    
+                    self.BusObj.append(bus)
+                    completionHandler(self.BusObj as AnyObject)
+                    
                 }
             } // Loop ends
         }
         session.resume()
+    }
+    
+    func updateLocations2(buses: [Bus]) -> [Bus]? {
+        
+        let busObjects = buses
+        
+        let endpoint: String = "/latlong.php"
+        let url: URL = URL(string: domain + endpoint)!
+        
+        let session = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            guard let data = data else {
+                print ("Data returned nil. Check getLocations func")
+                return
+            }
+            
+            let json = try! JSON(data: data)
+            let entries = json.array!
+            
+            //self.BusObj.removeAll(keepingCapacity: true)
+            
+//            for bus in busObjects {
+//                entries.filter( { return $0.reg == entries[0].reg } )
+//            }
+//
+            
+            
+            
+            for entries in busObjects {
+                
+                
+            dump (entries)
+                
+                
+                
+//                if entries[1] != "hidden" {
+//                    let reg = entries[0].string!
+//                    let long = Double(entries[1].string!)!
+//                    let lat = Double(entries[2].string!)!
+//                    let time = entries[3].string!
+//                    let number = entries[4].string!
+//                    let speed = entries[5].string!
+//                    var direction = entries[6].string!
+//
+//                    switch direction {
+//                    case "n":
+//                        direction = "North"
+//                    case "ne":
+//                        direction = "Northeast"
+//                    case "nw":
+//                        direction = "Northwest"
+//                    case "s":
+//                        direction = "South"
+//                    case "se":
+//                        direction = "Southeast"
+//                    case "sw":
+//                        direction = "Southwest"
+//                    case "e":
+//                        direction = "East"
+//                    case "w":
+//                        direction = "West"
+//                    default:
+//                        direction = direction.uppercased()
+//                    }
+//
+//                    let bus = Bus(Registration: reg, Longitude: long, Latitude: lat, Time: time, Number: number, Speed: speed, Direction: direction)
+//                    self.BusObj.append(bus)
+//                    //return self.BusObj
+//                    //completionHandler(self.BusObj as AnyObject)
+//                } else {
+//
+//                    let reg = entries[0].string!
+//                    let long = Double(0.0)
+//                    let lat = Double(0.0)
+//                    let time = "N/A"
+//                    let number = "0"
+//                    let speed = "0"
+//                    let direction = "N/A"
+//
+//                    let bus = Bus(Registration: reg, Longitude: long, Latitude: lat, Time: time, Number: number, Speed: speed, Direction: direction)
+//
+//
+//                    self.BusObj.append(bus)
+//                    //completionHandler(self.BusObj as AnyObject)
+//
+//                }
+            } // Loop ends
+        }
+        session.resume()
+        return nil
+    }
+    
+    func updateLocations3(buses: [Bus]) -> [Bus]? {
+        _ = buses
+        // ayyyy should probably find a better way to update these buses
+        
+        let endpoint: String = "/latlong.php"
+        let url: URL = URL(string: domain + endpoint)!
+        
+        let session = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            guard let data = data else {
+                print ("Data returned nil. Check getLocations func")
+                return
+            }
+            
+            let json = try! JSON(data: data)
+            let entries = json.array!
+            
+            self.BusObj.removeAll(keepingCapacity: true)
+            
+            for entries in entries {
+                if entries[1] != "hidden" {
+                    let reg = entries[0].string!
+                    let long = Double(entries[1].string!)!
+                    let lat = Double(entries[2].string!)!
+                    let time = entries[3].string!
+                    let number = entries[4].string!
+                    let speed = entries[5].string!
+                    var direction = entries[6].string!
+                    
+                    switch direction {
+                    case "n":
+                        direction = "North"
+                    case "ne":
+                        direction = "Northeast"
+                    case "nw":
+                        direction = "Northwest"
+                    case "s":
+                        direction = "South"
+                    case "se":
+                        direction = "Southeast"
+                    case "sw":
+                        direction = "Southwest"
+                    case "e":
+                        direction = "East"
+                    case "w":
+                        direction = "West"
+                    default:
+                        direction = direction.uppercased()
+                    }
+                    
+                    let bus = Bus(Registration: reg, Longitude: long, Latitude: lat, Time: time, Number: number, Speed: speed, Direction: direction)
+                    self.BusObj.append(bus)
+                    
+                    //completionHandler(self.BusObj as AnyObject)
+                } else {
+                    
+                    let reg = entries[0].string!
+                    let long = Double(0.0)
+                    let lat = Double(0.0)
+                    let time = "N/A"
+                    let number = "0"
+                    let speed = "0"
+                    let direction = "N/A"
+                    
+                    let bus = Bus(Registration: reg, Longitude: long, Latitude: lat, Time: time, Number: number, Speed: speed, Direction: direction)
+                    
+                    
+                    self.BusObj.append(bus)
+                    //completionHandler(self.BusObj as AnyObject)
+                    
+                }
+            } // Loop ends
+        }
+        session.resume()
+        return BusObj
     }
     
     func timetableParser(stopNumber: String, direction: String) -> JSON? {

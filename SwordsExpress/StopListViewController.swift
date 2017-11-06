@@ -52,15 +52,13 @@ class StopListViewController: UIViewController, UITableViewDelegate, UITableView
         navigationController?.popViewController(animated: true)
         dismiss(animated: true, completion: nil)
     }
-    
-    
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         favouriteDict.append(["name": PassedStopData[0], "direction": PassedStopData[1]])
         print (favouriteDict)
+        
         if (UserDefaults.standard.array(forKey: "favourites") != nil) {
             favouriteDict = UserDefaults.standard.array(forKey: "favourites") as! [[String : Any]]
             dump (favouriteDict)
@@ -68,11 +66,6 @@ class StopListViewController: UIViewController, UITableViewDelegate, UITableView
         } else {
             print ("Userdefaults array is nil in viewdidload")
         }
-        
-        
-        
-        
-        
         
         Whisper.ColorList.Whistle.background = UIColor(displayP3Red:0.00, green:0.67, blue:0.31, alpha:1.0)
         Whisper.ColorList.Whistle.title = UIColor(red:1.00, green:1.00, blue:1.00, alpha:1.0)

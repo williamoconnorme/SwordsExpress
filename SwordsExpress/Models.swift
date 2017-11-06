@@ -13,7 +13,7 @@ class Bus {
     @objc dynamic var Longitude: Double
     @objc dynamic var Latitude: Double
     @objc dynamic var Time: String
-    let Number: String // Change this once I know what it is
+    @objc dynamic var Number: String // Change this once I know what it is
     @objc dynamic var Speed: String
     @objc dynamic var Direction: String
     

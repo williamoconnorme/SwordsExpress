@@ -58,6 +58,7 @@
 		3DBAAF3A1F702EEA008C8C0B /* FareTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBAAF391F702EEA008C8C0B /* FareTableViewCell.swift */; };
 		3DF976AB1F71500900B75CF9 /* TimetableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF976AA1F71500900B75CF9 /* TimetableViewController.swift */; };
 		3DF976AD1F71555A00B75CF9 /* TimetableStopsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF976AC1F71555A00B75CF9 /* TimetableStopsViewController.swift */; };
+		4AAB0E5EFF8BA81101E846B9 /* Pods_SwordsExpress.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 770DE79BB32BD9A46A00C342 /* Pods_SwordsExpress.framework */; };
 		7ED777F66706401EE9F4493A /* Pods_SE_Widget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 810BDACA2CA4B96F718A4AB5 /* Pods_SE_Widget.framework */; };
 /* End PBXBuildFile section */
 
@@ -212,6 +213,7 @@
 				3D5B42DB1F729FC50086F3ED /* RevealingSplashView.framework in Frameworks */,
 				3DB37DAF1F4F08200041F9AB /* Whisper.framework in Frameworks */,
 				3D0A17441F2E609E0051E4F3 /* SwiftyJSON.framework in Frameworks */,
+				4AAB0E5EFF8BA81101E846B9 /* Pods_SwordsExpress.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -759,14 +761,16 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-SwordsExpress/Pods-SwordsExpress-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/RevealingSplashView/RevealingSplashView.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyJSON-iOS/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON-iOS11.0/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/Whisper/Whisper.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON-iOS10.3/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RevealingSplashView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Whisper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -780,7 +784,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Swords Express Watch Extension/Pods-Swords Express Watch Extension-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/SwiftyJSON-watchOS/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON-watchOS4.0/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
