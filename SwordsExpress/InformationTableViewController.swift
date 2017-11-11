@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import StoreKit
 
 class InformationTableViewController: UITableViewController {
     
@@ -17,6 +18,10 @@ class InformationTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Ask for review
+        if #available(iOS 10.3, *) {
+            SKStoreReviewController.requestReview()
+        }
         
         // Get and display app version and build number
         let appInfo = Bundle.main.infoDictionary! as Dictionary<String,AnyObject>

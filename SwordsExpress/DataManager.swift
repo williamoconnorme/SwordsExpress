@@ -15,7 +15,7 @@ class DataManager {
     var BusObj = [Bus]()
     var ScheObj = [Schedule]()
     var stopObj = [Stop]()
-    
+
     func getLocations(completionHandler:@escaping (_ busObject:AnyObject)->Void) {
         let endpoint: String = "/latlong.php"
         let url: URL = URL(string: domain + endpoint)!
