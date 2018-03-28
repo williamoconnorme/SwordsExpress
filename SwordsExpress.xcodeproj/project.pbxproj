@@ -29,6 +29,7 @@
 		3D5B42DB1F729FC50086F3ED /* RevealingSplashView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D5B42DC1F729FC50086F3ED /* RevealingSplashView.framework */; };
 		3D5B42DE1F72D46A0086F3ED /* LegalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5B42DD1F72D46A0086F3ED /* LegalViewController.swift */; };
 		3D61AB1A1F2FBA8E008827F9 /* Waypoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D61AB191F2FBA8E008827F9 /* Waypoints.swift */; };
+		3D8DDCF81FB8EB4400119CA6 /* Stops.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8DDCF71FB8EB4400119CA6 /* Stops.swift */; };
 		3D9D7EBE1F47C5C80066238F /* StopListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9D7EBD1F47C5C80066238F /* StopListViewController.swift */; };
 		3D9D7EC01F47C8A90066238F /* StopListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9D7EBF1F47C8A90066238F /* StopListTableViewCell.swift */; };
 		3DB37DAF1F4F08200041F9AB /* Whisper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DB37DAE1F4F08200041F9AB /* Whisper.framework */; };
@@ -109,6 +110,7 @@
 		3D5B42DC1F729FC50086F3ED /* RevealingSplashView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RevealingSplashView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D5B42DD1F72D46A0086F3ED /* LegalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalViewController.swift; sourceTree = "<group>"; };
 		3D61AB191F2FBA8E008827F9 /* Waypoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Waypoints.swift; sourceTree = "<group>"; };
+		3D8DDCF71FB8EB4400119CA6 /* Stops.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stops.swift; sourceTree = "<group>"; };
 		3D9D7E661F4714230066238F /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		3D9D7E691F4714230066238F /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		3D9D7E6C1F4714230066238F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
@@ -212,25 +214,15 @@
 		3D0A170D1F2E4D100051E4F3 /* SwordsExpress */ = {
 			isa = PBXGroup;
 			children = (
-				3DB37DB01F4FAAE00041F9AB /* SwordsExpress.entitlements */,
+				3D9C733F205D572A00C68FB0 /* Controllers */,
+				3D5558C11FB86183003D0EC0 /* Views */,
+				3D5558C01FB86114003D0EC0 /* Models */,
 				3D0A170E1F2E4D100051E4F3 /* AppDelegate.swift */,
-				3D0A17101F2E4D100051E4F3 /* LiveViewController.swift */,
-				3D40167E1F44B8FB00F5DA93 /* InformationTableViewController.swift */,
-				3DF976AA1F71500900B75CF9 /* TimetableViewController.swift */,
-				3DF976AC1F71555A00B75CF9 /* TimetableStopsViewController.swift */,
-				3D9D7EBD1F47C5C80066238F /* StopListViewController.swift */,
-				3D9D7EBF1F47C8A90066238F /* StopListTableViewCell.swift */,
-				3D5B42DD1F72D46A0086F3ED /* LegalViewController.swift */,
-				3D0A17121F2E4D100051E4F3 /* FareViewController.swift */,
-				3DBAAF391F702EEA008C8C0B /* FareTableViewCell.swift */,
-				3D242B2C1F3142EC0040908C /* Fares.swift */,
-				3D0A173E1F2E4D730051E4F3 /* DataManager.swift */,
-				3D0A17451F2E61260051E4F3 /* Models.swift */,
-				3D61AB191F2FBA8E008827F9 /* Waypoints.swift */,
 				3D0A17141F2E4D100051E4F3 /* Main.storyboard */,
 				3D0B301E1F8320DB0047F658 /* Timetables */,
 				3D0A17171F2E4D100051E4F3 /* Assets.xcassets */,
 				3D0A17191F2E4D100051E4F3 /* LaunchScreen.storyboard */,
+				3DB37DB01F4FAAE00041F9AB /* SwordsExpress.entitlements */,
 				3D0A171C1F2E4D100051E4F3 /* Info.plist */,
 			);
 			path = SwordsExpress;
@@ -265,6 +257,49 @@
 				3D261BB11F83CF0600CAFC5D /* CitySwordsSun.json */,
 			);
 			path = Timetables;
+			sourceTree = "<group>";
+		};
+		3D5558C01FB86114003D0EC0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3D0A17451F2E61260051E4F3 /* Models.swift */,
+				3D242B2C1F3142EC0040908C /* Fares.swift */,
+				3D61AB191F2FBA8E008827F9 /* Waypoints.swift */,
+				3D8DDCF71FB8EB4400119CA6 /* Stops.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		3D5558C11FB86183003D0EC0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3D5558C21FB861AF003D0EC0 /* Cells */,
+				3D0A17101F2E4D100051E4F3 /* LiveViewController.swift */,
+				3D40167E1F44B8FB00F5DA93 /* InformationTableViewController.swift */,
+				3DF976AA1F71500900B75CF9 /* TimetableViewController.swift */,
+				3DF976AC1F71555A00B75CF9 /* TimetableStopsViewController.swift */,
+				3D9D7EBD1F47C5C80066238F /* StopListViewController.swift */,
+				3D5B42DD1F72D46A0086F3ED /* LegalViewController.swift */,
+				3D0A17121F2E4D100051E4F3 /* FareViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3D5558C21FB861AF003D0EC0 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				3D9D7EBF1F47C8A90066238F /* StopListTableViewCell.swift */,
+				3DBAAF391F702EEA008C8C0B /* FareTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		3D9C733F205D572A00C68FB0 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3D0A173E1F2E4D730051E4F3 /* DataManager.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		3D9D7E681F4714230066238F /* SE Widget */ = {
@@ -541,6 +576,7 @@
 				3D0A170F1F2E4D100051E4F3 /* AppDelegate.swift in Sources */,
 				3DF976AD1F71555A00B75CF9 /* TimetableStopsViewController.swift in Sources */,
 				3D0A17111F2E4D100051E4F3 /* LiveViewController.swift in Sources */,
+				3D8DDCF81FB8EB4400119CA6 /* Stops.swift in Sources */,
 				3D9D7EBE1F47C5C80066238F /* StopListViewController.swift in Sources */,
 				3D0A17461F2E61260051E4F3 /* Models.swift in Sources */,
 				3D9D7EC01F47C8A90066238F /* StopListTableViewCell.swift in Sources */,
