@@ -12,18 +12,20 @@ import SwiftyJSON
 class DataManager {
     
     let swordsExpressDomain: String = "http://www.swordsexpress.com"
+    //let swordsExpressDomain: String = "http://williamoconnor.me" // For debugging.
     let fingalExpressDomain: String = "http://fingalexpress.com"
     
     var BusObj = [Bus]()
     var ScheObj = [Schedule]()
     var stopObj = [Stop]()
-
-    func updateLocations(buses: [Bus], completionHandler:@escaping (_ busObject:AnyObject)->Void) {
+ 
+    func getBuses(buses: [Bus], completionHandler:@escaping (_ busObject:AnyObject)->Void) {
         _ = buses
         // ayyyy should probably find a better way to update these buses
         
         let seEndpoint: String = "/latlong.php"
         let feEndpoint: String = "/wp-content/themes/fingal/latlong.php"
+        
         let seUrl: URL = URL(string: swordsExpressDomain + seEndpoint)!
         let feUrl: URL = URL(string: fingalExpressDomain + feEndpoint)!
         
@@ -66,7 +68,7 @@ class DataManager {
                     case "w":
                         direction = "West"
                     default:
-                        direction = direction.uppercased()
+                        direction = "N/A"
                     }
                     
                     let bus = Bus(Registration: reg, Longitude: long, Latitude: lat, Time: time, Number: number, Speed: speed, Direction: direction)
@@ -132,7 +134,7 @@ class DataManager {
                         case "w":
                             direction = "West"
                         default:
-                            direction = direction.uppercased()
+                            direction = "N/A"
                         }
                         
                         let bus = Bus(Registration: reg, Longitude: long, Latitude: lat, Time: time, Number: number, Speed: speed, Direction: direction)
@@ -165,9 +167,10 @@ class DataManager {
         session.resume()
     }
     
+    
  
     
-    func updateLocations3(buses: [Bus]) -> [Bus]? {
+    func updateBuses(buses: [Bus]) -> [Bus]? {
         _ = buses
         // ayyyy should probably find a better way to update these buses
         
@@ -215,7 +218,7 @@ class DataManager {
                     case "w":
                         direction = "West"
                     default:
-                        direction = direction.uppercased()
+                        direction = "N/A"
                     }
                     
                     let bus = Bus(Registration: reg, Longitude: long, Latitude: lat, Time: time, Number: number, Speed: speed, Direction: direction)
@@ -240,76 +243,6 @@ class DataManager {
                     
                 }
             } // Loop ends
-        }
-        if (true) {
-            print (feUrl)
-            let session = URLSession.shared.dataTask(with: feUrl) { (data, response, error) in
-                guard let data = data else {
-                    print ("Data returned nil. Check getLocations func")
-                    return
-                }
-                
-                let json = try! JSON(data: data)
-                let entries = json.array!
-                
-                for entries in entries {
-                    if entries[1] != "hidden" {
-                        let reg = entries[0].string!
-                        let long = Double(entries[1].string!)!
-                        let lat = Double(entries[2].string!)!
-                        let time = entries[3].string!
-                        let number = entries[4].string!
-                        let speed = entries[5].string!
-                        var direction = entries[6].string!
-                        
-                        
-                        switch direction {
-                        case "n":
-                            direction = "North"
-                        case "ne":
-                            direction = "Northeast"
-                        case "nw":
-                            direction = "Northwest"
-                        case "s":
-                            direction = "South"
-                        case "se":
-                            direction = "Southeast"
-                        case "sw":
-                            direction = "Southwest"
-                        case "e":
-                            direction = "East"
-                        case "w":
-                            direction = "West"
-                        default:
-                            direction = direction.uppercased()
-                        }
-                        
-                        let bus = Bus(Registration: reg, Longitude: long, Latitude: lat, Time: time, Number: number, Speed: speed, Direction: direction)
-                        
-                        
-                        self.BusObj.append(bus)
-                        dump(bus)
-                        print ("BUSES DUMPED")
-                    } else {
-                        print ("test2")
-                        let reg = entries[0].string!
-                        let long = Double(0.0)
-                        let lat = Double(0.0)
-                        let time = "N/A"
-                        let number = "0"
-                        let speed = "0"
-                        let direction = "N/A"
-                        
-                        let bus = Bus(Registration: reg, Longitude: long, Latitude: lat, Time: time, Number: number, Speed: speed, Direction: direction)
-                        
-                        
-                        self.BusObj.append(bus)
-                        dump(bus)
-                        print ("BUSES DUMPED")
-                        
-                    }
-                } // Loop ends
-            }
         }
         session.resume()
         return BusObj

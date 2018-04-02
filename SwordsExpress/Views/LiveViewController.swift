@@ -10,17 +10,9 @@ import UIKit
 import MapKit
 import RevealingSplashView
 
-class BusPin: NSObject, MKAnnotation {
-    var coordinate: CLLocationCoordinate2D
-    var title: String?
-    var subtitle: String?
-    
-    init(coordinate: CLLocationCoordinate2D, title: String, subtitle: String) {
-        self.coordinate = coordinate
-        self.title = title
-        self.subtitle = subtitle
-    }
-}
+private let busPin = MKPointAnnotation()
+private let annotations = MKPointAnnotation()
+
 
 class LiveViewController: UIViewController, CLLocationManagerDelegate {
     
@@ -34,6 +26,7 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate {
     let waypoints = Waypoints()
     var lastCoord = [Double]()
     let stops = Stops()
+    var busesArr: [MKPointAnnotation] = []
     
     var busAnnotations: MKPointAnnotation = MKPointAnnotation()
     var stopAnnotations = MKPointAnnotation()
@@ -44,49 +37,32 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate {
         switch SegController.selectedSegmentIndex {
         case 0:
             // Remove Annotations
-            self.mapView.removeAnnotations(self.mapView.annotations)
-            self.RouteSegControl.selectedSegmentIndex = -1
-            addBusStops(direction: "city")
-            dataManager.updateLocations(buses: (self.dataManager.BusObj), completionHandler: { (BusObj) in
-                
-                let buses = (self.dataManager.BusObj)
-                DispatchQueue.main.sync {
-                    
-                    for entries in buses {
-                        
-                        self.busAnnotations = BusAnnotation()
-                        let location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(entries.Longitude, entries.Latitude)
-                        self.busAnnotations.coordinate = location
-                        self.busAnnotations.title = entries.Registration
-                        self.busAnnotations.subtitle = ("Travelling \(entries.Speed), heading \(entries.Direction)")
-                        self.mapView.addAnnotation(self.busAnnotations)
-                    }
+            self.mapView.annotations.forEach {
+                if ($0 is StopAnnotations) {
+                    self.mapView.removeAnnotation($0)
                 }
-            })
+            }
+            
+            addBusStops(direction: "city")
+            
         case 1:
             // Remove Annotations
-            self.mapView.removeAnnotations(self.mapView.annotations)
+            
+            self.mapView.annotations.forEach {
+                if ($0 is StopAnnotations) {
+                    self.mapView.removeAnnotation($0)
+                }
+            }
+            
             self.RouteSegControl.selectedSegmentIndex = -1
             addBusStops(direction: "swords")
-            dataManager.updateLocations(buses: (self.dataManager.BusObj), completionHandler: { (BusObj) in
-                
-                let buses = (self.dataManager.BusObj)
-                DispatchQueue.main.sync {
-                    
-                    for entries in buses {
-                        
-                        self.busAnnotations = BusAnnotation()
-                        let location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(entries.Longitude, entries.Latitude)
-                        self.busAnnotations.coordinate = location
-                        self.busAnnotations.title = entries.Registration
-                        self.busAnnotations.subtitle = ("Travelling \(entries.Speed), heading \(entries.Direction)")
-                        self.mapView.addAnnotation(self.busAnnotations)
-                    }
-                }
-            })
         default:
             // Remove Annotations
-            self.mapView.removeAnnotations(self.mapView.annotations)
+            self.mapView.annotations.forEach {
+                if ($0 is StopAnnotations) {
+                    self.mapView.removeAnnotation($0)
+                }
+            }
         }
     }
     
@@ -342,7 +318,7 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate {
         addBusStops(direction: "city")
         
         // Plot buses for first time
-        dataManager.updateLocations(buses: (self.dataManager.BusObj), completionHandler: { (BusObj) in
+        dataManager.getBuses(buses: (self.dataManager.BusObj), completionHandler: { (BusObj) in
             
             let buses = (self.dataManager.BusObj)
             DispatchQueue.main.sync {
@@ -353,15 +329,16 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate {
                     let location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(entries.Longitude, entries.Latitude)
                     self.busAnnotations.coordinate = location
                     self.busAnnotations.title = entries.Registration
-                    self.busAnnotations.subtitle = ("Travelling \(entries.Speed), heading \(entries.Direction)")
+                    self.busAnnotations.subtitle = ("Travelling \(entries.Direction) at \(entries.Speed)")
                     self.mapView.addAnnotation(self.busAnnotations)
+                    self.busesArr.append(self.busAnnotations)
                 }
             }
         })
         
         //Update bus locations test
         startUpdatingPositions()
-        //mapView.removeAnnotations(Bus)
+        
         // User Location
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
@@ -386,72 +363,26 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate {
     
     func startUpdatingPositions() {
         
-        timer = Timer.scheduledTimer(withTimeInterval: 10.0, repeats: true) { [weak self] _ in
+        timer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { [weak self] _ in
             
             
-            let updatedLocations = self?.dataManager.updateLocations3(buses: (self?.dataManager.BusObj)!)
+            let updatedLocations = self?.dataManager.updateBuses(buses: (self?.dataManager.BusObj)!)
             
-            //self?.mapView.removeAnnotations(busAnnotation)
             DispatchQueue.main.async {
                 
-                //  Keep track of selected annotations
-                var selectedAnnotation = [MKAnnotation]()
-                if self?.mapView.selectedAnnotations != nil {
-                    selectedAnnotation = (self?.mapView.selectedAnnotations)!
-                }
-                // Remove buses / Unfortunately this also removes selected annotations
-                for bus in (self?.mapView.annotations)! {
-                    
-                    if bus is BusAnnotation {
-                        self?.mapView.selectAnnotation((bus), animated: false)
-                        self?.mapView.removeAnnotations((self?.mapView.selectedAnnotations)!)
-                    }
-                }
-                //  Reselect previous selected annotation that were removed
-                if selectedAnnotation.count > 0 {
-                    self?.mapView.selectAnnotation((selectedAnnotation[0]), animated: false)
-                }
-                
                 //  Place buses back on map with updated information
-                
-                // dump(updatedLocations!)
-                
-                
-                //dump (updatedLocations![0].Latitude)
-                
                 for entries in updatedLocations! {
                     
-                    //                    var coordinate: CLLocationCoordinate2D
-                    //
-                    //                    for annotation in (self?.mapView.annotations)! {
-                    //
-                    //                        if annotation .isKind(of: BusPin(coordinate: <#CLLocationCoordinate2D#>)) {
-                    //
-                    //                        }
-                    //                        if annotation.title!! == annotation.title!! {
-                    //                            annotation.title = "test"
-                    //                        }
-                    //                        print(annotation.title!!)
-                    //
-                    //                        //busAnnotations.coordinate = CLLocationCoordinate2DMake(0.000, 0.000)
-                    ////                        if (busAnnotations .isKind(of: busAnnotations)) {
-                    ////
-                    ////                        }
-                    //                    }
-                    
-                    
-                    
-                    
-                    let annotation = BusAnnotation()
-                    
-                    let location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(entries.Longitude, entries.Latitude)
-                    annotation.coordinate = location
-                    annotation.title = entries.Registration
-                    
-                    annotation.subtitle = ("Travelling \(entries.Speed), heading \(entries.Direction)")
-                    
-                    self?.mapView.addAnnotation(annotation)
-                    
+                    UIView.animate(withDuration: 6, animations: {
+                        
+                        for each in (self?.busesArr)! where each.title == entries.Registration && entries.Direction != "N/A"  {
+                            let updatedPosition = CLLocationCoordinate2D(latitude: entries.Longitude, longitude: entries.Latitude)
+                            
+                            each.coordinate = updatedPosition
+                            each.subtitle = "Travelling \(entries.Direction) at \(entries.Speed)"
+                        }
+                        
+                    }, completion: nil)
                 }
             }
         }
@@ -522,20 +453,13 @@ extension LiveViewController: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        
-        //        if (view == mapView.dequeueReusableAnnotationView(withIdentifier: "stopAnnotationView")) {
-        //            print ("Testing workins")
-        //        } else {
-        //            print ("Check did not work")
-        //        }
         performSegue(withIdentifier: "mapToStopTable", sender: view)
-        
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "mapToStopTable" {
             
             let navController = segue.destination as! UINavigationController
-            //let vc = segue.destination as! StopListViewController
             let vc = navController.topViewController as! StopListViewController
             let stop = self.mapView.selectedAnnotations[0].title
             let direc = self.SegController.selectedSegmentIndex
