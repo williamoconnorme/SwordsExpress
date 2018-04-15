@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import RevealingSplashView
+import Whisper
 
 private let busPin = MKPointAnnotation()
 private let annotations = MKPointAnnotation()
@@ -27,6 +28,8 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate {
     var lastCoord = [Double]()
     let stops = Stops()
     var busesArr: [MKPointAnnotation] = []
+    var service: Bool = false
+
     
     var busAnnotations: MKPointAnnotation = MKPointAnnotation()
     var stopAnnotations = MKPointAnnotation()
@@ -47,7 +50,6 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate {
             
         case 1:
             // Remove Annotations
-            
             self.mapView.annotations.forEach {
                 if ($0 is StopAnnotations) {
                     self.mapView.removeAnnotation($0)
@@ -316,13 +318,13 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate {
         
         // Plot bus stops to city by default
         addBusStops(direction: "city")
-        
+
         // Plot buses for first time
         dataManager.getBuses(buses: (self.dataManager.BusObj), completionHandler: { (BusObj) in
-            
+
             let buses = (self.dataManager.BusObj)
             DispatchQueue.main.sync {
-                
+                print ("test 2")
                 for entries in buses {
                     
                     self.busAnnotations = BusAnnotation()
@@ -333,9 +335,25 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate {
                     self.mapView.addAnnotation(self.busAnnotations)
                     self.busesArr.append(self.busAnnotations)
                 }
+                
+                // Show announcement if there are no buses running.
+                
+                for each in self.dataManager.BusObj {
+                    if each.Direction != "N/A" {
+                        self.service = true
+                    }
+                }
+                
+                if self.service == false {
+                    
+                    
+                    let announcement = Announcement(title: "Service Announcement", subtitle: "There are no running buses at this time.", image: UIImage(named: "avatar"), duration: 20.0)
+                    Whisper.show(shout: announcement, to: self, completion: {
+                    })
+                }
             }
         })
-        
+
         //Update bus locations test
         startUpdatingPositions()
         
@@ -373,7 +391,7 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate {
                 //  Place buses back on map with updated information
                 for entries in updatedLocations! {
                     
-                    UIView.animate(withDuration: 6, animations: {
+                    UIView.animate(withDuration: 5, animations: {
                         
                         for each in (self?.busesArr)! where each.title == entries.Registration && entries.Direction != "N/A"  {
                             let updatedPosition = CLLocationCoordinate2D(latitude: entries.Longitude, longitude: entries.Latitude)

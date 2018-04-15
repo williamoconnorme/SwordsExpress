@@ -21,7 +21,7 @@ class DataManager {
  
     func getBuses(buses: [Bus], completionHandler:@escaping (_ busObject:AnyObject)->Void) {
         _ = buses
-        // ayyyy should probably find a better way to update these buses
+        
         
         let seEndpoint: String = "/latlong.php"
         let feEndpoint: String = "/wp-content/themes/fingal/latlong.php"
@@ -74,7 +74,6 @@ class DataManager {
                     let bus = Bus(Registration: reg, Longitude: long, Latitude: lat, Time: time, Number: number, Speed: speed, Direction: direction)
                     self.BusObj.append(bus)
                     
-                    completionHandler(self.BusObj as AnyObject)
                 } else {
                     
                     let reg = entries[0].string!
@@ -89,10 +88,15 @@ class DataManager {
                     
                     
                     self.BusObj.append(bus)
-                    completionHandler(self.BusObj as AnyObject)
+
                     
                 }
+
+
             } // Loop ends
+
+            completionHandler(self.BusObj as AnyObject)
+
         }
         
         if (1 != 1) {
@@ -141,7 +145,6 @@ class DataManager {
                         
                         
                         self.BusObj.append(bus)
-                        completionHandler(self.BusObj as AnyObject)
                     } else {
                         
                         let reg = entries[0].string!
@@ -158,10 +161,10 @@ class DataManager {
                         self.BusObj.append(bus)
                         dump(bus)
                         print ("BUSES DUMPED")
-                        completionHandler(self.BusObj as AnyObject)
                         
                     }
                 } // Loop ends
+                completionHandler(self.BusObj as AnyObject)
             }
         }
         session.resume()

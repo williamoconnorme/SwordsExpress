@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1169DAA1A29FDF4CE8B918AD /* Pods_SwordsExpress.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 770DE79BB32BD9A46A00C342 /* Pods_SwordsExpress.framework */; };
 		3D0A170F1F2E4D100051E4F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0A170E1F2E4D100051E4F3 /* AppDelegate.swift */; };
 		3D0A17111F2E4D100051E4F3 /* LiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0A17101F2E4D100051E4F3 /* LiveViewController.swift */; };
 		3D0A17131F2E4D100051E4F3 /* FareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0A17121F2E4D100051E4F3 /* FareViewController.swift */; };
@@ -25,6 +26,7 @@
 		3D261BAE1F83CBE300CAFC5D /* CitySwordsMonFri.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D261BAD1F83CBE300CAFC5D /* CitySwordsMonFri.json */; };
 		3D261BB01F83CEF900CAFC5D /* CitySwordsSat.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D261BAF1F83CEF900CAFC5D /* CitySwordsSat.json */; };
 		3D261BB21F83CF0600CAFC5D /* CitySwordsSun.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D261BB11F83CF0600CAFC5D /* CitySwordsSun.json */; };
+		3D2A7F922083A58000E522B1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D2A7F912083A57F00E522B1 /* GoogleService-Info.plist */; };
 		3D40167F1F44B8FB00F5DA93 /* InformationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D40167E1F44B8FB00F5DA93 /* InformationTableViewController.swift */; };
 		3D5B42DB1F729FC50086F3ED /* RevealingSplashView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D5B42DC1F729FC50086F3ED /* RevealingSplashView.framework */; };
 		3D5B42DE1F72D46A0086F3ED /* LegalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5B42DD1F72D46A0086F3ED /* LegalViewController.swift */; };
@@ -105,6 +107,7 @@
 		3D261BAD1F83CBE300CAFC5D /* CitySwordsMonFri.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CitySwordsMonFri.json; sourceTree = "<group>"; };
 		3D261BAF1F83CEF900CAFC5D /* CitySwordsSat.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CitySwordsSat.json; sourceTree = "<group>"; };
 		3D261BB11F83CF0600CAFC5D /* CitySwordsSun.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CitySwordsSun.json; sourceTree = "<group>"; };
+		3D2A7F912083A57F00E522B1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3D40167E1F44B8FB00F5DA93 /* InformationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationTableViewController.swift; sourceTree = "<group>"; };
 		3D5B42DA1F729FB20086F3ED /* RevealingSplashView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RevealingSplashView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D5B42DC1F729FC50086F3ED /* RevealingSplashView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RevealingSplashView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -153,6 +156,7 @@
 				3D5B42DB1F729FC50086F3ED /* RevealingSplashView.framework in Frameworks */,
 				3DB37DAF1F4F08200041F9AB /* Whisper.framework in Frameworks */,
 				3D0A17441F2E609E0051E4F3 /* SwiftyJSON.framework in Frameworks */,
+				1169DAA1A29FDF4CE8B918AD /* Pods_SwordsExpress.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -223,6 +227,7 @@
 				3D0A17171F2E4D100051E4F3 /* Assets.xcassets */,
 				3D0A17191F2E4D100051E4F3 /* LaunchScreen.storyboard */,
 				3DB37DB01F4FAAE00041F9AB /* SwordsExpress.entitlements */,
+				3D2A7F912083A57F00E522B1 /* GoogleService-Info.plist */,
 				3D0A171C1F2E4D100051E4F3 /* Info.plist */,
 			);
 			path = SwordsExpress;
@@ -370,6 +375,7 @@
 				43380191156538047F2C9468 /* [CP] Copy Pods Resources */,
 				3D9D7E751F4714230066238F /* Embed App Extensions */,
 				3D9D7EA51F472B1A0066238F /* Embed Watch Content */,
+				3D2A7F932083B9DC00E522B1 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -423,7 +429,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "William O'Connor";
 				TargetAttributes = {
 					3D0A170A1F2E4D100051E4F3 = {
@@ -483,6 +489,7 @@
 				3D0A17161F2E4D100051E4F3 /* Main.storyboard in Resources */,
 				3D261BB01F83CEF900CAFC5D /* CitySwordsSat.json in Resources */,
 				3D261BB21F83CF0600CAFC5D /* CitySwordsSun.json in Resources */,
+				3D2A7F922083A58000E522B1 /* GoogleService-Info.plist in Resources */,
 				3D0BC0D11F40CAD200996DCF /* SwordsCitySat.json in Resources */,
 				3D261BAE1F83CBE300CAFC5D /* CitySwordsMonFri.json in Resources */,
 			);
@@ -505,6 +512,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3D2A7F932083B9DC00E522B1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\"";
+		};
 		43380191156538047F2C9468 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -545,15 +565,19 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-SwordsExpress/Pods-SwordsExpress-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/RevealingSplashView/RevealingSplashView.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/Whisper/Whisper.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RevealingSplashView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Whisper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -666,6 +690,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -673,6 +698,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -723,6 +749,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -730,6 +757,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -769,6 +797,7 @@
 				DEVELOPMENT_TEAM = 723568ER35;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = SwordsExpress/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.williamoconnor.SwordsExpress;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -787,6 +816,7 @@
 				DEVELOPMENT_TEAM = 723568ER35;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = SwordsExpress/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.williamoconnor.SwordsExpress;
 				PRODUCT_NAME = "$(TARGET_NAME)";
