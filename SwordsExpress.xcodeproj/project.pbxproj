@@ -27,10 +27,11 @@
 		3D261BB01F83CEF900CAFC5D /* CitySwordsSat.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D261BAF1F83CEF900CAFC5D /* CitySwordsSat.json */; };
 		3D261BB21F83CF0600CAFC5D /* CitySwordsSun.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D261BB11F83CF0600CAFC5D /* CitySwordsSun.json */; };
 		3D2A7F922083A58000E522B1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D2A7F912083A57F00E522B1 /* GoogleService-Info.plist */; };
+		3D3E3C38209F0EE600802E66 /* MKPolyline+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3E3C37209F0EE600802E66 /* MKPolyline+Ext.swift */; };
+		3D3E3C3A209F1E0600802E66 /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3E3C39209F1E0600802E66 /* Routes.swift */; };
 		3D40167F1F44B8FB00F5DA93 /* InformationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D40167E1F44B8FB00F5DA93 /* InformationTableViewController.swift */; };
 		3D5B42DB1F729FC50086F3ED /* RevealingSplashView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D5B42DC1F729FC50086F3ED /* RevealingSplashView.framework */; };
 		3D5B42DE1F72D46A0086F3ED /* LegalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5B42DD1F72D46A0086F3ED /* LegalViewController.swift */; };
-		3D61AB1A1F2FBA8E008827F9 /* Waypoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D61AB191F2FBA8E008827F9 /* Waypoints.swift */; };
 		3D8DDCF81FB8EB4400119CA6 /* Stops.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8DDCF71FB8EB4400119CA6 /* Stops.swift */; };
 		3D9D7EBE1F47C5C80066238F /* StopListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9D7EBD1F47C5C80066238F /* StopListViewController.swift */; };
 		3D9D7EC01F47C8A90066238F /* StopListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9D7EBF1F47C8A90066238F /* StopListTableViewCell.swift */; };
@@ -108,11 +109,12 @@
 		3D261BAF1F83CEF900CAFC5D /* CitySwordsSat.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CitySwordsSat.json; sourceTree = "<group>"; };
 		3D261BB11F83CF0600CAFC5D /* CitySwordsSun.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CitySwordsSun.json; sourceTree = "<group>"; };
 		3D2A7F912083A57F00E522B1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3D3E3C37209F0EE600802E66 /* MKPolyline+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKPolyline+Ext.swift"; sourceTree = "<group>"; };
+		3D3E3C39209F1E0600802E66 /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
 		3D40167E1F44B8FB00F5DA93 /* InformationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationTableViewController.swift; sourceTree = "<group>"; };
 		3D5B42DA1F729FB20086F3ED /* RevealingSplashView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RevealingSplashView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D5B42DC1F729FC50086F3ED /* RevealingSplashView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RevealingSplashView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D5B42DD1F72D46A0086F3ED /* LegalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalViewController.swift; sourceTree = "<group>"; };
-		3D61AB191F2FBA8E008827F9 /* Waypoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Waypoints.swift; sourceTree = "<group>"; };
 		3D8DDCF71FB8EB4400119CA6 /* Stops.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stops.swift; sourceTree = "<group>"; };
 		3D9D7E661F4714230066238F /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		3D9D7E691F4714230066238F /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 				3DB37DB01F4FAAE00041F9AB /* SwordsExpress.entitlements */,
 				3D2A7F912083A57F00E522B1 /* GoogleService-Info.plist */,
 				3D0A171C1F2E4D100051E4F3 /* Info.plist */,
+				3D3E3C37209F0EE600802E66 /* MKPolyline+Ext.swift */,
 			);
 			path = SwordsExpress;
 			sourceTree = "<group>";
@@ -269,7 +272,7 @@
 			children = (
 				3D0A17451F2E61260051E4F3 /* Models.swift */,
 				3D242B2C1F3142EC0040908C /* Fares.swift */,
-				3D61AB191F2FBA8E008827F9 /* Waypoints.swift */,
+				3D3E3C39209F1E0600802E66 /* Routes.swift */,
 				3D8DDCF71FB8EB4400119CA6 /* Stops.swift */,
 			);
 			path = Models;
@@ -441,6 +444,9 @@
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
 							};
+							com.apple.Push = {
+								enabled = 1;
+							};
 						};
 					};
 					3D0A17201F2E4D100051E4F3 = {
@@ -566,6 +572,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-SwordsExpress/Pods-SwordsExpress-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/RevealingSplashView/RevealingSplashView.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/Whisper/Whisper.framework",
@@ -574,6 +581,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RevealingSplashView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Whisper.framework",
@@ -592,7 +600,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D242B2D1F3142EC0040908C /* Fares.swift in Sources */,
-				3D61AB1A1F2FBA8E008827F9 /* Waypoints.swift in Sources */,
 				3D5B42DE1F72D46A0086F3ED /* LegalViewController.swift in Sources */,
 				3D0A17131F2E4D100051E4F3 /* FareViewController.swift in Sources */,
 				3D0A173F1F2E4D730051E4F3 /* DataManager.swift in Sources */,
@@ -601,11 +608,13 @@
 				3DF976AD1F71555A00B75CF9 /* TimetableStopsViewController.swift in Sources */,
 				3D0A17111F2E4D100051E4F3 /* LiveViewController.swift in Sources */,
 				3D8DDCF81FB8EB4400119CA6 /* Stops.swift in Sources */,
+				3D3E3C3A209F1E0600802E66 /* Routes.swift in Sources */,
 				3D9D7EBE1F47C5C80066238F /* StopListViewController.swift in Sources */,
 				3D0A17461F2E61260051E4F3 /* Models.swift in Sources */,
 				3D9D7EC01F47C8A90066238F /* StopListTableViewCell.swift in Sources */,
 				3DF976AB1F71500900B75CF9 /* TimetableViewController.swift in Sources */,
 				3DBAAF3A1F702EEA008C8C0B /* FareTableViewCell.swift in Sources */,
+				3D3E3C38209F0EE600802E66 /* MKPolyline+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

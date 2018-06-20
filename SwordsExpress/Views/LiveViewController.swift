@@ -24,12 +24,12 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate {
     let dataManager = DataManager()
     let manager = CLLocationManager()
     var polyline = MKPolyline()
-    let waypoints = Waypoints()
+    let routes = Routes()
     var lastCoord = [Double]()
     let stops = Stops()
     var busesArr: [MKPointAnnotation] = []
     var service: Bool = false
-
+    
     
     var busAnnotations: MKPointAnnotation = MKPointAnnotation()
     var stopAnnotations = MKPointAnnotation()
@@ -45,8 +45,28 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate {
                     self.mapView.removeAnnotation($0)
                 }
             }
-            
+            // Add bus stops
             addBusStops(direction: "city")
+            
+            // Remove overlays
+            let overlays = mapView.overlays
+            mapView.removeOverlays(overlays)
+            
+            // Reset RouteSegControl
+            self.RouteSegControl.selectedSegmentIndex = -1
+            
+            self.RouteSegControl.removeAllSegments()
+            
+            self.RouteSegControl.insertSegment(withTitle: "500", at: 0, animated: false)
+            self.RouteSegControl.insertSegment(withTitle: "501", at: 1, animated: false)
+            self.RouteSegControl.insertSegment(withTitle: "502", at: 2, animated: false)
+            self.RouteSegControl.insertSegment(withTitle: "503", at: 3, animated: false)
+            self.RouteSegControl.insertSegment(withTitle: "504", at: 4, animated: false)
+            self.RouteSegControl.insertSegment(withTitle: "505", at: 5, animated: false)
+            self.RouteSegControl.insertSegment(withTitle: "507", at: 6, animated: true)
+            self.RouteSegControl.insertSegment(withTitle: "500X", at: 7, animated: true)
+            self.RouteSegControl.insertSegment(withTitle: "501X", at: 8, animated: true)
+            
             
         case 1:
             // Remove Annotations
@@ -55,62 +75,141 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate {
                     self.mapView.removeAnnotation($0)
                 }
             }
-            
-            self.RouteSegControl.selectedSegmentIndex = -1
+            // Add bus stops
             addBusStops(direction: "swords")
+            
+            // Remove overlays
+            let overlays = mapView.overlays
+            mapView.removeOverlays(overlays)
+            
+            // Reset RouteSegControl
+            self.RouteSegControl.selectedSegmentIndex = -1
+            
+            // Set RouteSegControl values
+            self.RouteSegControl.removeAllSegments()
+            
+            self.RouteSegControl.insertSegment(withTitle: "500", at: 0, animated: true)
+            self.RouteSegControl.insertSegment(withTitle: "503", at: 1, animated: true)
+            self.RouteSegControl.insertSegment(withTitle: "506", at: 2, animated: true)
+            self.RouteSegControl.insertSegment(withTitle: "500X", at: 3, animated: true)
+            self.RouteSegControl.insertSegment(withTitle: "501X", at: 4, animated: true)
+            self.RouteSegControl.insertSegment(withTitle: "505X", at: 5, animated: true)
+            
         default:
             // Remove Annotations
             self.mapView.annotations.forEach {
                 if ($0 is StopAnnotations) {
                     self.mapView.removeAnnotation($0)
                 }
+                
             }
         }
     }
     
     @IBAction func ShowHidePolyline(_ sender: Any) {
+        // Remove overlays from Map
+        let overlays = mapView.overlays
+        mapView.removeOverlays(overlays)
+        
         switch RouteSegControl.selectedSegmentIndex {
         case 0: //500
-            snapToRoad(wayPointArr: waypoints.waypoints500fromSwords)
-            extendRoute(wayPointArr: waypoints.wayPointHelper)
-            extendRoute(wayPointArr: waypoints.waypointsIfscToEdenQ)
+            
+            if self.SegController.selectedSegmentIndex == 0 {
+                addPolyline(wayPointArr: routes.SwordsManorStart)
+                addPolyline(wayPointArr: routes.waypoints500fromSwords)
+                addPolyline(wayPointArr: routes.waypointsPortTunnel3Arena)
+                addPolyline(wayPointArr: routes.waypoint3ArenaQuays)
+            } else if self.SegController.selectedSegmentIndex == 1 {
+                addPolyline(wayPointArr: routes.waypointsEdenQuayStart)
+                addPolyline(wayPointArr: routes.waypoints500fromCity)
+                addPolyline(wayPointArr: routes.waypointsSwordsManorFinish)
+            }
         case 1: //501
-            snapToRoad(wayPointArr: waypoints.waypoints501fromSwords)
-            extendRoute(wayPointArr: waypoints.waypointsIfscToEdenQ)
+            if self.SegController.selectedSegmentIndex == 0 {
+                addPolyline(wayPointArr: routes.PavilionsStart)
+                addPolyline(wayPointArr: routes.waypoints501fromSwords)
+                addPolyline(wayPointArr: routes.waypoint3ArenaQuays)
+            } else if self.SegController.selectedSegmentIndex == 1 {
+                addPolyline(wayPointArr: routes.waypointsMerrionSqToPearseSt)
+                addPolyline(wayPointArr: routes.waypoints500fromCity)
+                addPolyline(wayPointArr: routes.waypointsSwordsManorFinish)
+            }
         case 2: //502
-            snapToRoad(wayPointArr: waypoints.waypoints502fromSwords)
-            extendRoute(wayPointArr: waypoints.waypointsIfscToEdenQ)
+            
+            if self.SegController.selectedSegmentIndex == 0 {
+                
+                addPolyline(wayPointArr: routes.HighfieldStart)
+                addPolyline(wayPointArr: routes.waypoints501fromSwords)
+                addPolyline(wayPointArr: routes.waypoint3ArenaQuays)
+                
+                
+            } else if self.SegController.selectedSegmentIndex == 1 {
+                addPolyline(wayPointArr: routes.waypointsEdenQuayStart)
+                addPolyline(wayPointArr: routes.waypoints506fromCity)
+                addPolyline(wayPointArr: routes.waypointsSwordsManorFinish)
+            }
+            
         case 3: //503
-            snapToRoad(wayPointArr: waypoints.waypoints502fromSwords) // Change THIS
-            extendRoute(wayPointArr: waypoints.waypointsPearseGardaToMerrionSq)
+            if self.SegController.selectedSegmentIndex == 0 {
+                
+                addPolyline(wayPointArr: routes.SwordsManorStart)
+                addPolyline(wayPointArr: routes.waypoints500fromSwords)
+                addPolyline(wayPointArr: routes.waypointsPortTunnel3Arena)
+                addPolyline(wayPointArr: routes.waypointsPearseGardaToMerrionSq)
+            } else if self.SegController.selectedSegmentIndex == 1 {
+                addPolyline(wayPointArr: routes.waypointsEdenQuayStart)
+                addPolyline(wayPointArr: routes.waypoints500XfromCity)
+                addPolyline(wayPointArr: routes.waypointsSwordsManorFinish)
+            }
         case 4: //504
-            snapToRoad(wayPointArr: waypoints.waypoints504fromSwords)
+            if self.SegController.selectedSegmentIndex == 0 {
+                addPolyline(wayPointArr: routes.waypoints504fromSwords)
+                addPolyline(wayPointArr: routes.waypointsPortTunnel3Arena)
+            } else if self.SegController.selectedSegmentIndex == 1 {
+                addPolyline(wayPointArr: routes.waypointsEdenQuayStart)
+                addPolyline(wayPointArr: routes.waypoints501XfromCity)
+                
+            }
         case 5: //505
-            snapToRoad(wayPointArr: waypoints.waypoints505fromSwords)
-            extendRoute(wayPointArr: waypoints.waypointsIfscToEdenQ)
+            if self.SegController.selectedSegmentIndex == 0 {
+                
+                addPolyline(wayPointArr: routes.HighfieldStart)
+                addPolyline(wayPointArr: routes.waypointsRiverValleyLoop)
+                addPolyline(wayPointArr: routes.waypoints505fromSwords)
+                addPolyline(wayPointArr: routes.waypoint3ArenaQuays)
+                
+            } else if self.SegController.selectedSegmentIndex == 1 {
+                addPolyline(wayPointArr: routes.waypointsEdenQuayStart)
+                addPolyline(wayPointArr: routes.waypoints505XfromCity)
+            }
         case 6: //507
-            snapToRoad(wayPointArr: waypoints.waypoints505fromSwords) // Change THIS
+            addPolyline(wayPointArr: routes.SwordsManorStart)
+            addPolyline(wayPointArr: routes.waypoints507fromSwords)
+            addPolyline(wayPointArr: routes.waypointsPortTunnel3Arena)
+            addPolyline(wayPointArr: routes.waypoint3ArenaQuays)
         case 7: //500X
-            snapToRoad(wayPointArr: waypoints.waypoints507fromSwords)
-            extendRoute(wayPointArr: waypoints.wayPointHelper)
-            extendRoute(wayPointArr: waypoints.waypointsIfscToEdenQ)
+            addPolyline(wayPointArr: routes.SwordsManorStart)
+            addPolyline(wayPointArr: routes.waypoints500XfromSwords)
+            addPolyline(wayPointArr: routes.waypoint3ArenaQuays)
         case 8: //501X
-            snapToRoad(wayPointArr: waypoints.waypoints507fromSwords)
-            extendRoute(wayPointArr: waypoints.wayPointHelper)
-            extendRoute(wayPointArr: waypoints.waypointsIfscToEdenQ)
+            addPolyline(wayPointArr: routes.PavilionsStart)
+            addPolyline(wayPointArr: routes.PavilionsExtensions501X)
+            addPolyline(wayPointArr: routes.waypoints501XfromSwords)
+            addPolyline(wayPointArr: routes.waypoint3ArenaQuays)
+            
         default:
-            self.mapView.remove(polyline)
+            // Remove overlays
+            mapView.removeOverlays(overlays)
         }
     }
     
     func addPolyline(wayPointArr: [Array<Double>]) {
         
-        let overlays = mapView.overlays
-        mapView.removeOverlays(overlays)
         let waypoint = wayPointArr.map { CLLocationCoordinate2DMake($0[0], $0[1]) }
         lastCoord = wayPointArr.last!
         polyline = MKPolyline(coordinates: waypoint, count: waypoint.count)
         mapView?.add(polyline)
+        
         
     }
     
@@ -190,6 +289,108 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate {
                     
                     guard let response = response else {
                         if error != nil {
+                            let alert = UIAlertController(title: "Oh no!", message: "The route cannot be shown at this time. Please try again later.", preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+                            self.present(alert, animated: true, completion: nil)
+                        }
+                        return
+                    }
+                    
+                    let route = response.routes[0]
+                    
+                    
+                    for each in (route.polyline.coordinates) {
+                        print("[\(each.latitude), \(each.longitude)],")
+                    }
+                    self.mapView.add(route.polyline, level: .aboveRoads)
+                    print ("// TEST")
+                    print ("")
+                })
+                lastCoord = wayPointArr.last!
+            }
+        }
+        
+    }
+    
+    
+    func snapToRoadExclude(wayPointArr: [Array<Double>]) {
+        
+        // Remove overlays
+        mapView.removeOverlays(mapView.overlays)
+        
+        for (index, coordinate) in wayPointArr.enumerated() {
+            
+            if (index + 1 < wayPointArr.count) {
+                
+                let nextElement = wayPointArr[index + 1]
+                
+                // Start calculating directions
+                let sourceCoordinates = CLLocationCoordinate2DMake(coordinate[0], coordinate[1])
+                let destCoordinates = CLLocationCoordinate2DMake(nextElement[0], nextElement[1])
+                
+                let sourcePlacemark = MKPlacemark(coordinate: sourceCoordinates)
+                let destPlacemark = MKPlacemark(coordinate: destCoordinates)
+                
+                let sourceItem = MKMapItem(placemark: sourcePlacemark)
+                let destItem = MKMapItem(placemark: destPlacemark)
+                
+                let directionRequest = MKDirectionsRequest()
+                directionRequest.source = sourceItem
+                directionRequest.destination = destItem
+                
+                directionRequest.transportType = .automobile
+                
+                let directions = MKDirections(request: directionRequest)
+                directions.calculate(completionHandler: {
+                    response, error in
+                    
+                    guard let response = response else {
+                        if error != nil {
+                            let alert = UIAlertController(title: "Oh no!", message: "The route cannot be shown at this time. Please try again later.", preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+                            self.present(alert, animated: true, completion: nil)
+                        }
+                        return
+                    }
+                    
+                    let route = response.routes[0]
+                    
+                    self.mapView.add(route.polyline, level: .aboveRoads)
+                })
+                lastCoord = wayPointArr.last!
+            }
+        }
+        
+    }
+    
+    func extendRoute(wayPointArr: [Array<Double>]) {
+        
+        
+        for (index, coordinate) in wayPointArr.enumerated() {
+            if (index + 1 <= wayPointArr.count) {
+                
+                // Start calculating directions
+                let sourceCoordinates = CLLocationCoordinate2DMake(lastCoord[0], lastCoord[1])
+                let destCoordinates = CLLocationCoordinate2DMake(coordinate[0], coordinate[1])
+                
+                let sourcePlacemark = MKPlacemark(coordinate: sourceCoordinates)
+                let destPlacemark = MKPlacemark(coordinate: destCoordinates)
+                
+                let sourceItem = MKMapItem(placemark: sourcePlacemark)
+                let destItem = MKMapItem(placemark: destPlacemark)
+                
+                let directionRequest = MKDirectionsRequest()
+                directionRequest.source = sourceItem
+                directionRequest.destination = destItem
+                
+                directionRequest.transportType = .automobile
+                
+                let directions = MKDirections(request: directionRequest)
+                directions.calculate(completionHandler: {
+                    response, error in
+                    
+                    guard let response = response else {
+                        if error != nil {
                             let alert = UIAlertController(title: "Uh oh!", message: "The route cannot be shown at this time. Please try again later.", preferredStyle: .alert)
                             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
                             self.present(alert, animated: true, completion: nil)
@@ -198,6 +399,9 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate {
                     }
                     
                     let route = response.routes[0]
+                    print ("TEST1")
+                    print(route.polyline.coordinates) // Get coordinates from MKRoute
+                    print ("TEST2")
                     self.mapView.add(route.polyline, level: .aboveRoads)
                     
                 })
@@ -207,7 +411,8 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate {
         
     }
     
-    func extendRoute(wayPointArr: [Array<Double>]) {
+    
+    func exludeExtendRoute(wayPointArr: [Array<Double>]) {
         
         
         for (index, coordinate) in wayPointArr.enumerated() {
@@ -318,13 +523,11 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate {
         
         // Plot bus stops to city by default
         addBusStops(direction: "city")
-
         // Plot buses for first time
         dataManager.getBuses(buses: (self.dataManager.BusObj), completionHandler: { (BusObj) in
-
+            
             let buses = (self.dataManager.BusObj)
             DispatchQueue.main.sync {
-                print ("test 2")
                 for entries in buses {
                     
                     self.busAnnotations = BusAnnotation()
@@ -353,7 +556,7 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate {
                 }
             }
         })
-
+        
         //Update bus locations test
         startUpdatingPositions()
         
@@ -457,6 +660,8 @@ extension LiveViewController: MKMapViewDelegate {
             let renderer = MKPolylineRenderer(overlay: overlay)
             renderer.strokeColor = UIColor(displayP3Red:0.00, green:0.67, blue:0.31, alpha:1.0)
             renderer.lineWidth = 3
+            renderer.lineDashPhase = 2
+            renderer.lineDashPattern = [NSNumber(value:1), NSNumber(value:5)]
             return renderer
             
         } else if overlay is MKPolygon {
