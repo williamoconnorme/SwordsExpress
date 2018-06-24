@@ -29,7 +29,7 @@ class LegalViewController: UIViewController {
             bodyLabel.text = "This app does not collect personal information. Your location information is used to improve the accuracy of our journey routing service."
         case 1:
             titleLabel.text = "Terms and Conditions"
-            bodyLabel.text = "We'll keep this short -- Do not use this app for evil."
+            bodyLabel.text = "We'll keep this short -- This app can not be used for Commercial purposes."
         case 2:
             titleLabel.text = "Licenses"
             bodyLabel.text = "• Whisper by hyperoslo\n• SwiftyJSON by SwiftyJSON\n• RevealingSplashView by PiXeL16"
