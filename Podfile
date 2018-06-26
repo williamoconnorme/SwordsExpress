@@ -9,4 +9,9 @@ target 'SwordsExpress' do
     pod 'Firebase/Core'
     pod 'Firebase/Messaging'
     pod 'Crashlytics'
+
+    target 'SwordsExpressTests' do
+	inherit! :search_paths
+	pod 'Firebase'
+    end
 end

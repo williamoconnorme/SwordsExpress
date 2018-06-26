@@ -39,6 +39,7 @@
 		3DBAAF3A1F702EEA008C8C0B /* FareTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBAAF391F702EEA008C8C0B /* FareTableViewCell.swift */; };
 		3DF976AB1F71500900B75CF9 /* TimetableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF976AA1F71500900B75CF9 /* TimetableViewController.swift */; };
 		3DF976AD1F71555A00B75CF9 /* TimetableStopsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF976AC1F71555A00B75CF9 /* TimetableStopsViewController.swift */; };
+		B6084050EEEDDE27A5F0FCB3 /* Pods_SwordsExpressTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD6A3F03C0852EFA0944AB88 /* Pods_SwordsExpressTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		18F373DB98E92E96428B2EA2 /* Pods-SwordsExpressTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwordsExpressTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwordsExpressTests/Pods-SwordsExpressTests.debug.xcconfig"; sourceTree = "<group>"; };
 		298EE8CE573B596791667DCF /* Pods-Swords Express Watch Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swords Express Watch Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-Swords Express Watch Extension/Pods-Swords Express Watch Extension.release.xcconfig"; sourceTree = "<group>"; };
 		3C4158E7D3F95D817CE08944 /* Pods-SwordsExpress.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwordsExpress.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwordsExpress/Pods-SwordsExpress.debug.xcconfig"; sourceTree = "<group>"; };
 		3D0A170B1F2E4D100051E4F3 /* SwordsExpress.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwordsExpress.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,6 +140,7 @@
 		3DB37DAE1F4F08200041F9AB /* Whisper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Whisper.framework; path = "../../Library/Developer/Xcode/DerivedData/SwordsExpress-dqfwztftmbwkcbcvabpultcdpein/Build/Products/Debug-iphonesimulator/Whisper/Whisper.framework"; sourceTree = "<group>"; };
 		3DB37DB01F4FAAE00041F9AB /* SwordsExpress.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SwordsExpress.entitlements; sourceTree = "<group>"; };
 		3DBAAF391F702EEA008C8C0B /* FareTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FareTableViewCell.swift; sourceTree = "<group>"; };
+		3DC30E15479B92A323A3C1CF /* Pods-SwordsExpressTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwordsExpressTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwordsExpressTests/Pods-SwordsExpressTests.release.xcconfig"; sourceTree = "<group>"; };
 		3DF976AA1F71500900B75CF9 /* TimetableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableViewController.swift; sourceTree = "<group>"; };
 		3DF976AC1F71555A00B75CF9 /* TimetableStopsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimetableStopsViewController.swift; sourceTree = "<group>"; };
 		61084D3F0195FB9AFA56C443 /* Pods-Swords Express Watch Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swords Express Watch Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Swords Express Watch Extension/Pods-Swords Express Watch Extension.debug.xcconfig"; sourceTree = "<group>"; };
@@ -147,6 +150,7 @@
 		9C8513BDFD412C748A863D3A /* Pods-SwordsExpress.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwordsExpress.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwordsExpress/Pods-SwordsExpress.release.xcconfig"; sourceTree = "<group>"; };
 		A433AED50B64F6FAA83FB81C /* Pods-SE Widget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SE Widget.release.xcconfig"; path = "Pods/Target Support Files/Pods-SE Widget/Pods-SE Widget.release.xcconfig"; sourceTree = "<group>"; };
 		DC96C8CA4B624D80297DEB16 /* Pods_Swords_Express_Watch_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Swords_Express_Watch_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD6A3F03C0852EFA0944AB88 /* Pods_SwordsExpressTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwordsExpressTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF3886BA929DC81A811E5774 /* Pods_Swords_Express_Watch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Swords_Express_Watch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -166,6 +170,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6084050EEEDDE27A5F0FCB3 /* Pods_SwordsExpressTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,6 +193,8 @@
 				A433AED50B64F6FAA83FB81C /* Pods-SE Widget.release.xcconfig */,
 				61084D3F0195FB9AFA56C443 /* Pods-Swords Express Watch Extension.debug.xcconfig */,
 				298EE8CE573B596791667DCF /* Pods-Swords Express Watch Extension.release.xcconfig */,
+				18F373DB98E92E96428B2EA2 /* Pods-SwordsExpressTests.debug.xcconfig */,
+				3DC30E15479B92A323A3C1CF /* Pods-SwordsExpressTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -359,6 +366,7 @@
 				810BDACA2CA4B96F718A4AB5 /* Pods_SE_Widget.framework */,
 				DF3886BA929DC81A811E5774 /* Pods_Swords_Express_Watch.framework */,
 				DC96C8CA4B624D80297DEB16 /* Pods_Swords_Express_Watch_Extension.framework */,
+				DD6A3F03C0852EFA0944AB88 /* Pods_SwordsExpressTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -375,7 +383,6 @@
 				3D0A17081F2E4D100051E4F3 /* Frameworks */,
 				3D0A17091F2E4D100051E4F3 /* Resources */,
 				A99C104BC3C85FF573E892B6 /* [CP] Embed Pods Frameworks */,
-				43380191156538047F2C9468 /* [CP] Copy Pods Resources */,
 				3D9D7E751F4714230066238F /* Embed App Extensions */,
 				3D9D7EA51F472B1A0066238F /* Embed Watch Content */,
 				3D2A7F932083B9DC00E522B1 /* ShellScript */,
@@ -393,9 +400,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3D0A17381F2E4D100051E4F3 /* Build configuration list for PBXNativeTarget "SwordsExpressTests" */;
 			buildPhases = (
+				F6FCB4094528978B8D34CCD1 /* [CP] Check Pods Manifest.lock */,
 				3D0A171D1F2E4D100051E4F3 /* Sources */,
 				3D0A171E1F2E4D100051E4F3 /* Frameworks */,
 				3D0A171F1F2E4D100051E4F3 /* Resources */,
+				0BF8C3805FB674DD99EC550B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -518,6 +527,26 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0BF8C3805FB674DD99EC550B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SwordsExpressTests/Pods-SwordsExpressTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac-Defines-NSData+zlib/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwordsExpressTests/Pods-SwordsExpressTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		3D2A7F932083B9DC00E522B1 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -530,21 +559,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\"";
-		};
-		43380191156538047F2C9468 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwordsExpress/Pods-SwordsExpress-resources.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 		A945A34256EF4083A81DCDDB /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -571,7 +585,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-SwordsExpress/Pods-SwordsExpress-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac-Defines-Logger-NSData+zlib/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/RevealingSplashView/RevealingSplashView.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
@@ -590,6 +604,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwordsExpress/Pods-SwordsExpress-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F6FCB4094528978B8D34CCD1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SwordsExpressTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -844,6 +876,7 @@
 		};
 		3D0A17391F2E4D100051E4F3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 18F373DB98E92E96428B2EA2 /* Pods-SwordsExpressTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -859,6 +892,7 @@
 		};
 		3D0A173A1F2E4D100051E4F3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3DC30E15479B92A323A3C1CF /* Pods-SwordsExpressTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
