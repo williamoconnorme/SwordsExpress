@@ -45,9 +45,9 @@ class InformationTableViewController: UITableViewController {
         let application = UIApplication.shared
         
         if application.canOpenURL(appURL) {
-            application.open(appURL, options:  [:], completionHandler:  nil)
+            application.open(appURL, options:  convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler:  nil)
         } else {
-            application.open(webURL, options:  [:], completionHandler:  nil)
+            application.open(webURL, options:  convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler:  nil)
         }
     }
     
@@ -81,7 +81,7 @@ class InformationTableViewController: UITableViewController {
                 if let call: String = "+35315292277",
                     let url = URL(string: "tel://\(call)"),
                     UIApplication.shared.canOpenURL(url) {
-                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                    UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
                 }
             default:
                 print ("Didnt work")
@@ -106,4 +106,9 @@ class InformationTableViewController: UITableViewController {
         }
     }
     
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }

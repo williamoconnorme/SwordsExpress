@@ -208,7 +208,7 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate {
         let waypoint = wayPointArr.map { CLLocationCoordinate2DMake($0[0], $0[1]) }
         lastCoord = wayPointArr.last!
         polyline = MKPolyline(coordinates: waypoint, count: waypoint.count)
-        mapView?.add(polyline)
+        mapView?.addOverlay(polyline)
         
         
     }
@@ -218,7 +218,7 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate {
         connectedWaypoint.insert(lastCoord, at: 0)
         let waypoint = connectedWaypoint.map { CLLocationCoordinate2DMake($0[0], $0[1]) }
         polyline = MKPolyline(coordinates: waypoint, count: waypoint.count)
-        mapView?.add(polyline)
+        mapView?.addOverlay(polyline)
     }
     
     func addBusStops(direction: String) {
@@ -277,7 +277,7 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate {
                 let sourceItem = MKMapItem(placemark: sourcePlacemark)
                 let destItem = MKMapItem(placemark: destPlacemark)
                 
-                let directionRequest = MKDirectionsRequest()
+                let directionRequest = MKDirections.Request()
                 directionRequest.source = sourceItem
                 directionRequest.destination = destItem
                 
@@ -302,7 +302,7 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate {
                     for each in (route.polyline.coordinates) {
                         print("[\(each.latitude), \(each.longitude)],")
                     }
-                    self.mapView.add(route.polyline, level: .aboveRoads)
+                    self.mapView.addOverlay(route.polyline, level: .aboveRoads)
                     print ("// TEST")
                     print ("")
                 })
@@ -334,7 +334,7 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate {
                 let sourceItem = MKMapItem(placemark: sourcePlacemark)
                 let destItem = MKMapItem(placemark: destPlacemark)
                 
-                let directionRequest = MKDirectionsRequest()
+                let directionRequest = MKDirections.Request()
                 directionRequest.source = sourceItem
                 directionRequest.destination = destItem
                 
@@ -355,7 +355,7 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate {
                     
                     let route = response.routes[0]
                     
-                    self.mapView.add(route.polyline, level: .aboveRoads)
+                    self.mapView.addOverlay(route.polyline, level: .aboveRoads)
                 })
                 lastCoord = wayPointArr.last!
             }
@@ -379,7 +379,7 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate {
                 let sourceItem = MKMapItem(placemark: sourcePlacemark)
                 let destItem = MKMapItem(placemark: destPlacemark)
                 
-                let directionRequest = MKDirectionsRequest()
+                let directionRequest = MKDirections.Request()
                 directionRequest.source = sourceItem
                 directionRequest.destination = destItem
                 
@@ -402,7 +402,7 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate {
                     print ("TEST1")
                     print(route.polyline.coordinates) // Get coordinates from MKRoute
                     print ("TEST2")
-                    self.mapView.add(route.polyline, level: .aboveRoads)
+                    self.mapView.addOverlay(route.polyline, level: .aboveRoads)
                     
                 })
                 lastCoord = wayPointArr.last!
@@ -428,7 +428,7 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate {
                 let sourceItem = MKMapItem(placemark: sourcePlacemark)
                 let destItem = MKMapItem(placemark: destPlacemark)
                 
-                let directionRequest = MKDirectionsRequest()
+                let directionRequest = MKDirections.Request()
                 directionRequest.source = sourceItem
                 directionRequest.destination = destItem
                 
@@ -448,7 +448,7 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate {
                     }
                     
                     let route = response.routes[0]
-                    self.mapView.add(route.polyline, level: .aboveRoads)
+                    self.mapView.addOverlay(route.polyline, level: .aboveRoads)
                     
                 })
                 lastCoord = wayPointArr.last!
@@ -568,7 +568,7 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate {
         
         // Zoom in on Swords
         UIView.animate(withDuration: 1.5, animations: { () -> Void in
-            let span = MKCoordinateSpanMake(0.05, 0.05)
+            let span = MKCoordinateSpan.init(latitudeDelta: 0.05, longitudeDelta: 0.05)
             let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 53.4557, longitude: -6.2197), span: span)
             self.mapView.setRegion(region, animated: true)
         })
