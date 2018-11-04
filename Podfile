@@ -3,7 +3,7 @@ use_frameworks!
 
 target 'SwordsExpress' do
     platform :ios, '10.3'
-    pod 'Whisper'
+    pod 'Whisper', :git => 'https://github.com/treatwell-marius/Whisper.git', :branch => 'feature/iphone-x-fixes'
     pod 'SwiftyJSON'
     pod 'RevealingSplashView'
     pod 'Firebase/Core'
