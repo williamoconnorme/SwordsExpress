@@ -11,7 +11,7 @@ import SwiftyJSON
 
 class DataManager {
     
-    let swordsExpressDomain: String = "http://www.swordsexpress.com"
+    let swordsExpressDomain: String = "https://www.swordsexpress.com"
     //let swordsExpressDomain: String = "http://williamoconnor.me" // For debugging.
     let fingalExpressDomain: String = "http://fingalexpress.com"
     
