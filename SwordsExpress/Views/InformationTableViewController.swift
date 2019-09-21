@@ -8,7 +8,6 @@
 
 import UIKit
 import StoreKit
-import Whisper
 
 class InformationTableViewController: UITableViewController {
     

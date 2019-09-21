@@ -3,15 +3,10 @@ use_frameworks!
 
 target 'SwordsExpress' do
     platform :ios, '10.3'
-    pod 'Whisper', :git => 'https://github.com/treatwell-marius/Whisper.git', :branch => 'feature/iphone-x-fixes'
     pod 'SwiftyJSON'
-    pod 'RevealingSplashView'
-    pod 'Firebase/Core'
-    pod 'Firebase/Messaging'
-    pod 'Crashlytics'
+    pod 'RevealingSplashView', :git => 'https://github.com/djk12587/RevealingSplashView.git', :branch => 'master'
 
     target 'SwordsExpressTests' do
 	inherit! :search_paths
-	pod 'Firebase'
     end
 end

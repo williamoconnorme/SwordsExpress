@@ -26,13 +26,13 @@ class LegalViewController: UIViewController {
         switch page {
         case 0:
             titleLabel.text = "Privacy Policy"
-            bodyLabel.text = "This app does not collect personal information. Your location information is used to improve the accuracy of our journey routing service."
+            bodyLabel.text = "This app does not collect personal information. Your location information is used to improve the accuracy of your journey routing service."
         case 1:
             titleLabel.text = "Terms and Conditions"
             bodyLabel.text = "We'll keep this short -- This app can not be used for Commercial purposes."
         case 2:
             titleLabel.text = "Licenses"
-            bodyLabel.text = "• Whisper by hyperoslo\n• SwiftyJSON by SwiftyJSON\n• RevealingSplashView by PiXeL16"
+            bodyLabel.text = "• SwiftyJSON by SwiftyJSON\n• RevealingSplashView by PiXeL16"
         default:
             titleLabel.text = "Error"
             bodyLabel.text = "Unable to determine which page to lookup"

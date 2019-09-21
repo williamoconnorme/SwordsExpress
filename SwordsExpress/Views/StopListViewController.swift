@@ -8,7 +8,6 @@
 
 import UIKit
 import WatchConnectivity
-import Whisper
 import Foundation
 
 class StopListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -35,16 +34,16 @@ class StopListViewController: UIViewController, UITableViewDelegate, UITableView
             
             
             
-            let murmur = Murmur(title: "Removed \(PassedStopData[0]) from your favourites")
-            Whisper.show(whistle: murmur, action: .show(3))
+            //let murmur = Murmur(title: "Removed \(PassedStopData[0]) from your favourites")
+            //Whisper.show(whistle: murmur, action: .show(3))
             
         } else {
             favouriteIcon.image = #imageLiteral(resourceName: "minus-sign-circle")
             
             
             
-            let murmur = Murmur(title: "Added \(PassedStopData[0]) to your favourites")
-            Whisper.show(whistle: murmur, action: .show(3))
+            //let murmur = Murmur(title: "Added \(PassedStopData[0]) to your favourites")
+            //Whisper.show(whistle: murmur, action: .show(3))
             
         }
     }
@@ -67,8 +66,8 @@ class StopListViewController: UIViewController, UITableViewDelegate, UITableView
             print ("Userdefaults array is nil in viewdidload")
         }
         
-        Whisper.ColorList.Whistle.background = UIColor(displayP3Red:0.00, green:0.67, blue:0.31, alpha:1.0)
-        Whisper.ColorList.Whistle.title = UIColor(red:1.00, green:1.00, blue:1.00, alpha:1.0)
+        //Whisper.ColorList.Whistle.background = UIColor(displayP3Red:0.00, green:0.67, blue:0.31, alpha:1.0)
+        //Whisper.ColorList.Whistle.title = UIColor(red:1.00, green:1.00, blue:1.00, alpha:1.0)
         
         
         self.navigationController?.navigationBar.isTranslucent = false

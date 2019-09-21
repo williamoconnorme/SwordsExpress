@@ -9,7 +9,6 @@
 import UIKit
 import MapKit
 import RevealingSplashView
-import Whisper
 
 private let busPin = MKPointAnnotation()
 private let annotations = MKPointAnnotation()
@@ -30,12 +29,13 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate {
     var busesArr: [MKPointAnnotation] = []
     var service: Bool = false
     
-    
     var busAnnotations: MKPointAnnotation = MKPointAnnotation()
     var stopAnnotations = MKPointAnnotation()
     
     // Segment controller for changing annotations
     @IBAction func ShowHideAnnotations(_ sender: Any) {
+        
+        //SegController.selectedSegmentTintColor = UIColor.
         
         switch SegController.selectedSegmentIndex {
         case 0:
@@ -550,9 +550,9 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate {
                 if self.service == false {
                     
                     
-                    let announcement = Announcement(title: "Service Announcement", subtitle: "There are no running buses at this time.", image: UIImage(named: "avatar"), duration: 20.0)
-                    Whisper.show(shout: announcement, to: self, completion: {
-                    })
+                    //let announcement = Announcement(title: "Service Announcement", subtitle: "There are no running buses at this time.", image: UIImage(named: "avatar"), duration: 20.0)
+                    //Whisper.show(shout: announcement, to: self, completion: {
+                    //})
                 }
             }
         })
@@ -561,10 +561,10 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate {
         startUpdatingPositions()
         
         // User Location
-        manager.delegate = self
-        manager.desiredAccuracy = kCLLocationAccuracyBest
-        manager.requestWhenInUseAuthorization()
-        manager.startUpdatingLocation()
+//        manager.delegate = self
+//        manager.desiredAccuracy = kCLLocationAccuracyBest
+//        manager.requestWhenInUseAuthorization()
+//        manager.startUpdatingLocation()
         
         // Zoom in on Swords
         UIView.animate(withDuration: 1.5, animations: { () -> Void in

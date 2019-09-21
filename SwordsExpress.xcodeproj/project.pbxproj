@@ -35,7 +35,6 @@
 		3D8DDCF81FB8EB4400119CA6 /* Stops.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8DDCF71FB8EB4400119CA6 /* Stops.swift */; };
 		3D9D7EBE1F47C5C80066238F /* StopListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9D7EBD1F47C5C80066238F /* StopListViewController.swift */; };
 		3D9D7EC01F47C8A90066238F /* StopListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9D7EBF1F47C8A90066238F /* StopListTableViewCell.swift */; };
-		3DB37DAF1F4F08200041F9AB /* Whisper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DB37DAE1F4F08200041F9AB /* Whisper.framework */; };
 		3DBAAF3A1F702EEA008C8C0B /* FareTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBAAF391F702EEA008C8C0B /* FareTableViewCell.swift */; };
 		3DF976AB1F71500900B75CF9 /* TimetableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF976AA1F71500900B75CF9 /* TimetableViewController.swift */; };
 		3DF976AD1F71555A00B75CF9 /* TimetableStopsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF976AC1F71555A00B75CF9 /* TimetableStopsViewController.swift */; };
@@ -160,7 +159,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D5B42DB1F729FC50086F3ED /* RevealingSplashView.framework in Frameworks */,
-				3DB37DAF1F4F08200041F9AB /* Whisper.framework in Frameworks */,
 				3D0A17441F2E609E0051E4F3 /* SwiftyJSON.framework in Frameworks */,
 				1169DAA1A29FDF4CE8B918AD /* Pods_SwordsExpress.framework in Frameworks */,
 			);
@@ -385,7 +383,6 @@
 				A99C104BC3C85FF573E892B6 /* [CP] Embed Pods Frameworks */,
 				3D9D7E751F4714230066238F /* Embed App Extensions */,
 				3D9D7EA51F472B1A0066238F /* Embed Watch Content */,
-				3D2A7F932083B9DC00E522B1 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -404,7 +401,6 @@
 				3D0A171D1F2E4D100051E4F3 /* Sources */,
 				3D0A171E1F2E4D100051E4F3 /* Frameworks */,
 				3D0A171F1F2E4D100051E4F3 /* Resources */,
-				0BF8C3805FB674DD99EC550B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -447,7 +443,7 @@
 					3D0A170A1F2E4D100051E4F3 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 723568ER35;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1100;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -460,13 +456,13 @@
 					};
 					3D0A17201F2E4D100051E4F3 = {
 						CreatedOnToolsVersion = 8.3.3;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1100;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 3D0A170A1F2E4D100051E4F3;
 					};
 					3D0A172B1F2E4D100051E4F3 = {
 						CreatedOnToolsVersion = 8.3.3;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1100;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 3D0A170A1F2E4D100051E4F3;
 					};
@@ -477,6 +473,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -527,39 +524,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0BF8C3805FB674DD99EC550B /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-SwordsExpressTests/Pods-SwordsExpressTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwordsExpressTests/Pods-SwordsExpressTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		3D2A7F932083B9DC00E522B1 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\"";
-		};
 		A945A34256EF4083A81DCDDB /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -584,26 +548,18 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-SwordsExpress/Pods-SwordsExpress-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-SwordsExpress/Pods-SwordsExpress-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/RevealingSplashView/RevealingSplashView.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
-				"${BUILT_PRODUCTS_DIR}/Whisper/Whisper.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RevealingSplashView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Whisper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwordsExpress/Pods-SwordsExpress-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SwordsExpress/Pods-SwordsExpress-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F6FCB4094528978B8D34CCD1 /* [CP] Check Pods Manifest.lock */ = {
@@ -834,7 +790,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3C4158E7D3F95D817CE08944 /* Pods-SwordsExpress.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SwordsExpress/SwordsExpress.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -842,13 +797,14 @@
 				DEVELOPMENT_TEAM = 723568ER35;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = SwordsExpress/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = me.williamoconnor.SwordsExpress;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1ecc21ba-ca25-4012-9c90-07ff7ccd22a8";
+				PROVISIONING_PROFILE = Automatic;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -856,7 +812,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9C8513BDFD412C748A863D3A /* Pods-SwordsExpress.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SwordsExpress/SwordsExpress.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -864,13 +819,14 @@
 				DEVELOPMENT_TEAM = 723568ER35;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = SwordsExpress/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = me.williamoconnor.SwordsExpress;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1ecc21ba-ca25-4012-9c90-07ff7ccd22a8";
+				PROVISIONING_PROFILE = Automatic;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -884,7 +840,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.williamoconnor.SwordsExpressTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwordsExpress.app/SwordsExpress";
 			};
 			name = Debug;
@@ -899,7 +855,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.williamoconnor.SwordsExpressTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwordsExpress.app/SwordsExpress";
 			};
 			name = Release;
@@ -912,7 +868,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.williamoconnor.SwordsExpressUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = SwordsExpress;
 			};
 			name = Debug;
@@ -925,7 +881,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.williamoconnor.SwordsExpressUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = SwordsExpress;
 			};
 			name = Release;
