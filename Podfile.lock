@@ -1,29 +1,29 @@
 PODS:
-  - RevealingSplashView (0.6.0)
-  - SwiftyJSON (5.0.0)
+  - RevealingSplashView (0.9.0)
+  - SwiftyJSON (5.0.1)
 
 DEPENDENCIES:
-  - RevealingSplashView (from `https://github.com/djk12587/RevealingSplashView.git`, branch `master`)
+  - RevealingSplashView (from `https://github.com/PiXeL16/RevealingSplashView.git`, branch `master`)
   - SwiftyJSON
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - SwiftyJSON
 
 EXTERNAL SOURCES:
   RevealingSplashView:
     :branch: master
-    :git: https://github.com/djk12587/RevealingSplashView.git
+    :git: https://github.com/PiXeL16/RevealingSplashView.git
 
 CHECKOUT OPTIONS:
   RevealingSplashView:
-    :commit: c096a72118258363ab8da03ea94efc00281ec691
-    :git: https://github.com/djk12587/RevealingSplashView.git
+    :commit: eb8f2b40313850d242294f447634e65a5ee91aa7
+    :git: https://github.com/PiXeL16/RevealingSplashView.git
 
 SPEC CHECKSUMS:
-  RevealingSplashView: 4db6bfd0800a1f4f8e5ad87ce5cdf3d276cd19cf
-  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
+  RevealingSplashView: 84771867eddc18612f2f3c998d947d40c36e7c52
+  SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
 
-PODFILE CHECKSUM: 0798ff32ae5524e865048c862f9b38de55211891
+PODFILE CHECKSUM: 8967e3bb424c51f202e9c22859f78ee1662f7342
 
-COCOAPODS: 1.7.1
+COCOAPODS: 1.12.1

@@ -508,7 +508,7 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate {
         revealingSplashView.delay = 1
         revealingSplashView.duration = 2
         //revealingSplashView.iconInitialSize = CGSize(width: 272, height: 272)
-        self.tabBarController?.tabBar.isHidden = true
+        //self.tabBarController?.tabBar.isHidden = true
         
         let window = UIApplication.shared.keyWindow
         window?.addSubview(revealingSplashView)
@@ -518,7 +518,7 @@ class LiveViewController: UIViewController, CLLocationManagerDelegate {
         
         //Starts animation
         revealingSplashView.startAnimation(){
-            self.tabBarController?.tabBar.isHidden = false
+            //self.tabBarController?.tabBar.isHidden = false
         }
         
         // Plot bus stops to city by default

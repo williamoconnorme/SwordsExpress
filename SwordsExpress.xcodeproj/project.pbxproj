@@ -17,7 +17,6 @@
 		3D0A17261F2E4D100051E4F3 /* SwordsExpressTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0A17251F2E4D100051E4F3 /* SwordsExpressTests.swift */; };
 		3D0A17311F2E4D100051E4F3 /* SwordsExpressUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0A17301F2E4D100051E4F3 /* SwordsExpressUITests.swift */; };
 		3D0A173F1F2E4D730051E4F3 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0A173E1F2E4D730051E4F3 /* DataManager.swift */; };
-		3D0A17441F2E609E0051E4F3 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0A17431F2E609E0051E4F3 /* SwiftyJSON.framework */; };
 		3D0A17461F2E61260051E4F3 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0A17451F2E61260051E4F3 /* Models.swift */; };
 		3D0B30201F8321320047F658 /* SwordsCityMonFri.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D0B301F1F8321320047F658 /* SwordsCityMonFri.json */; };
 		3D0BC0D11F40CAD200996DCF /* SwordsCitySat.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D0BC0CE1F40CAD200996DCF /* SwordsCitySat.json */; };
@@ -30,9 +29,10 @@
 		3D3E3C38209F0EE600802E66 /* MKPolyline+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3E3C37209F0EE600802E66 /* MKPolyline+Ext.swift */; };
 		3D3E3C3A209F1E0600802E66 /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3E3C39209F1E0600802E66 /* Routes.swift */; };
 		3D40167F1F44B8FB00F5DA93 /* InformationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D40167E1F44B8FB00F5DA93 /* InformationTableViewController.swift */; };
-		3D5B42DB1F729FC50086F3ED /* RevealingSplashView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D5B42DC1F729FC50086F3ED /* RevealingSplashView.framework */; };
 		3D5B42DE1F72D46A0086F3ED /* LegalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5B42DD1F72D46A0086F3ED /* LegalViewController.swift */; };
 		3D8DDCF81FB8EB4400119CA6 /* Stops.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8DDCF71FB8EB4400119CA6 /* Stops.swift */; };
+		3D969FA12A0C5CAC00996721 /* RevealingSplashView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D969FA02A0C5CAC00996721 /* RevealingSplashView.framework */; };
+		3D969FA52A0C5CB100996721 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D969FA42A0C5CB100996721 /* SwiftyJSON.framework */; };
 		3D9D7EBE1F47C5C80066238F /* StopListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9D7EBD1F47C5C80066238F /* StopListViewController.swift */; };
 		3D9D7EC01F47C8A90066238F /* StopListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9D7EBF1F47C8A90066238F /* StopListTableViewCell.swift */; };
 		3DBAAF3A1F702EEA008C8C0B /* FareTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBAAF391F702EEA008C8C0B /* FareTableViewCell.swift */; };
@@ -83,7 +83,6 @@
 
 /* Begin PBXFileReference section */
 		18F373DB98E92E96428B2EA2 /* Pods-SwordsExpressTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwordsExpressTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwordsExpressTests/Pods-SwordsExpressTests.debug.xcconfig"; sourceTree = "<group>"; };
-		298EE8CE573B596791667DCF /* Pods-Swords Express Watch Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swords Express Watch Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-Swords Express Watch Extension/Pods-Swords Express Watch Extension.release.xcconfig"; sourceTree = "<group>"; };
 		3C4158E7D3F95D817CE08944 /* Pods-SwordsExpress.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwordsExpress.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwordsExpress/Pods-SwordsExpress.debug.xcconfig"; sourceTree = "<group>"; };
 		3D0A170B1F2E4D100051E4F3 /* SwordsExpress.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwordsExpress.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D0A170E1F2E4D100051E4F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -117,6 +116,9 @@
 		3D5B42DC1F729FC50086F3ED /* RevealingSplashView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RevealingSplashView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D5B42DD1F72D46A0086F3ED /* LegalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalViewController.swift; sourceTree = "<group>"; };
 		3D8DDCF71FB8EB4400119CA6 /* Stops.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stops.swift; sourceTree = "<group>"; };
+		3D969F9C2A0C5BE600996721 /* RevealingSplashView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RevealingSplashView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D969FA02A0C5CAC00996721 /* RevealingSplashView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RevealingSplashView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D969FA42A0C5CB100996721 /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D9D7E661F4714230066238F /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		3D9D7E691F4714230066238F /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		3D9D7E6C1F4714230066238F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
@@ -142,12 +144,9 @@
 		3DC30E15479B92A323A3C1CF /* Pods-SwordsExpressTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwordsExpressTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwordsExpressTests/Pods-SwordsExpressTests.release.xcconfig"; sourceTree = "<group>"; };
 		3DF976AA1F71500900B75CF9 /* TimetableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableViewController.swift; sourceTree = "<group>"; };
 		3DF976AC1F71555A00B75CF9 /* TimetableStopsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimetableStopsViewController.swift; sourceTree = "<group>"; };
-		61084D3F0195FB9AFA56C443 /* Pods-Swords Express Watch Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swords Express Watch Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Swords Express Watch Extension/Pods-Swords Express Watch Extension.debug.xcconfig"; sourceTree = "<group>"; };
 		770DE79BB32BD9A46A00C342 /* Pods_SwordsExpress.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwordsExpress.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		810BDACA2CA4B96F718A4AB5 /* Pods_SE_Widget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SE_Widget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		87F93132C3AE4BDA960DC223 /* Pods-SE Widget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SE Widget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SE Widget/Pods-SE Widget.debug.xcconfig"; sourceTree = "<group>"; };
 		9C8513BDFD412C748A863D3A /* Pods-SwordsExpress.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwordsExpress.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwordsExpress/Pods-SwordsExpress.release.xcconfig"; sourceTree = "<group>"; };
-		A433AED50B64F6FAA83FB81C /* Pods-SE Widget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SE Widget.release.xcconfig"; path = "Pods/Target Support Files/Pods-SE Widget/Pods-SE Widget.release.xcconfig"; sourceTree = "<group>"; };
 		DC96C8CA4B624D80297DEB16 /* Pods_Swords_Express_Watch_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Swords_Express_Watch_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD6A3F03C0852EFA0944AB88 /* Pods_SwordsExpressTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwordsExpressTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF3886BA929DC81A811E5774 /* Pods_Swords_Express_Watch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Swords_Express_Watch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -158,9 +157,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D5B42DB1F729FC50086F3ED /* RevealingSplashView.framework in Frameworks */,
-				3D0A17441F2E609E0051E4F3 /* SwiftyJSON.framework in Frameworks */,
 				1169DAA1A29FDF4CE8B918AD /* Pods_SwordsExpress.framework in Frameworks */,
+				3D969FA12A0C5CAC00996721 /* RevealingSplashView.framework in Frameworks */,
+				3D969FA52A0C5CB100996721 /* SwiftyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,10 +186,6 @@
 			children = (
 				3C4158E7D3F95D817CE08944 /* Pods-SwordsExpress.debug.xcconfig */,
 				9C8513BDFD412C748A863D3A /* Pods-SwordsExpress.release.xcconfig */,
-				87F93132C3AE4BDA960DC223 /* Pods-SE Widget.debug.xcconfig */,
-				A433AED50B64F6FAA83FB81C /* Pods-SE Widget.release.xcconfig */,
-				61084D3F0195FB9AFA56C443 /* Pods-Swords Express Watch Extension.debug.xcconfig */,
-				298EE8CE573B596791667DCF /* Pods-Swords Express Watch Extension.release.xcconfig */,
 				18F373DB98E92E96428B2EA2 /* Pods-SwordsExpressTests.debug.xcconfig */,
 				3DC30E15479B92A323A3C1CF /* Pods-SwordsExpressTests.release.xcconfig */,
 			);
@@ -354,6 +349,9 @@
 		B634BD955C0CE53A2DBB47A1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3D969FA42A0C5CB100996721 /* SwiftyJSON.framework */,
+				3D969FA02A0C5CAC00996721 /* RevealingSplashView.framework */,
+				3D969F9C2A0C5BE600996721 /* RevealingSplashView.framework */,
 				3D5B42DC1F729FC50086F3ED /* RevealingSplashView.framework */,
 				3D5B42DA1F729FB20086F3ED /* RevealingSplashView.framework */,
 				3DB37DAE1F4F08200041F9AB /* Whisper.framework */,
@@ -437,7 +435,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1340;
 				ORGANIZATIONNAME = "William O'Connor";
 				TargetAttributes = {
 					3D0A170A1F2E4D100051E4F3 = {
@@ -677,6 +675,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -698,6 +697,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -723,7 +723,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -737,6 +737,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -758,6 +759,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -777,7 +779,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -797,9 +799,11 @@
 				DEVELOPMENT_TEAM = 723568ER35;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = SwordsExpress/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				INFOPLIST_KEY_CFBundleDisplayName = "Swords Express";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.navigation";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 1.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = me.williamoconnor.SwordsExpress;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = Automatic;
@@ -819,9 +823,11 @@
 				DEVELOPMENT_TEAM = 723568ER35;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = SwordsExpress/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				INFOPLIST_KEY_CFBundleDisplayName = "Swords Express";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.navigation";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 1.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = me.williamoconnor.SwordsExpress;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = Automatic;

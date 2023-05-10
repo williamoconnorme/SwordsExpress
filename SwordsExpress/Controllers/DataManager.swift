@@ -23,7 +23,7 @@ class DataManager {
         _ = buses
         
         
-        let seEndpoint: String = "/latlong.php"
+        let seEndpoint: String = "/app/themes/swordsexpress/resources/assets/scripts/latlong.php"
         let feEndpoint: String = "/wp-content/themes/fingal/latlong.php"
         
         let seUrl: URL = URL(string: swordsExpressDomain + seEndpoint)!
@@ -177,7 +177,7 @@ class DataManager {
         _ = buses
         // ayyyy should probably find a better way to update these buses
         
-        let seEndpoint: String = "/latlong.php"
+        let seEndpoint: String = "/app/themes/swordsexpress/resources/assets/scripts/latlong.php"
         let feEndpoint: String = "/wp-content/themes/fingal/latlong.php"
         let seUrl: URL = URL(string: swordsExpressDomain + seEndpoint)!
         let feUrl: URL = URL(string: fingalExpressDomain + feEndpoint)!

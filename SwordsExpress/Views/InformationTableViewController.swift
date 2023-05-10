@@ -8,6 +8,7 @@
 
 import UIKit
 import StoreKit
+import CoreNFC
 
 class InformationTableViewController: UITableViewController {
     
@@ -76,11 +77,11 @@ class InformationTableViewController: UITableViewController {
                 print ("Timetables")
                 openOnTwitter()
             case 2:
-                print ("Call US")
-                if let call: String = "+35315292277",
-                    let url = URL(string: "tel://\(call)"),
-                    UIApplication.shared.canOpenURL(url) {
-                    UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
+                print ("Call Us")
+                let call = "+35315292277"
+                let url: URL = URL(string: "tel://\(call)")!
+                    if UIApplication.shared.canOpenURL(url) {
+                        UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
                 }
             default:
                 print ("Didnt work")
