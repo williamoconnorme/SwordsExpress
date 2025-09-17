@@ -1,14 +1,23 @@
 import Foundation
 import SwiftUI
 import Combine
+#if canImport(WidgetKit)
+import WidgetKit
+#endif
 
 @MainActor
 final class FavouritesStore: ObservableObject {
     @Published private(set) var favouriteStopIDs: Set<Int>
-    private let storageKey = "favouriteStopIDs"
+    private let storageKey = SharedConstants.favouriteStopIDsKey
+    private let defaults: UserDefaults
 
-    init() {
-        if let saved = UserDefaults.standard.array(forKey: storageKey) as? [Int] {
+    /// Use shared app-group defaults so the widget extension can read favourites.
+    /// Falls back to standard defaults if the app group is not (yet) configured.
+    init(userDefaults: UserDefaults? = nil) {
+        // Avoid referencing SharedConstants in a default argument (actor crossing); compute here instead.
+        let resolvedDefaults = userDefaults ?? UserDefaults(suiteName: SharedConstants.appGroupIdentifier) ?? .standard
+        self.defaults = resolvedDefaults
+        if let saved = defaults.array(forKey: storageKey) as? [Int] {
             favouriteStopIDs = Set(saved)
         } else {
             favouriteStopIDs = []
@@ -16,7 +25,7 @@ final class FavouritesStore: ObservableObject {
     }
 
     private func persist() {
-        UserDefaults.standard.set(Array(favouriteStopIDs), forKey: storageKey)
+        defaults.set(Array(favouriteStopIDs), forKey: storageKey)
     }
 
     func isFavourite(_ stop: BusStop) -> Bool { favouriteStopIDs.contains(stop.id) }
@@ -29,6 +38,10 @@ final class FavouritesStore: ObservableObject {
         }
         persist()
         objectWillChange.send()
+#if canImport(WidgetKit)
+        // Trigger widget refresh so changes reflect promptly
+        WidgetCenter.shared.reloadTimelines(ofKind: "LiveDepartures")
+#endif
     }
 
     var favouriteStops: [BusStop] {
