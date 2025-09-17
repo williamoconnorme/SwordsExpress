@@ -10,6 +10,7 @@
 		3D803F7B2E7ABD01002919CD /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D803F7A2E7ABD00002919CD /* WidgetKit.framework */; };
 		3D803F7D2E7ABD01002919CD /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D803F7C2E7ABD01002919CD /* SwiftUI.framework */; };
 		3D803F8E2E7ABD03002919CD /* LiveDeparturesExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 3D803F782E7ABD00002919CD /* LiveDeparturesExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3DDD6BB42E7ACE1500C5E619 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDD6BB32E7ACE1500C5E619 /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		3D803F7A2E7ABD00002919CD /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		3D803F7C2E7ABD01002919CD /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		3DDD6BB12E7ACBA600C5E619 /* LiveDeparturesExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LiveDeparturesExtension.entitlements; sourceTree = "<group>"; };
+		3DDD6BB32E7ACE1500C5E619 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -150,6 +152,7 @@
 				3D803F7E2E7ABD01002919CD /* LiveDepartures */,
 				3D803F792E7ABD00002919CD /* Frameworks */,
 				3D2F84B12E72C9C100250ABA /* Products */,
+				3DDD6BB32E7ACE1500C5E619 /* SettingsView.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -373,6 +376,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DDD6BB42E7ACE1500C5E619 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

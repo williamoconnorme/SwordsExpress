@@ -44,6 +44,16 @@ final class FavouritesStore: ObservableObject {
 #endif
     }
 
+    /// Persist an explicit ordering (comma separated stop IDs) for widgets.
+    func saveOrder(_ ordered: [BusStop]) {
+        let joined = ordered.map { String($0.id) }.joined(separator: ",")
+        let group = UserDefaults(suiteName: SharedConstants.appGroupIdentifier)
+        group?.set(joined, forKey: SharedConstants.favouriteStopOrderKey)
+#if canImport(WidgetKit)
+        WidgetCenter.shared.reloadTimelines(ofKind: "LiveDepartures")
+#endif
+    }
+
     var favouriteStops: [BusStop] {
         let all = StopsData.toCity + StopsData.toSwords
         let dict = Dictionary(uniqueKeysWithValues: all.map { ($0.id, $0) })

@@ -15,4 +15,6 @@ enum SharedConstants {
 
     // UserDefaults key for favourite stop IDs (mirrors existing storageKey)
     static let favouriteStopIDsKey = "favouriteStopIDs"
+    // UserDefaults key for explicit favourites ordering (comma-separated stop IDs)
+    static let favouriteStopOrderKey = "favouritesOrder"
 }

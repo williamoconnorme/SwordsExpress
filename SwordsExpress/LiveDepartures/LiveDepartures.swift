@@ -14,6 +14,7 @@ import Foundation
 private enum SharedConstants {
     static let appGroupIdentifier = "group.me.williamoconnor.SwordsExpress"
     static let favouriteStopIDsKey = "favouriteStopIDs"
+    static let favouriteStopOrderKey = "favouritesOrder"
 }
 
 private struct BusStop: Identifiable, Hashable {
@@ -155,22 +156,29 @@ struct Provider: TimelineProvider {
     }
     func getTimeline(in context: Context, completion: @escaping (Timeline<SimpleEntry>) -> Void) {
         Task {
-            let entry = await makeEntry()
-            let next = Date().addingTimeInterval(60)
-            completion(Timeline(entries: [entry], policy: .after(next)))
+            let now = Date()
+            // Build a minute-by-minute sequence for the next 60 minutes to allow countdown updates without network each minute.
+            let liveEntry = await makeEntry(referenceDate: now)
+            var entries: [SimpleEntry] = [liveEntry]
+            // Subsequent entries reuse the same stops but will re-evaluate countdowns client-side (recompute in view based on current date via timeline entry date)
+            for minute in 1..<60 {
+                let futureDate = now.addingTimeInterval(TimeInterval(minute * 60))
+                entries.append(SimpleEntry(date: futureDate, stops: liveEntry.stops))
+            }
+            completion(Timeline(entries: entries, policy: .atEnd))
         }
     }
 
-    private func makeEntry() async -> SimpleEntry {
+    private func makeEntry(referenceDate: Date = Date()) async -> SimpleEntry {
         let favourites = loadFavouriteStops()
         // If none favourited produce placeholder style entry
         if favourites.isEmpty {
-            return SimpleEntry(date: Date(), stops: [])
+            return SimpleEntry(date: referenceDate, stops: [])
         }
         let stopsToDisplay = favourites
         // Fetch in parallel, but limit concurrency to be respectful (WidgetKit background)
         var live: [StopLiveDepartures] = []
-        let now = Date()
+        let now = referenceDate
         await withTaskGroup(of: StopLiveDepartures?.self) { group in
             for stop in stopsToDisplay {
                 group.addTask {
@@ -188,8 +196,20 @@ struct Provider: TimelineProvider {
             }
             for await result in group { if let result { live.append(result) } }
         }
-        // Sort by stop name for deterministic display
-        live.sort { $0.name < $1.name }
+        // Apply explicit stored ordering if available, else name sort
+        if let defaults = UserDefaults(suiteName: SharedConstants.appGroupIdentifier),
+           let orderRaw = defaults.string(forKey: SharedConstants.favouriteStopOrderKey), !orderRaw.isEmpty {
+            let orderIDs = orderRaw.split(separator: ",").compactMap { Int($0) }
+            let indexMap = Dictionary(uniqueKeysWithValues: orderIDs.enumerated().map { ($1, $0) })
+            live.sort { (a, b) in
+                let ia = indexMap[a.id] ?? Int.max
+                let ib = indexMap[b.id] ?? Int.max
+                if ia == ib { return a.name < b.name }
+                return ia < ib
+            }
+        } else {
+            live.sort { $0.name < $1.name }
+        }
         return SimpleEntry(date: Date(), stops: live)
     }
 
@@ -264,10 +284,11 @@ struct LiveDeparturesEntryView: View {
         Group {
             if let first = entry.stops.first {
                 VStack(alignment: .leading, spacing: 4) {
-                    header(stopName: first.name, direction: first.direction)
+                    Text(first.name)
+                        .font(.footnote.weight(.semibold))
+                        .lineLimit(2)
                     timesRow(times: first.times, countdowns: first.countdowns)
                     Spacer(minLength: 0)
-                    footerTimestamp
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
             } else {
@@ -328,12 +349,12 @@ struct LiveDeparturesEntryView: View {
 
     private var footerTimestamp: some View {
         HStack {
+            Image(systemName: "bus")
+                .font(.caption)
+            Spacer()
             Text(Date(), style: .time)
                 .font(.caption2.monospacedDigit())
                 .foregroundStyle(.secondary)
-            Spacer()
-            Image(systemName: "bus")
-                .font(.caption)
         }
     }
 }
