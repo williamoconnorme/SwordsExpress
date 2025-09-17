@@ -99,8 +99,11 @@ private func fetchNextBusTimes(direction: String, stop: String) async -> [String
 }
 
 // MARK: - Time Utilities
-private func parseHHMM(_ s: String) -> Date? {
-    let parts = s.split(separator: ":")
+private func parseHHMM(_ original: String) -> Date? {
+    // Accept variants like "HH:mm", "HH.mm", possible surrounding whitespace.
+    let trimmed = original.trimmingCharacters(in: .whitespacesAndNewlines)
+    let canonical = trimmed.replacingOccurrences(of: ".", with: ":")
+    let parts = canonical.split(separator: ":")
     guard parts.count == 2, let h = Int(parts[0]), let m = Int(parts[1]) else { return nil }
     var cal = Calendar(identifier: .gregorian)
     cal.timeZone = .current
@@ -111,21 +114,37 @@ private func parseHHMM(_ s: String) -> Date? {
 }
 
 private func filterUpcoming(times: [String], from reference: Date) -> [String] {
-    times.compactMap { t in
+    times.compactMap { raw in
+        let t = raw.trimmingCharacters(in: .whitespacesAndNewlines)
         guard let dt = parseHHMM(t) else { return nil }
         return dt >= reference ? t : nil
     }
 }
 
-private func countdownString(for time: String, from reference: Date) -> String {
-    guard let dt = parseHHMM(time) else { return "" }
-    let diff = Int(dt.timeIntervalSince(reference) / 60)
-    if diff <= 0 { return "Due" }
-    if diff < 60 { return "\(diff)m" }
-    let hours = diff / 60
-    let mins = diff % 60
-    return mins == 0 ? "\(hours)h" : "\(hours)h\(mins)m"
+// Enhanced variant for debug: returns upcoming plus arrays of removed past and unparsable values.
+private func filterUpcomingWithDiagnostics(times: [String], reference: Date) -> (upcoming: [String], removedPast: [String], unparsable: [String]) {
+    var upcoming: [String] = []
+    var removedPast: [String] = []
+    var unparsable: [String] = []
+    for raw in times {
+        let t = raw.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard let dt = parseHHMM(t) else { unparsable.append(t); continue }
+        if dt >= reference { upcoming.append(t) } else { removedPast.append(t) }
+    }
+    return (upcoming, removedPast, unparsable)
 }
+
+private func sortChronologically(_ times: [String]) -> [String] {
+    return times.sorted { a, b in
+        let ta = a.trimmingCharacters(in: .whitespacesAndNewlines)
+        let tb = b.trimmingCharacters(in: .whitespacesAndNewlines)
+        if let da = parseHHMM(ta), let db = parseHHMM(tb) { return da < db }
+        // Fallback deterministic lexical compare after trimming
+        return ta < tb
+    }
+}
+
+// Countdown formatting removed – widget now shows absolute times only and reloads at each departure.
 
 private func sampleFutureTimes(offsetMins: [Int], from reference: Date) -> [String] {
     let cal = Calendar(identifier: .gregorian)
@@ -143,8 +162,7 @@ struct StopLiveDepartures: Identifiable, Hashable {
     let id: Int
     let name: String
     let direction: String // "To City" / "To Swords"
-    let times: [String] // Raw HH:mm strings
-    let countdowns: [String] // Relative mins e.g. ["5m", "12m", "Due"]
+    let times: [String] // Raw HH:mm strings (upcoming trimmed)
 }
 
 struct Provider: TimelineProvider {
@@ -156,16 +174,19 @@ struct Provider: TimelineProvider {
     }
     func getTimeline(in context: Context, completion: @escaping (Timeline<SimpleEntry>) -> Void) {
         Task {
-            let now = Date()
-            // Build a minute-by-minute sequence for the next 60 minutes to allow countdown updates without network each minute.
-            let liveEntry = await makeEntry(referenceDate: now)
-            var entries: [SimpleEntry] = [liveEntry]
-            // Subsequent entries reuse the same stops but will re-evaluate countdowns client-side (recompute in view based on current date via timeline entry date)
-            for minute in 1..<60 {
-                let futureDate = now.addingTimeInterval(TimeInterval(minute * 60))
-                entries.append(SimpleEntry(date: futureDate, stops: liveEntry.stops))
-            }
-            completion(Timeline(entries: entries, policy: .atEnd))
+            let generationTime = Date()
+            let entry = await makeEntry(referenceDate: generationTime)
+            // Find earliest future departure across all stops
+            let allFuture: [Date] = entry.stops.flatMap { stop in
+                stop.times.compactMap { parseHHMM($0) }.filter { $0 > generationTime }
+            }.sorted()
+            // Choose next reload: shortly after the earliest departure OR fallback in 5 minutes if none.
+            let earliest = allFuture.first
+            let reloadDate = earliest?.addingTimeInterval(5) ?? generationTime.addingTimeInterval(5 * 60)
+            let df = DateFormatter(); df.dateFormat = "HH:mm:ss"
+            let futureSample = allFuture.prefix(10).map { df.string(from: $0) }.joined(separator: ",")
+            print("[LiveDeparturesWidget] Timeline gen=\(df.string(from: generationTime)) earliestDep=\(earliest.map{df.string(from:$0)} ?? "none") reload=\(df.string(from: reloadDate)) future=[\(futureSample)]")
+            completion(Timeline(entries: [entry], policy: .after(reloadDate)))
         }
     }
 
@@ -176,22 +197,28 @@ struct Provider: TimelineProvider {
             return SimpleEntry(date: referenceDate, stops: [])
         }
         let stopsToDisplay = favourites
-        // Fetch in parallel, but limit concurrency to be respectful (WidgetKit background)
         var live: [StopLiveDepartures] = []
         let now = referenceDate
         await withTaskGroup(of: StopLiveDepartures?.self) { group in
             for stop in stopsToDisplay {
                 group.addTask {
                     let directionParam: String = {
-                        // If the stop appears in toCity list => user is travelling to City, API direction param is swords_to_city
                         if StopsData.toCity.contains(stop) { return "swords_to_city" } else { return "city_to_swords" }
                     }()
                     let times = await fetchNextBusTimes(direction: directionParam, stop: stop.slug)
-                    let upcoming = filterUpcoming(times: times, from: now)
-                    let trimmed = Array(upcoming.prefix(3))
-                    let countdowns = trimmed.map { countdownString(for: $0, from: now) }
+                    let diag = filterUpcomingWithDiagnostics(times: times, reference: now)
+                    let upcoming = sortChronologically(diag.upcoming) // Keep only future & sort ascending
+#if DEBUG
+                    if !times.isEmpty {
+                        let rawSample = times.joined(separator: ",")
+                        let upcomingSample = upcoming.joined(separator: ",")
+                        let removedPast = diag.removedPast.joined(separator: ",")
+                        let unparsable = diag.unparsable.joined(separator: ",")
+                        print("[LiveDeparturesWidget] Stop=\(stop.slug) RAW=[\(rawSample)] UPCOMING=[\(upcomingSample)] REMOVED_PAST=[\(removedPast)] UNPARSABLE=[\(unparsable)] ref=\(now)")
+                    }
+#endif
                     let dirLabel = StopsData.toCity.contains(stop) ? "To City" : "To Swords"
-                    return StopLiveDepartures(id: stop.id, name: stop.name, direction: dirLabel, times: trimmed, countdowns: countdowns)
+                    return StopLiveDepartures(id: stop.id, name: stop.name, direction: dirLabel, times: upcoming)
                 }
             }
             for await result in group { if let result { live.append(result) } }
@@ -213,12 +240,13 @@ struct Provider: TimelineProvider {
         return SimpleEntry(date: Date(), stops: live)
     }
 
+    // nextDeparture removed – using multi-entry timeline schedule instead.
+
     // MARK: - Helpers
     private func loadFavouriteStops() -> [BusStop] {
         let suiteDefaults = UserDefaults(suiteName: SharedConstants.appGroupIdentifier)
         let suiteIDs = (suiteDefaults?.array(forKey: SharedConstants.favouriteStopIDsKey) as? [Int]) ?? []
         var ids = suiteIDs
-        // Fallback: if the app group isn't yielding anything, try standard defaults (common sign that the App Group capability isn't enabled for the widget target yet)
         if ids.isEmpty {
             let standardIDs = (UserDefaults.standard.array(forKey: SharedConstants.favouriteStopIDsKey) as? [Int]) ?? []
             if !standardIDs.isEmpty { ids = standardIDs }
@@ -231,7 +259,6 @@ struct Provider: TimelineProvider {
 #endif
         }
         if ids.isEmpty { return [] }
-        // Combine all static stops provided by the main app's StopsData
         let all = StopsData.toCity + StopsData.toSwords
         let dict = Dictionary(uniqueKeysWithValues: all.map { ($0.id, $0) })
         return ids.compactMap { dict[$0] }
@@ -242,8 +269,8 @@ struct Provider: TimelineProvider {
         let a = sampleFutureTimes(offsetMins: [5, 25, 55], from: now)
         let b = sampleFutureTimes(offsetMins: [8, 28, 58], from: now)
         return [
-            StopLiveDepartures(id: 333, name: "Abbeyvale", direction: "To City", times: a, countdowns: a.map { countdownString(for: $0, from: now) }),
-            StopLiveDepartures(id: 586, name: "Eden Quay", direction: "To Swords", times: b, countdowns: b.map { countdownString(for: $0, from: now) })
+            StopLiveDepartures(id: 333, name: "Abbeyvale", direction: "To City", times: a),
+            StopLiveDepartures(id: 586, name: "Eden Quay", direction: "To Swords", times: b)
         ]
     }
 }
@@ -287,7 +314,8 @@ struct LiveDeparturesEntryView: View {
                     Text(first.name)
                         .font(.footnote.weight(.semibold))
                         .lineLimit(2)
-                    timesRow(times: first.times, countdowns: first.countdowns)
+                    timesRow(times: first.times)
+                    lastUpdatedView
                     Spacer(minLength: 0)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
@@ -305,12 +333,12 @@ struct LiveDeparturesEntryView: View {
                 ForEach(stops) { stop in
                     VStack(alignment: .leading, spacing: 2) {
                         header(stopName: stop.name, direction: stop.direction)
-                        timesRow(times: stop.times, countdowns: stop.countdowns)
+                        timesRow(times: stop.times)
                     }
                     if stop.id != stops.last?.id { Divider().opacity(0.25) }
                 }
                 Spacer(minLength: 0)
-                footerTimestamp
+                lastUpdatedView
             }
         }
         .padding(10)
@@ -328,34 +356,37 @@ struct LiveDeparturesEntryView: View {
         }
     }
 
-    private func timesRow(times: [String], countdowns: [String]) -> some View {
+    private func timesRow(times: [String]) -> some View {
         HStack(spacing: 6) {
             if times.isEmpty {
                 Text("—")
                     .font(.caption.monospacedDigit())
                     .foregroundStyle(.secondary)
             } else {
-                ForEach(Array(zip(times, countdowns)), id: \.0) { time, rel in
-                    Text(rel)
+                // Display only the first three upcoming times for compactness
+                ForEach(Array(times.prefix(3)), id: \.self) { time in
+                    Text(time)
                         .font(.caption.monospacedDigit())
                         .padding(.horizontal, 4)
                         .padding(.vertical, 2)
                         .background(RoundedRectangle(cornerRadius: 4).fill(Color.accentColor.opacity(0.15)))
-                        .accessibilityLabel("\(time) in \(rel == "Due" ? "0" : rel.replacingOccurrences(of: "m", with: "")) minutes")
+                        .accessibilityLabel("Departure at \(time)")
                 }
             }
         }
     }
 
-    private var footerTimestamp: some View {
-        HStack {
-            Image(systemName: "bus")
-                .font(.caption)
-            Spacer()
-            Text(Date(), style: .time)
-                .font(.caption2.monospacedDigit())
+    private var lastUpdatedView: some View {
+        HStack(spacing: 4) {
+            Image(systemName: "clock")
+                .font(.caption2)
                 .foregroundStyle(.secondary)
+            Text("Last Updated \(entry.date.formatted(date: .omitted, time: .shortened))")
+                .font(.caption2)
+                .foregroundStyle(.secondary)
+            Spacer(minLength: 0)
         }
+        .accessibilityLabel("Last updated at \(entry.date.formatted(date: .omitted, time: .shortened))")
     }
 }
 
@@ -369,7 +400,7 @@ struct LiveDepartures: Widget {
         }
         .configurationDisplayName("Live Departures")
         .description("Shows next bus times for your favourite stops.")
-        // Frequent refreshes requested via timeline (every minute) – WidgetKit may coalesce.
+        // Reload policy is event-driven (next departure) via timeline provider.
         .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
     }
 }
@@ -379,8 +410,8 @@ struct LiveDepartures: Widget {
     LiveDepartures()
 } timeline: {
     SimpleEntry(date: Date(), stops: [
-        StopLiveDepartures(id: 333, name: "Abbeyvale", direction: "To City", times: ["12:05", "12:25", "12:55"], countdowns: ["5m", "25m", "55m"]),
-        StopLiveDepartures(id: 586, name: "Eden Quay", direction: "To Swords", times: ["12:08", "12:28", "12:58"], countdowns: ["8m", "28m", "58m"])
+        StopLiveDepartures(id: 333, name: "Abbeyvale", direction: "To City", times: ["12:05", "12:25", "12:55"]),
+        StopLiveDepartures(id: 586, name: "Eden Quay", direction: "To Swords", times: ["12:08", "12:28", "12:58"])
     ])
 }
 
