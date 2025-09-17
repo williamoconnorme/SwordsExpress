@@ -397,6 +397,8 @@ struct LiveDepartures: Widget {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             LiveDeparturesEntryView(entry: entry)
                 .containerBackground(.thinMaterial, for: .widget)
+                // Deep link: open favourites tab in app when widget tapped
+                .widgetURL(URL(string: "swordsexpress://favourites"))
         }
         .configurationDisplayName("Live Departures")
         .description("Shows next bus times for your favourite stops.")

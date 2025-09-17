@@ -428,9 +428,11 @@ struct ContentView: View {
     @StateObject private var favourites = FavouritesStore()
     @AppStorage("showFavouritesTab") private var showFavouritesTab: Bool = true
     @State private var liveNavPath: [BusStop] = []
+    @Environment(\.openFavouritesFromWidget) private var openFavouritesFromWidget: Bool
+    @State private var selectedTab: Int = 0 // 0=Live,1=Timetable,2=Favourites (if present),3=Information
 
     var body: some View {
-        TabView {
+        TabView(selection: $selectedTab) {
             NavigationStack(path: $liveNavPath) {
                 LiveView(onOpenTimetable: { stop in
                     liveNavPath.append(stop)
@@ -440,23 +442,20 @@ struct ContentView: View {
                     StopTimetableView(direction: direction, stop: stop)
                 }
             }
-                .tabItem {
-                    Label("Live", systemImage: "dot.radiowaves.left.and.right")
-                }
+            .tabItem { Label("Live", systemImage: "dot.radiowaves.left.and.right") }
+            .tag(0)
             
             ScheduleView()
-                .tabItem {
-                    Label("Timetable", systemImage: "calendar")
-                }
+                .tabItem { Label("Timetable", systemImage: "calendar") }
+                .tag(1)
             
             if showFavouritesTab && !favourites.favouriteStops.isEmpty {
                 NavigationStack {
                     FavouriteStopsView()
                         .navigationTitle("Favourites")
                 }
-                .tabItem {
-                    Label("Favourites", systemImage: "heart.fill")
-                }
+                .tabItem { Label("Favourites", systemImage: "heart.fill") }
+                .tag(2)
             }
             
             NavigationStack {
@@ -465,20 +464,24 @@ struct ContentView: View {
                         ToolbarItem(placement: .navigationBarTrailing) {
                             NavigationLink {
                                 SettingsView(showFavouritesTab: $showFavouritesTab)
-                            } label: {
-                                Image(systemName: "gear")
-                            }
+                            } label: { Image(systemName: "gear") }
                             .accessibilityLabel("Settings")
                         }
                     }
                     .navigationTitle("Information")
             }
-            .tabItem {
-                Label("Information", systemImage: "info.circle")
-            }
+            .tabItem { Label("Information", systemImage: "info.circle") }
+            .tag( showFavouritesTab && !favourites.favouriteStops.isEmpty ? 3 : 2 )
         }
         .tint(Color.brandPrimary)
         .environmentObject(favourites)
+        .onChange(of: openFavouritesFromWidget) { _, flag in
+            guard flag else { return }
+            // Determine favourites tab index dynamically (depends on whether favourites tab is present)
+            if showFavouritesTab && !favourites.favouriteStops.isEmpty {
+                selectedTab =  showFavouritesTab && !favourites.favouriteStops.isEmpty ? 2 : 0
+            }
+        }
     }
 }
 

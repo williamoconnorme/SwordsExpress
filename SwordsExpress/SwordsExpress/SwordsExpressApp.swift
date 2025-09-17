@@ -14,13 +14,29 @@ struct SwordsExpressApp: App {
         }
     }()
 
+    @State private var pendingURL: URL? = nil
+    @State private var favouritesDeepLinkTrigger: Bool = false
+
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .task {
-                    TimetableStore.load()
+                .environment(\.openFavouritesFromWidget, favouritesDeepLinkTrigger)
+                .onChange(of: pendingURL) { _, newValue in
+                    guard let url = newValue else { return }
+                    if url.host == "favourites" || url.path == "/favourites" {
+                        // Toggle the trigger to inform ContentView to show favourites tab
+                        favouritesDeepLinkTrigger.toggle()
+                    }
                 }
+                .onOpenURL { url in
+                    pendingURL = url
+                }
+                .task { TimetableStore.load() }
         }
         .modelContainer(sharedModelContainer)
     }
 }
+
+// Environment key to signal opening favourites tab
+private struct OpenFavouritesKey: EnvironmentKey { static let defaultValue: Bool = false }
+extension EnvironmentValues { var openFavouritesFromWidget: Bool { get { self[OpenFavouritesKey.self] } set { self[OpenFavouritesKey.self] = newValue } } }
