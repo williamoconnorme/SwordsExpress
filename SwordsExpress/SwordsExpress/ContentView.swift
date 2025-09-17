@@ -1,4 +1,3 @@
-//
 //  ContentView.swift
 //  SwordsExpress
 //
@@ -9,6 +8,9 @@ import SwiftUI
 import SwiftData
 import MapKit
 import Combine
+#if canImport(WidgetKit)
+import WidgetKit
+#endif
 
 // MARK: - Supporting UI Utilities & Extensions
 // Provide color tokens used throughout the views.
@@ -424,10 +426,13 @@ struct NextBusTimesView: View {
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @StateObject private var favourites = FavouritesStore()
+    @AppStorage("showFavouritesTab") private var showFavouritesTab: Bool = true
     @State private var liveNavPath: [BusStop] = []
+    @Environment(\.openFavouritesFromWidget) private var openFavouritesFromWidget: Bool
+    @State private var selectedTab: Int = 0 // 0=Live,1=Timetable,2=Favourites (if present),3=Information
 
     var body: some View {
-        TabView {
+        TabView(selection: $selectedTab) {
             NavigationStack(path: $liveNavPath) {
                 LiveView(onOpenTimetable: { stop in
                     liveNavPath.append(stop)
@@ -437,22 +442,46 @@ struct ContentView: View {
                     StopTimetableView(direction: direction, stop: stop)
                 }
             }
-                .tabItem {
-                    Label("Live", systemImage: "dot.radiowaves.left.and.right")
-                }
-
+            .tabItem { Label("Live", systemImage: "dot.radiowaves.left.and.right") }
+            .tag(0)
+            
             ScheduleView()
-                .tabItem {
-                    Label("Timetable", systemImage: "calendar")
+                .tabItem { Label("Timetable", systemImage: "calendar") }
+                .tag(1)
+            
+            if showFavouritesTab && !favourites.favouriteStops.isEmpty {
+                NavigationStack {
+                    FavouriteStopsView()
+                        .navigationTitle("Favourites")
                 }
-
-            InformationView()
-                .tabItem {
-                    Label("Information", systemImage: "info.circle")
-                }
+                .tabItem { Label("Favourites", systemImage: "heart.fill") }
+                .tag(2)
+            }
+            
+            NavigationStack {
+                InformationView()
+                    .toolbar {
+                        ToolbarItem(placement: .navigationBarTrailing) {
+                            NavigationLink {
+                                SettingsView(showFavouritesTab: $showFavouritesTab)
+                            } label: { Image(systemName: "gear") }
+                            .accessibilityLabel("Settings")
+                        }
+                    }
+                    .navigationTitle("Information")
+            }
+            .tabItem { Label("Information", systemImage: "info.circle") }
+            .tag( showFavouritesTab && !favourites.favouriteStops.isEmpty ? 3 : 2 )
         }
         .tint(Color.brandPrimary)
         .environmentObject(favourites)
+        .onChange(of: openFavouritesFromWidget) { _, flag in
+            guard flag else { return }
+            // Determine favourites tab index dynamically (depends on whether favourites tab is present)
+            if showFavouritesTab && !favourites.favouriteStops.isEmpty {
+                selectedTab =  showFavouritesTab && !favourites.favouriteStops.isEmpty ? 2 : 0
+            }
+        }
     }
 }
 
@@ -1560,6 +1589,39 @@ private struct StopsListView: View {
 // MARK: - Favourite Stops List
 struct FavouriteStopsView: View {
     @EnvironmentObject private var favourites: FavouritesStore
+    
+    @AppStorage("favouritesOrder") private var favouritesOrderRaw: String = ""
+    
+    private var storedOrderIDs: [String] {
+        favouritesOrderRaw.split(separator: ",").map { String($0) }
+    }
+
+    private func orderedStops(from stops: [BusStop]) -> [BusStop] {
+        // Build index keyed by Int stop ID (ignore any malformed stored values)
+        let idIndex: [Int: Int] = Dictionary(uniqueKeysWithValues: storedOrderIDs.enumerated().compactMap { (idx, raw) in
+            if let id = Int(raw) { return (id, idx) } else { return nil }
+        })
+        // Sort by stored index first; unknown IDs fall back to their existing order but after known ones
+        return stops.sorted { a, b in
+            let ia = idIndex[a.id] ?? Int.max
+            let ib = idIndex[b.id] ?? Int.max
+            if ia == ib { return a.name < b.name } // stable fallback by name for unknowns
+            return ia < ib
+        }
+    }
+
+    private func saveOrder(for stops: [BusStop]) {
+        let ids = stops.map { String($0.id) }
+        let joined = ids.joined(separator: ",")
+        favouritesOrderRaw = joined
+        // Mirror into App Group so widget can respect ordering
+        if let defaults = UserDefaults(suiteName: SharedConstants.appGroupIdentifier) {
+            defaults.set(joined, forKey: SharedConstants.favouriteStopOrderKey)
+        }
+        #if canImport(WidgetKit)
+        WidgetCenter.shared.reloadTimelines(ofKind: "LiveDepartures")
+        #endif
+    }
 
     var body: some View {
         List {
@@ -1567,8 +1629,17 @@ struct FavouriteStopsView: View {
                 Text("No favourite stops yet.")
                     .foregroundStyle(.secondary)
             } else {
-                ForEach(favourites.favouriteStops) { stop in
-                    NavigationLink(value: stop) {
+                ForEach(orderedStops(from: favourites.favouriteStops)) { stop in
+                    // NOTE: Using an explicit destination NavigationLink here instead of value-based navigation.
+                    // Mixing value-based links (NavigationLink(value:)) with an intermediate push created using
+                    // the older initializer (toolbar NavigationLink to FavouriteStopsView) was causing SwiftUI
+                    // to momentarily re-present this view after pushing the stop timetable, producing the bug
+                    // where the favourites list "reappears" until navigating back. Providing the destination
+                    // directly stabilises the stack and resolves the glitch.
+                    NavigationLink {
+                        let direction: RouteDirection = StopsData.toCity.contains(stop) ? .toCity : .toSwords
+                        StopTimetableView(direction: direction, stop: stop)
+                    } label: {
                         HStack(spacing: 12) {
                             Image(systemName: "mappin")
                                 .foregroundStyle(Color.stopPink)
@@ -1591,9 +1662,32 @@ struct FavouriteStopsView: View {
                         }
                     }
                 }
+                .onDelete { offsets in
+                    var current = orderedStops(from: favourites.favouriteStops)
+                    let removed = offsets.map { current[$0] }
+                    // Toggle off removed stops
+                    for stop in removed { if favourites.isFavourite(stop) { favourites.toggle(stop) } }
+                    // Persist remaining order
+                    current.removeAll { removed.contains($0) }
+                    saveOrder(for: current)
+                }
+                .onMove { indices, newOffset in
+                    var current = orderedStops(from: favourites.favouriteStops)
+                    current.move(fromOffsets: indices, toOffset: newOffset)
+                    saveOrder(for: current)
+                }
             }
         }
         .navigationTitle("Favourites")
+        .onAppear {
+            if favouritesOrderRaw.isEmpty {
+                saveOrder(for: favourites.favouriteStops)
+            } else {
+                // Ensure we include any newly added favourites not yet in the stored order
+                let current = orderedStops(from: favourites.favouriteStops)
+                saveOrder(for: current)
+            }
+        }
     }
 
     private func directionDescription(for stop: BusStop) -> String {
@@ -1604,8 +1698,9 @@ struct FavouriteStopsView: View {
     }
 }
 
+// Removed private extension FavouritesStore with reorderFavourites(from:to:)
+
 #Preview {
     ContentView()
         .environmentObject(FavouritesStore())
 }
-
