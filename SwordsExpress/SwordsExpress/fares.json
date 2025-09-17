@@ -1,0 +1,110 @@
+{
+  "ordering": {
+    "fareTypes": ["Cash", "Leap", "Taxsaver"],
+    "passengers": ["Adult", "Student", "Child"]
+  },
+  "metadata": {
+    "lastUpdated": "2025-09-01",
+    "currency": "EUR",
+    "notes": [
+      { "title": "Exact Fare", "body": "Exact fare only. Drivers do not carry change." },
+      { "title": "Peak & Off-Peak", "body": "Off-peak: 08:45–15:59 & 19:00 onwards. Services starting off-peak charge off-peak for all stops. Services starting peak charge peak for all stops." },
+      { "title": "Night Link", "body": "Late night departures (after 00:30) use Night Link fares." }
+    ]
+  },
+  "fareTypes": {
+    "Cash": {
+      "Adult": {
+        "groups": [
+          {
+            "name": "Singles",
+            "fares": [
+              { "code": "night_link", "label": "Night Link", "price": 7.0, "description": "Late night service fare." },
+              { "code": "single_off_peak", "label": "Single Off-Peak", "price": 4.2, "description": "Valid on any off-peak service." },
+              { "code": "single_peak", "label": "Single Peak", "price": 4.9, "description": "Valid on services departing during peak times." }
+            ]
+          }
+        ],
+        "information": "Off-peak time is 08:45–15:59 & 19:00 onwards."
+      },
+      "Student": {
+        "groups": [
+          {
+            "name": "Singles",
+            "fares": [
+              { "code": "single_off_peak", "label": "Single Off-Peak", "price": 3.2 },
+              { "code": "single_peak", "label": "Single Peak", "price": 3.7 },
+              { "code": "night_link", "label": "Night Link", "price": 5.5 }
+            ]
+          }
+        ],
+        "information": "Valid student ID must be shown if requested."
+      },
+      "Child": {
+        "groups": [
+          {
+            "name": "Singles",
+            "fares": [
+              { "code": "single_off_peak", "label": "Single Off-Peak", "price": 2.1 },
+              { "code": "single_peak", "label": "Single Peak", "price": 2.4 }
+            ]
+          }
+        ],
+        "information": "Child fares apply up to and including age 15."
+      }
+    },
+    "Leap": {
+      "Adult": {
+        "groups": [
+          {
+            "name": "Singles",
+            "fares": [
+              { "code": "night_link", "label": "Night Link", "price": 6.5 },
+              { "code": "single_off_peak", "label": "Single Off-Peak", "price": 3.8 },
+              { "code": "single_peak", "label": "Single Peak", "price": 4.4 }
+            ]
+          }
+        ],
+        "information": "Tag on when boarding. Ensure card has sufficient balance."
+      },
+      "Student": {
+        "groups": [
+          {
+            "name": "Singles",
+            "fares": [
+              { "code": "single_off_peak", "label": "Single Off-Peak", "price": 3.0 },
+              { "code": "single_peak", "label": "Single Peak", "price": 3.4 }
+            ]
+          }
+        ],
+        "information": "Approved student Leap card required."
+      },
+      "Child": {
+        "groups": [
+          {
+            "name": "Singles",
+            "fares": [
+              { "code": "single_off_peak", "label": "Single Off-Peak", "price": 1.4 },
+              { "code": "single_peak", "label": "Single Peak", "price": 1.6 }
+            ]
+          }
+        ],
+        "information": "Child Leap card required."
+      }
+    },
+    "Taxsaver": {
+      "Adult": {
+        "groups": [
+          {
+            "name": "Passes",
+            "fares": [
+              { "code": "monthly", "label": "Monthly Pass", "price": 150.0, "description": "Unlimited travel for one calendar month." },
+              { "code": "annual", "label": "Annual Pass", "price": 1500.0, "description": "Unlimited travel for twelve months." }
+            ]
+          }
+        ],
+        "information": "Issued through employer under the Taxsaver scheme. Non-transferable."
+      }
+    }
+  }
+}
