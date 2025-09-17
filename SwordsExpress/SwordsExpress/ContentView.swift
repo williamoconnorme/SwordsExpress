@@ -1568,7 +1568,16 @@ struct FavouriteStopsView: View {
                     .foregroundStyle(.secondary)
             } else {
                 ForEach(favourites.favouriteStops) { stop in
-                    NavigationLink(value: stop) {
+                    // NOTE: Using an explicit destination NavigationLink here instead of value-based navigation.
+                    // Mixing value-based links (NavigationLink(value:)) with an intermediate push created using
+                    // the older initializer (toolbar NavigationLink to FavouriteStopsView) was causing SwiftUI
+                    // to momentarily re-present this view after pushing the stop timetable, producing the bug
+                    // where the favourites list "reappears" until navigating back. Providing the destination
+                    // directly stabilises the stack and resolves the glitch.
+                    NavigationLink {
+                        let direction: RouteDirection = StopsData.toCity.contains(stop) ? .toCity : .toSwords
+                        StopTimetableView(direction: direction, stop: stop)
+                    } label: {
                         HStack(spacing: 12) {
                             Image(systemName: "mappin")
                                 .foregroundStyle(Color.stopPink)
