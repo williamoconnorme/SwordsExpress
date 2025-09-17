@@ -1,0 +1,75 @@
+SwordsExpress Source-Available Non-Commercial Educational License
+SPDX-Identifier: LicenseRef-SwordsExpress-NC-Edu-1.0
+Version: 1.0
+Effective Date: 2025-09-17
+
+IMPORTANT: This is NOT an OSI-approved open source license. It is a "source-available" license. You may view, study, and modify the code under the terms below. If you require rights beyond these terms (including any commercial or marketplace distribution), contact the copyright holder to negotiate a separate license.
+
+1. Definitions
+   1.1 "Software" means the SwordsExpress codebase and all accompanying files in this repository.
+   1.2 "Educational Use" means use solely for personal learning, academic coursework, student projects, research, code review, experimentation, or internal technical evaluation.
+   1.3 "Commercial Use" means use intended for or directed toward commercial advantage or monetary compensation (direct or indirect), including (a) offering the Software (or derivative works) as part of any product, service, subscription, SaaS, consulting deliverable, or bundle; (b) using the Software to provide services to third parties; (c) internal deployment within a for‑profit organization beyond transient evaluation or prototyping by an individual.
+   1.4 "Marketplace" means any public distribution platform or catalog (e.g., Apple App Store, Google Play, Microsoft Store, TestFlight (beyond personal device internal testing), Setapp, Amazon, Huawei AppGallery, or any similar store, portal, or listing site for software or mobile/desktop apps) whether free or paid.
+   1.5 "You" (or "Your") means an individual exercising rights under this License.
+   1.6 "Derivative Work" means any modification, adaptation, translation, enhancement, or work based upon or incorporating the Software, in whole or in part.
+
+2. Grant of Rights
+   Subject to full compliance with this License, You are granted a limited, worldwide, revocable, non-exclusive, non-transferable, royalty-free right to:
+   (a) View, study and locally run the Software.
+   (b) Create Derivative Works for Educational Use.
+   (c) Keep Derivative Works privately and use them locally for Educational Use.
+
+3. Prohibited Activities (NO RIGHTS ARE GRANTED to):
+   (a) Any Commercial Use.
+   (b) Publish, list, upload, distribute, or promote the Software or any Derivative Work on any Marketplace.
+   (c) Provide hosted, cloud, or network-accessible instances to third parties (except transient personal testing during development).
+   (d) Sell, rent, lease, sublicense, or otherwise monetize the Software or Derivative Works.
+   (e) Remove, obfuscate, or alter copyright, license notices, or attribution.
+   (f) Use any name, logo, or trademark of the project or its contributors to imply endorsement.
+   (g) Incorporate the Software (or substantial portions) into other software that is itself distributed outside Your local environment.
+
+4. Redistribution
+   You may NOT redistribute the Software or Derivative Works in any form (source, binary, snippet, archive, container, or compiled application) except:
+     (i) Private sharing with an academic instructor, examiner, or bona fide collaborator strictly for Educational Use, and only if they also agree to this License; OR
+     (ii) Including brief, non-executable excerpts (under 50 lines each, aggregating to <= 300 lines) in academic papers, blog posts, or presentations for commentary or illustration, with clear attribution.
+
+5. Derivative Works & Contributions
+   (a) You retain ownership of Your original contributions to a Derivative Work, but You may not distribute the Derivative Work except as allowed in Section 4.
+   (b) Submitting a contribution (e.g., pull request) to this repository is an express license to the maintainers under the same terms the Software is presently distributed and to relicense under future versions of this License.
+
+6. No Patent License
+   No express or implied patent rights are granted under this License.
+
+7. Termination
+   (a) This License terminates automatically if You breach any term.
+   (b) Upon termination You must cease all use and destroy all local copies and Derivative Works (except Your original, independent code not incorporating the Software).
+   (c) Rights may be reinstated solely at the copyright holder's discretion.
+
+8. Compliance & Audit
+   On written request (email suffices) describing credible suspected misuse, You agree within 30 days to provide a high-level description of Your use sufficient to confirm compliance. No access to private code is required unless voluntarily provided.
+
+9. Disclaimer of Warranty
+   THE SOFTWARE IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF TITLE, NON-INFRINGEMENT, MERCHANTABILITY, AND FITNESS FOR A PARTICULAR PURPOSE. USE IS AT YOUR OWN RISK.
+
+10. Limitation of Liability
+   TO THE MAXIMUM EXTENT PERMITTED BY LAW, IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY INDIRECT, SPECIAL, INCIDENTAL, CONSEQUENTIAL, EXEMPLARY, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS, REVENUE, DATA, OR GOODWILL, EVEN IF ADVISED OF THE POSSIBILITY. AGGREGATE LIABILITY SHALL NOT EXCEED ONE HUNDRED (100) EUR.
+
+11. Indemnity
+   You will indemnify and hold harmless the copyright holder and contributors from any claim arising from Your breach of this License or misuse of the Software.
+
+12. Non-Circumvention
+   You shall not attempt to circumvent the limitations in this License (including by multi-tier distribution, remote wrapping, or offering functionally similar services) without an explicit separate commercial license.
+
+13. Governing Law
+   Unless otherwise required by local law, this License is governed by the laws of Ireland, excluding conflict of law rules.
+
+14. Severability
+   If any provision is held unenforceable, the remainder shall remain in full effect, and the unenforceable provision shall be replaced with the closest enforceable equivalent reflecting original intent.
+
+15. Entire Agreement; Amendments
+   This License constitutes the entire agreement regarding the Software. The copyright holder may publish revised versions. Continued use after publication of a revised version constitutes acceptance unless You cease use within 30 days.
+
+16. Contact for Commercial Licensing
+   For commercial, redistribution, or marketplace licensing inquiries, contact: (Add preferred email/contact here)
+
+Copyright (c) 2025 William O'Connor and contributors. All rights reserved except as expressly granted herein.

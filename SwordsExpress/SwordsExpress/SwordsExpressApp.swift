@@ -1,10 +1,3 @@
-//
-//  SwordsExpressApp.swift
-//  SwordsExpress
-//
-//  Created by William O'Connor on 11/09/2025.
-//
-
 import SwiftUI
 import SwiftData
 
