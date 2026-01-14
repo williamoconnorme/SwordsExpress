@@ -1233,8 +1233,8 @@ struct LiveView: View {
 
     private func calculateWalkingRoute(to stop: BusStop, from current: CLLocationCoordinate2D) {
         let request = MKDirections.Request()
-        request.source = MKMapItem(placemark: MKPlacemark(coordinate: current))
-        request.destination = MKMapItem(placemark: MKPlacemark(coordinate: stop.coordinate))
+        request.source = MKMapItem(location: CLLocation(latitude: current.latitude, longitude: current.longitude), address: nil)
+        request.destination = MKMapItem(location: CLLocation(latitude: stop.coordinate.latitude, longitude: stop.coordinate.longitude), address: nil)
         request.transportType = .walking
         let directions = MKDirections(request: request)
         Task {
@@ -1441,7 +1441,7 @@ struct LiveView: View {
                 .padding(10)
                 .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 12))
                 // Allow it to grow but cap to available width minus margins, and ensure a comfortable minimum width
-                .frame(minWidth: 320, maxWidth: min(availableWidth - 32, 560), alignment: .leading)
+                .frame(minWidth: 320, maxWidth: max(320, min(availableWidth - 32, 560)), alignment: .leading)
                 .padding(.horizontal)
                 .background(
                     GeometryReader { proxy in
