@@ -99,16 +99,15 @@ private func fetchNextBusTimes(direction: String, stop: String) async -> [String
 }
 
 // MARK: - Time Utilities
-private func parseHHMM(_ original: String) -> Date? {
+private func parseHHMM(_ original: String, reference: Date) -> Date? {
     // Accept variants like "HH:mm", "HH.mm", possible surrounding whitespace.
     let trimmed = original.trimmingCharacters(in: .whitespacesAndNewlines)
     let canonical = trimmed.replacingOccurrences(of: ".", with: ":")
     let parts = canonical.split(separator: ":")
     guard parts.count == 2, let h = Int(parts[0]), let m = Int(parts[1]) else { return nil }
     var cal = Calendar(identifier: .gregorian)
-    cal.timeZone = .current
-    let now = Date()
-    var comps = cal.dateComponents([.year, .month, .day], from: now)
+    cal.timeZone = TimeZone(identifier: "Europe/Dublin") ?? .current
+    var comps = cal.dateComponents([.year, .month, .day], from: reference)
     comps.hour = h; comps.minute = m; comps.second = 0
     return cal.date(from: comps)
 }
@@ -116,7 +115,7 @@ private func parseHHMM(_ original: String) -> Date? {
 private func filterUpcoming(times: [String], from reference: Date) -> [String] {
     times.compactMap { raw in
         let t = raw.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard let dt = parseHHMM(t) else { return nil }
+        guard let dt = parseHHMM(t, reference: reference) else { return nil }
         return dt >= reference ? t : nil
     }
 }
@@ -128,17 +127,17 @@ private func filterUpcomingWithDiagnostics(times: [String], reference: Date) -> 
     var unparsable: [String] = []
     for raw in times {
         let t = raw.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard let dt = parseHHMM(t) else { unparsable.append(t); continue }
+        guard let dt = parseHHMM(t, reference: reference) else { unparsable.append(t); continue }
         if dt >= reference { upcoming.append(t) } else { removedPast.append(t) }
     }
     return (upcoming, removedPast, unparsable)
 }
 
-private func sortChronologically(_ times: [String]) -> [String] {
+private func sortChronologically(_ times: [String], reference: Date) -> [String] {
     return times.sorted { a, b in
         let ta = a.trimmingCharacters(in: .whitespacesAndNewlines)
         let tb = b.trimmingCharacters(in: .whitespacesAndNewlines)
-        if let da = parseHHMM(ta), let db = parseHHMM(tb) { return da < db }
+        if let da = parseHHMM(ta, reference: reference), let db = parseHHMM(tb, reference: reference) { return da < db }
         // Fallback deterministic lexical compare after trimming
         return ta < tb
     }
@@ -178,7 +177,7 @@ struct Provider: TimelineProvider {
             let entry = await makeEntry(referenceDate: generationTime)
             // Find earliest future departure across all stops
             let allFuture: [Date] = entry.stops.flatMap { stop in
-                stop.times.compactMap { parseHHMM($0) }.filter { $0 > generationTime }
+                stop.times.compactMap { parseHHMM($0, reference: generationTime) }.filter { $0 > generationTime }
             }.sorted()
             // Choose next reload: shortly after the earliest departure OR fallback in 5 minutes if none.
             let earliest = allFuture.first
@@ -207,7 +206,7 @@ struct Provider: TimelineProvider {
                     }()
                     let times = await fetchNextBusTimes(direction: directionParam, stop: stop.slug)
                     let diag = filterUpcomingWithDiagnostics(times: times, reference: now)
-                    let upcoming = sortChronologically(diag.upcoming) // Keep only future & sort ascending
+                    let upcoming = sortChronologically(diag.upcoming, reference: now) // Keep only future & sort ascending
 #if DEBUG
                     if !times.isEmpty {
                         let rawSample = times.joined(separator: ",")
@@ -416,4 +415,3 @@ struct LiveDepartures: Widget {
         StopLiveDepartures(id: 586, name: "Eden Quay", direction: "To Swords", times: ["12:08", "12:28", "12:58"])
     ])
 }
-

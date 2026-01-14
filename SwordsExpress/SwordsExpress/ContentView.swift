@@ -166,6 +166,7 @@ struct StopTimetableView: View {
                             Text("(\(item.intervalDescription))")
                                 .font(.caption)
                                 .foregroundStyle(.secondary)
+                            Spacer()
                             if let route = liveRouteMatches[item.time] {
                                 Text("Route \(route)")
                                     .font(.caption.weight(.semibold))
@@ -174,7 +175,6 @@ struct StopTimetableView: View {
                                     .background(Capsule().fill(Color.brandPrimary.opacity(0.18)))
                                     .foregroundStyle(Color.brandPrimary)
                             }
-                            Spacer()
                         }
                         .padding(.vertical, 2)
                         .accessibilityLabel("Live departure at \(item.time) \(item.intervalDescription)")
@@ -494,6 +494,8 @@ private struct StopPopupView: View {
     let onToggleFavourite: () -> Void
     let onClose: () -> Void
     let onOpenTimetable: () -> Void
+    let onRequestDirections: () -> Void
+    @AppStorage("mapShowDirectionsButton") private var mapShowDirectionsButton: Bool = true
 
     // Design tokens
     private var cornerRadius: CGFloat { 18 }
@@ -547,6 +549,9 @@ private struct StopPopupView: View {
                     .buttonStyle(.plain)
                     .accessibilityLabel("Open timetable for \(stop.name)")
                     favouriteButton
+                    if mapShowDirectionsButton {
+                        directionsButton
+                    }
                 }
                 Text("Live departures")
                     .font(.subheadline.weight(.medium))
@@ -684,6 +689,28 @@ private struct StopPopupView: View {
         }
         .buttonStyle(.plain)
         .accessibilityLabel("Close stop details")
+    }
+
+    private var directionsButton: some View {
+        Button(action: onRequestDirections) {
+            HStack(spacing: 6) {
+                Image(systemName: "figure.walk")
+                    .font(.caption.weight(.semibold))
+                Text("Walk")
+                    .font(.caption.weight(.semibold))
+            }
+            .padding(.horizontal, 10)
+            .padding(.vertical, 6)
+            .background(
+                Capsule()
+                    .fill(Color.brandPrimary.opacity(0.16))
+            )
+            .foregroundStyle(Color.brandPrimary)
+            .contentShape(Capsule())
+        }
+        .buttonStyle(.plain)
+        .accessibilityLabel("Get walking directions to \(stop.name)")
+        .accessibilityAddTraits(.isButton)
     }
 }
 
@@ -936,6 +963,17 @@ struct LiveView: View {
     let onOpenTimetable: (BusStop) -> Void
     @StateObject private var routeStore = RouteStore()
     @EnvironmentObject private var favourites: FavouritesStore
+    @AppStorage("mapShowUserLocation") private var mapShowUserLocation: Bool = false
+    @StateObject private var locationPermission = LocationPermissionManager()
+    @State private var pendingDirectionsStop: BusStop? = nil
+    @State private var showLocationDeniedAlert = false
+    @State private var showDirectionsErrorAlert = false
+    @State private var directionsErrorMessage: String = ""
+    @State private var walkingRouteCoordinates: [CLLocationCoordinate2D] = []
+    @State private var isLowPowerModeEnabled: Bool = ProcessInfo.processInfo.isLowPowerModeEnabled
+    @AppStorage("allowLowPowerOverride") private var allowLowPowerOverride: Bool = false
+
+    private let lowPowerModePublisher = NotificationCenter.default.publisher(for: .NSProcessInfoPowerStateDidChange)
 
     // MARK: - Map State
     @State private var cameraPosition: MapCameraPosition = .region(
@@ -957,6 +995,8 @@ struct LiveView: View {
     @State private var selectedBus: Bus? = nil
     @State private var isFollowingSelectedBus: Bool = false
     @State private var showNoBusesBanner: Bool = false
+    @State private var showLowPowerBanner: Bool = false
+    @State private var suppressedLowPowerBanner: Bool = false
     @State private var controlPanelWidth: CGFloat = 0
     @State private var availableWidth: CGFloat = 0
     @State private var suppressedNoBusesBanner: Bool = false // prevents re-show within same hidden-bus period after manual dismiss
@@ -1024,11 +1064,18 @@ struct LiveView: View {
             return
         }
         let dirID = (direction == .toSwords) ? "toSwords" : "toCity"
-        isSnapping = true
+        isSnapping = !(isLowPowerModeEnabled && !allowLowPowerOverride)
         Task {
             let segments = routeStore.polylineCoordinates(for: route.id, directionID: dirID)
             let raw = segments.flatMap { $0 }
             do {
+                if isLowPowerModeEnabled && !allowLowPowerOverride {
+                    await MainActor.run {
+                        withAnimation(.easeInOut(duration: 0.35)) { snappedPolyline = raw }
+                        isSnapping = false
+                    }
+                    return
+                }
                 let snapped = try await RouteSnappingService.shared.snappedSegment(routeID: route.id, directionID: dirID, raw: raw)
                 await MainActor.run {
                     withAnimation(.easeInOut(duration: 0.5)) { snappedPolyline = snapped }
@@ -1166,71 +1213,185 @@ struct LiveView: View {
         }
     }
 
+    private func requestDirections(to stop: BusStop) {
+        switch locationPermission.authorizationStatus {
+        case .notDetermined:
+            pendingDirectionsStop = stop
+            locationPermission.requestWhenInUseAuthorization()
+        case .authorizedAlways, .authorizedWhenInUse:
+            pendingDirectionsStop = stop
+            if let current = locationPermission.lastLocation?.coordinate {
+                calculateWalkingRoute(to: stop, from: current)
+                pendingDirectionsStop = nil
+            } else {
+                locationPermission.requestLocation()
+            }
+        default:
+            showLocationDeniedAlert = true
+        }
+    }
+
+    private func calculateWalkingRoute(to stop: BusStop, from current: CLLocationCoordinate2D) {
+        let request = MKDirections.Request()
+        request.source = MKMapItem(placemark: MKPlacemark(coordinate: current))
+        request.destination = MKMapItem(placemark: MKPlacemark(coordinate: stop.coordinate))
+        request.transportType = .walking
+        let directions = MKDirections(request: request)
+        Task {
+            do {
+                let response = try await directions.calculate()
+                let coords = response.routes.first?.polyline.coordinates ?? []
+                await MainActor.run {
+                    if coords.isEmpty {
+                        self.walkingRouteCoordinates = []
+                        self.directionsErrorMessage = "No walking route found from your location to this stop."
+                        self.showDirectionsErrorAlert = true
+                    } else {
+                        self.walkingRouteCoordinates = coords
+                    }
+                }
+            } catch {
+                await MainActor.run {
+                    self.walkingRouteCoordinates = []
+                    self.directionsErrorMessage = "Unable to calculate walking directions right now."
+                    self.showDirectionsErrorAlert = true
+                }
+            }
+        }
+    }
+
+    private var mapInteraction: MapInteractionModes { [.all] }
+
+    private var mapView: some View {
+        Map(position: $cameraPosition, interactionModes: mapInteraction) {
+            RoutePolylineView(coordinates: snappedPolyline)
+            if walkingRouteCoordinates.count > 1 {
+                MapPolyline(coordinates: walkingRouteCoordinates)
+                    .stroke(Color.blue, lineWidth: 4)
+            }
+
+            BusAnnotationsContent(
+                buses: displayBuses.isEmpty ? buses : displayBuses,
+                selectedBus: selectedBus,
+                onTap: { bus in
+                    selectedBus = bus
+                    // Dismiss any selected stop when a bus is chosen
+                    selectedBusStop = nil
+                    // Auto-enable follow when a bus is selected
+                    isFollowingSelectedBus = true
+                    // Initial selection: do not change zoom if already following something; if first selection, keep behavior
+                    if isFollowingSelectedBus { panMapPreservingZoom(to: bus.coordinate) } else { centerMap(on: bus.coordinate) }
+                }
+            )
+
+            StopAnnotationsContent(
+                stops: displayStops,
+                selectedStop: selectedBusStop,
+                onTap: { stop in
+                    withAnimation(.spring(response: 0.45, dampingFraction: 0.85)) {
+                        selectedBusStop = stop
+                        nextBusTimes = []
+                        selectedBus = nil
+                        isFollowingSelectedBus = false
+                    }
+                    walkingRouteCoordinates = []
+                    centerMap(on: stop.coordinate)
+                    loadNextBusTimes(for: stop)
+                },
+                disappearingIDs: disappearingStopIDs
+            )
+
+            if mapShowUserLocation, let coordinate = locationPermission.lastLocation?.coordinate {
+                Annotation("My Location", coordinate: coordinate) {
+                    ZStack {
+                        Circle()
+                            .fill(Color.blue.opacity(0.25))
+                            .frame(width: 20, height: 20)
+                        Circle()
+                            .fill(Color.blue)
+                            .frame(width: 8, height: 8)
+                    }
+                    .accessibilityHidden(true)
+                }
+            }
+        }
+        .animation(.easeInOut(duration: 0.6), value: buses)
+        .ignoresSafeArea()
+        .mapStyle(.standard(pointsOfInterest: .excludingAll))
+        .simultaneousGesture(TapGesture().onEnded {
+            if !isFollowingSelectedBus { selectedBus = nil }
+            selectedBusStop = nil
+            walkingRouteCoordinates = []
+        })
+        // Capture pinch zoom gestures to refine lastRegion span so follow never reverts to an older (wider) zoom.
+        .simultaneousGesture(
+            MagnificationGesture()
+                .onEnded { scale in
+                    guard scale != 0, scale != 1, let lr = lastRegion else { return }
+                    // Smaller scale(<1) means user pinched inward? SwiftUI magnification returns relative >1 when zooming in.
+                    // When zooming in (scale > 1) we want smaller span (divide by scale).
+                    // When zooming out (scale < 1) we enlarge span, but to honor "never zoom out automatically" we still record it
+                    // so future follows keep exactly what user set manually.
+                    let adjusted = MKCoordinateSpan(
+                        latitudeDelta: max(lr.span.latitudeDelta / scale, 0.0005),
+                        longitudeDelta: max(lr.span.longitudeDelta / scale, 0.0005)
+                    )
+                    lastRegion = MKCoordinateRegion(center: lr.center, span: adjusted)
+                }
+        )
+    }
+
+    private func showLowPowerBannerIfNeeded() {
+        guard isLowPowerModeEnabled, !allowLowPowerOverride, !suppressedLowPowerBanner else { return }
+        showLowPowerBanner = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 8) {
+            if showLowPowerBanner { showLowPowerBanner = false }
+        }
+    }
+
     var body: some View {
         GeometryReader { outerGeo in
             let maxWidth = outerGeo.size.width
             ZStack(alignment: .top) {
-            let interaction: MapInteractionModes = [.all]
-            Map(position: $cameraPosition, interactionModes: interaction) {
-                RoutePolylineView(coordinates: snappedPolyline)
+            mapView
 
-                BusAnnotationsContent(
-                    buses: displayBuses.isEmpty ? buses : displayBuses,
-                    selectedBus: selectedBus,
-                    onTap: { bus in
-                        selectedBus = bus
-                        // Dismiss any selected stop when a bus is chosen
-                        selectedBusStop = nil
-                        // Auto-enable follow when a bus is selected
-                        isFollowingSelectedBus = true
-                        // Initial selection: do not change zoom if already following something; if first selection, keep behavior
-                        if isFollowingSelectedBus { panMapPreservingZoom(to: bus.coordinate) } else { centerMap(on: bus.coordinate) }
-                    }
-                )
-
-                StopAnnotationsContent(
-                    stops: displayStops,
-                    selectedStop: selectedBusStop,
-                    onTap: { stop in
-                        withAnimation(.spring(response: 0.45, dampingFraction: 0.85)) {
-                            selectedBusStop = stop
-                            nextBusTimes = []
-                            selectedBus = nil
-                            isFollowingSelectedBus = false
-                        }
-                        centerMap(on: stop.coordinate)
-                        loadNextBusTimes(for: stop)
-                    },
-                    disappearingIDs: disappearingStopIDs
-                )
-            }
-            .animation(.easeInOut(duration: 0.6), value: buses)
-            .ignoresSafeArea()
-            .mapStyle(.standard(pointsOfInterest: .excludingAll))
-            .simultaneousGesture(TapGesture().onEnded {
-                if !isFollowingSelectedBus { selectedBus = nil }
-                selectedBusStop = nil
-            })
-            // Capture pinch zoom gestures to refine lastRegion span so follow never reverts to an older (wider) zoom.
-            .simultaneousGesture(
-                MagnificationGesture()
-                    .onEnded { scale in
-                        guard scale != 0, scale != 1, let lr = lastRegion else { return }
-                        // Smaller scale(<1) means user pinched inward? SwiftUI magnification returns relative >1 when zooming in.
-                        // When zooming in (scale > 1) we want smaller span (divide by scale).
-                        // When zooming out (scale < 1) we enlarge span, but to honor "never zoom out automatically" we still record it
-                        // so future follows keep exactly what user set manually.
-                        let adjusted = MKCoordinateSpan(
-                            latitudeDelta: max(lr.span.latitudeDelta / scale, 0.0005),
-                            longitudeDelta: max(lr.span.longitudeDelta / scale, 0.0005)
-                        )
-                        lastRegion = MKCoordinateRegion(center: lr.center, span: adjusted)
-                    }
-            )
-            
 
             // Controls overlay
             VStack(spacing: 8) {
+                if showLowPowerBanner {
+                    HStack(spacing: 12) {
+                        Image(systemName: "bolt.fill")
+                            .foregroundStyle(Color.yellow)
+                        Text("Live updates are less frequent while Low Power Mode is on")
+                            .font(.subheadline.weight(.semibold))
+                        Spacer(minLength: 4)
+                        Button(action: {
+                            withAnimation {
+                                showLowPowerBanner = false
+                                suppressedLowPowerBanner = true
+                            }
+                        }) {
+                            Image(systemName: "xmark")
+                                .font(.caption.bold())
+                                .padding(6)
+                                .background(Circle().fill(Color.primary.opacity(0.08)))
+                        }
+                        .buttonStyle(.plain)
+                    }
+                    .padding(.horizontal, 14)
+                    .padding(.vertical, 10)
+                    .background(
+                        Capsule(style: .continuous)
+                            .fill(.ultraThinMaterial)
+                            .shadow(color: .black.opacity(0.15), radius: 10, y: 4)
+                    )
+                    .overlay(
+                        Capsule().stroke(Color.primary.opacity(0.1), lineWidth: 0.5)
+                    )
+                    .padding(.top, 8)
+                    .frame(width: controlPanelWidth == 0 ? nil : min(controlPanelWidth, availableWidth > 0 ? availableWidth - 32 : controlPanelWidth))
+                    .transition(.move(edge: .top).combined(with: .opacity))
+                }
                 if showNoBusesBanner {
                     HStack(spacing: 12) {
                         Image(systemName: "exclamationmark.triangle.fill")
@@ -1316,11 +1477,15 @@ struct LiveView: View {
                     isLoading: isLoadingNextBusTimes,
                     times: nextBusTimes,
                     onToggleFavourite: { favourites.toggle(stop) },
-                    onClose: { withAnimation { selectedBusStop = nil } },
+                    onClose: { withAnimation { selectedBusStop = nil }; walkingRouteCoordinates = [] },
                     onOpenTimetable: {
                         let target = stop
                         withAnimation { selectedBusStop = nil }
+                        walkingRouteCoordinates = []
                         onOpenTimetable(target)
+                    },
+                    onRequestDirections: {
+                        requestDirections(to: stop)
                     }
                 )
                 .padding(.horizontal)
@@ -1332,6 +1497,8 @@ struct LiveView: View {
             .onAppear { availableWidth = maxWidth }
             .onAppear {
                 if displayStops.isEmpty { displayStops = stopsForSelectedDirection }
+                isLowPowerModeEnabled = ProcessInfo.processInfo.isLowPowerModeEnabled
+                showLowPowerBannerIfNeeded()
             }
             .onChange(of: maxWidth) { _, newVal in availableWidth = newVal }
             .onPreferenceChange(ControlPanelWidthKey.self) { newWidth in
@@ -1368,12 +1535,67 @@ struct LiveView: View {
             }
             // Initial bus load
             await fetchBuses()
-            // Poll every 5 seconds until task cancelled
+            // Poll every 5 seconds until task cancelled (throttled in Low Power Mode unless overridden)
             while !Task.isCancelled {
-                do { try await Task.sleep(nanoseconds: 5_000_000_000) } catch { break }
+                let interval: UInt64 = (isLowPowerModeEnabled && !allowLowPowerOverride) ? 20_000_000_000 : 5_000_000_000
+                do { try await Task.sleep(nanoseconds: interval) } catch { break }
                 if Task.isCancelled { break }
                 await fetchBuses()
             }
+        }
+        .onReceive(lowPowerModePublisher) { _ in
+            let enabled = ProcessInfo.processInfo.isLowPowerModeEnabled
+            isLowPowerModeEnabled = enabled
+            if enabled {
+                showLowPowerBannerIfNeeded()
+            } else {
+                showLowPowerBanner = false
+                suppressedLowPowerBanner = false
+            }
+        }
+        .onChange(of: allowLowPowerOverride) { _, newValue in
+            if newValue {
+                showLowPowerBanner = false
+                suppressedLowPowerBanner = false
+            } else {
+                showLowPowerBannerIfNeeded()
+            }
+        }
+        .onChange(of: locationPermission.authorizationStatus) { _, status in
+            guard let pending = pendingDirectionsStop else { return }
+            switch status {
+            case .authorizedAlways, .authorizedWhenInUse:
+                if let current = locationPermission.lastLocation?.coordinate {
+                    calculateWalkingRoute(to: pending, from: current)
+                    pendingDirectionsStop = nil
+                } else {
+                    locationPermission.requestLocation()
+                }
+            case .denied, .restricted:
+                showLocationDeniedAlert = true
+                pendingDirectionsStop = nil
+            default:
+                break
+            }
+        }
+        .onChange(of: locationPermission.lastLocation) { _, newLocation in
+            let status = locationPermission.authorizationStatus
+            guard let pending = pendingDirectionsStop,
+                  let current = newLocation?.coordinate,
+                  status == .authorizedAlways || status == .authorizedWhenInUse
+            else { return }
+            calculateWalkingRoute(to: pending, from: current)
+            pendingDirectionsStop = nil
+        }
+        .alert("Location Access Needed", isPresented: $showLocationDeniedAlert) {
+            Button("OK", role: .cancel) {}
+        } message: {
+            Text("Enable location access in Settings to get walking directions from your current location.")
+        }
+        .alert("Directions Unavailable", isPresented: $showDirectionsErrorAlert) {
+            Button("OK", role: .cancel) {}
+        } message: {
+            Text(directionsErrorMessage)
         }
     }
 
@@ -1384,6 +1606,12 @@ struct LiveView: View {
 
     // MARK: - Smooth Bus Animation
     private func animateBusPositions(to newBuses: [Bus]) {
+        if isLowPowerModeEnabled && !allowLowPowerOverride {
+            withAnimation(.easeInOut(duration: 0.2)) {
+                displayBuses = newBuses
+            }
+            return
+        }
         let currentIDs = Set(displayBuses.map { $0.id })
         let newIDs = Set(newBuses.map { $0.id })
 
@@ -1504,6 +1732,14 @@ struct LiveView: View {
                 }
             }
         }
+    }
+}
+
+private extension MKPolyline {
+    var coordinates: [CLLocationCoordinate2D] {
+        var coords = [CLLocationCoordinate2D](repeating: .init(), count: pointCount)
+        getCoordinates(&coords, range: NSRange(location: 0, length: pointCount))
+        return coords
     }
 }
 

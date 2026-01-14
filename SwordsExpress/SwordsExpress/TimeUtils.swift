@@ -24,13 +24,14 @@ enum BusTimeFormatter {
     ///   - pastGrace: Seconds tolerance for just-past entries to still show as "now".
     /// - Returns: Array of BusUpcomingTime
     static func upcomingTimes(from times: [String], now: Date = Date(), pastGrace: TimeInterval = 30) -> [BusUpcomingTime] {
-        let calendar = Calendar(identifier: .gregorian)
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = tz
         var results: [BusUpcomingTime] = []
 
         for t in times {
             guard let parsed = formatter.date(from: t) else { continue }
             // Build a date for today using parsed hour/minute in Dublin TZ
-            var comps = calendar.dateComponents(in: tz, from: now)
+            var comps = calendar.dateComponents([.year, .month, .day], from: now)
             let hm = calendar.dateComponents([.hour, .minute], from: parsed)
             comps.hour = hm.hour
             comps.minute = hm.minute
